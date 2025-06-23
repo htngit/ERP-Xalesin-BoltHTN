@@ -9,6 +9,12 @@ import { Dashboard } from './pages/Dashboard';
 import { ChartOfAccounts } from './pages/ChartOfAccounts';
 import { WarehouseManagement } from './pages/WarehouseManagement';
 import { ProductCategories } from './pages/ProductCategories';
+import { Items } from './pages/Items';
+import { BatchManagement } from './pages/BatchManagement';
+import { StockMovements } from './pages/StockMovements';
+import { StockLevels } from './pages/StockLevels';
+import { StockAdjustment } from './pages/StockAdjustment';
+import { StockTransfer } from './pages/StockTransfer';
 
 const queryClient = new QueryClient();
 
@@ -87,6 +93,66 @@ const AppRoutes: React.FC = () => {
           <ProtectedRoute>
             <Layout>
               <ProductCategories />
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/items"
+        element={
+          <ProtectedRoute>
+            <Layout>
+              <Items />
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/batches"
+        element={
+          <ProtectedRoute>
+            <Layout>
+              <BatchManagement />
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/stock-movements"
+        element={
+          <ProtectedRoute>
+            <Layout>
+              <StockMovements />
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/stock-levels"
+        element={
+          <ProtectedRoute>
+            <Layout>
+              <StockLevels />
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/stock-adjustment"
+        element={
+          <ProtectedRoute>
+            <Layout>
+              <StockAdjustment />
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/stock-transfer"
+        element={
+          <ProtectedRoute>
+            <Layout>
+              <StockTransfer />
             </Layout>
           </ProtectedRoute>
         }

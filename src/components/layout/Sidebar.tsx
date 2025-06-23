@@ -13,7 +13,13 @@ import {
   Package,
   MapPin,
   Tag,
-  LogOut
+  Box,
+  LogOut,
+  Layers,
+  ArrowDownUp,
+  Database,
+  Edit,
+  ArrowRightLeft
 } from 'lucide-react';
 import { useAuth } from '../../lib/auth';
 import { Button } from '../ui/Button';
@@ -24,6 +30,12 @@ const navigation = [
   { name: 'Jurnal', href: '/journal-entries', icon: FileText },
   { name: 'Gudang', href: '/warehouse', icon: Package },
   { name: 'Kategori', href: '/categories', icon: Tag },
+  { name: 'Item', href: '/items', icon: Box },
+  { name: 'Batch', href: '/batches', icon: Layers },
+  { name: 'Pergerakan Stok', href: '/stock-movements', icon: ArrowDownUp },
+  { name: 'Level Stok', href: '/stock-levels', icon: Database },
+  { name: 'Penyesuaian Stok', href: '/stock-adjustment', icon: Edit },
+  { name: 'Transfer Stok', href: '/stock-transfer', icon: ArrowRightLeft },
   { name: 'Laporan', href: '/reports', icon: BarChart3 },
   { name: 'Pajak', href: '/tax', icon: Receipt },
   { name: 'Perusahaan', href: '/company', icon: Building2 },
