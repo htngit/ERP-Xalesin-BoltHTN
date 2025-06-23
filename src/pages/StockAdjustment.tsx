@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-hot-toast';
-import { Plus, Search, Package, Warehouse, MapPin, ArrowUp, ArrowDown } from 'lucide-react';
+import { Plus, Search, Package, Warehouse as WarehouseIcon, MapPin, ArrowUp, ArrowDown } from 'lucide-react';
 import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
@@ -200,101 +200,91 @@ export const StockAdjustment: React.FC = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="item_id" className="block text-sm font-medium text-gray-700 mb-1">
-                  Item <span className="text-red-500">*</span>
-                </label>
-                <select
-                  id="item_id"
-                  name="item_id"
-                  className="w-full rounded-lg border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
+                <label htmlFor="item_id" className="block text-sm font-medium text-gray-700">Item</label>
+                <Select
                   value={formData.item_id}
-                  onChange={handleInputChange}
-                  required
+                  onValueChange={(value) => setFormData(prev => ({ ...prev, item_id: value }))}
                 >
-                  <option value="">Pilih Item</option>
-                  {filteredItems.map(item => (
-                    <option key={item.id} value={item.id}>{item.name} ({item.sku})</option>
-                  ))}
-                </select>
+                  <SelectTrigger className="mt-1 w-full">
+                    <SelectValue placeholder="Pilih Item" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {items.map((item) => (
+                      <SelectItem key={item.id} value={item.id}>{item.name} ({item.sku})</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               <div>
-                <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">
-                  Tanggal <span className="text-red-500">*</span>
-                </label>
-                <input
+                <label htmlFor="date" className="block text-sm font-medium text-gray-700">Tanggal</label>
+                <Input
                   type="date"
                   id="date"
                   name="date"
-                  className="w-full rounded-lg border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
                   value={formData.date}
                   onChange={handleInputChange}
-                  required
+                  className="mt-1 block w-full"
                 />
               </div>
 
               <div>
-                <label htmlFor="warehouse_id" className="block text-sm font-medium text-gray-700 mb-1">
-                  Gudang <span className="text-red-500">*</span>
-                </label>
-                <select
-                  id="warehouse_id"
-                  name="warehouse_id"
-                  className="w-full rounded-lg border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
+                <label htmlFor="warehouse_id" className="block text-sm font-medium text-gray-700">Gudang</label>
+                <Select
                   value={formData.warehouse_id}
-                  onChange={handleInputChange}
-                  required
+                  onValueChange={(value) => setFormData(prev => ({ ...prev, warehouse_id: value }))}
                 >
-                  <option value="">Pilih Gudang</option>
-                  {warehouses.map(warehouse => (
-                    <option key={warehouse.id} value={warehouse.id}>{warehouse.name}</option>
-                  ))}
-                </select>
+                  <SelectTrigger className="mt-1 w-full">
+                    <SelectValue placeholder="Pilih Gudang" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {warehouses.map((warehouse) => (
+                      <SelectItem key={warehouse.id} value={warehouse.id}>{warehouse.name}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               <div>
                 <label htmlFor="location_id" className="block text-sm font-medium text-gray-700 mb-1">
                   Lokasi <span className="text-red-500">*</span>
                 </label>
-                <select
-                  id="location_id"
-                  name="location_id"
-                  className="w-full rounded-lg border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
+                <Select
                   value={formData.location_id}
-                  onChange={handleInputChange}
-                  required
-                  disabled={!formData.warehouse_id}
+                  onValueChange={(value) => setFormData(prev => ({ ...prev, location_id: value }))}
                 >
-                  <option value="">Pilih Lokasi</option>
-                  {locations
-                    .filter(location => !formData.warehouse_id || location.warehouse_id === formData.warehouse_id)
-                    .map(location => (
-                      <option key={location.id} value={location.id}>{location.name}</option>
-                    ))}
-                </select>
+                  <SelectTrigger className="mt-1 w-full" disabled={!formData.warehouse_id}>
+                    <SelectValue placeholder="Pilih Lokasi" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {locations
+                      .filter(location => !formData.warehouse_id || location.warehouse_id === formData.warehouse_id)
+                      .map((location) => (
+                        <SelectItem key={location.id} value={location.id}>{location.name}</SelectItem>
+                      ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               {formData.item_id && items.find(i => i.id === formData.item_id)?.is_batch_tracked && (
                 <div>
-                  <label htmlFor="batch_id" className="block text-sm font-medium text-gray-700 mb-1">
-                    Batch
-                  </label>
-                  <select
-                    id="batch_id"
-                    name="batch_id"
-                    className="w-full rounded-lg border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
+                  <label htmlFor="batch_id" className="block text-sm font-medium text-gray-700">Batch</label>
+                  <Select
                     value={formData.batch_id || ''}
-                    onChange={handleInputChange}
+                    onValueChange={(value) => setFormData(prev => ({ ...prev, batch_id: value }))}
                   >
-                    <option value="">Tanpa Batch</option>
-                    {batches.map(batch => (
-                      <option key={batch.id} value={batch.id}>
-                        {batch.batch_number} (Exp: {new Date(batch.expiry_date).toLocaleDateString()})
-                      </option>
-                    ))}
-                  </select>
+                    <SelectTrigger className="mt-1 w-full">
+                      <SelectValue placeholder="Pilih Batch (Opsional)" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="">Pilih Batch (Opsional)</SelectItem>
+                      {batches.map((batch) => (
+                        <SelectItem key={batch.id} value={batch.id}>{batch.batch_number} (Qty: {batch.quantity})</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
               )}
 
@@ -302,7 +292,7 @@ export const StockAdjustment: React.FC = () => {
                 <label htmlFor="quantity" className="block text-sm font-medium text-gray-700 mb-1">
                   Kuantitas <span className="text-red-500">*</span>
                 </label>
-                <input
+                <Input
                   type="number"
                   id="quantity"
                   name="quantity"
@@ -321,33 +311,26 @@ export const StockAdjustment: React.FC = () => {
               </div>
 
               <div>
-                <label htmlFor="reference" className="block text-sm font-medium text-gray-700 mb-1">
-                  Referensi
-                </label>
-                <input
+                <label htmlFor="reference" className="block text-sm font-medium text-gray-700">Referensi</label>
+                <Input
                   type="text"
                   id="reference"
                   name="reference"
-                  className="w-full rounded-lg border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
                   value={formData.reference}
                   onChange={handleInputChange}
-                  placeholder="Nomor referensi (opsional)"
+                  className="mt-1 block w-full"
                 />
               </div>
 
-              <div className="md:col-span-2">
-                <label htmlFor="reason" className="block text-sm font-medium text-gray-700 mb-1">
-                  Alasan <span className="text-red-500">*</span>
-                </label>
-                <textarea
+              <div>
+                <label htmlFor="reason" className="block text-sm font-medium text-gray-700">Alasan Penyesuaian</label>
+                <Input
+                  type="text"
                   id="reason"
                   name="reason"
-                  rows={3}
-                  className="w-full rounded-lg border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
                   value={formData.reason}
                   onChange={handleInputChange}
-                  placeholder="Alasan penyesuaian stok"
-                  required
+                  className="mt-1 block w-full"
                 />
               </div>
             </div>
@@ -395,12 +378,12 @@ export const StockAdjustment: React.FC = () => {
         </div>
         
         <div className="mb-4">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-            <input
+          <div className="relative w-full max-w-sm">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <Input
               type="text"
-              placeholder="Cari berdasarkan nama item atau referensi..."
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
+              placeholder="Cari item..."
+              className="pl-10 pr-4 py-2 border rounded-md w-full"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />

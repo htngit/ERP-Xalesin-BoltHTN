@@ -1,46 +1,26 @@
 import React from 'react';
-import { clsx } from 'clsx';
+import * as React from "react"
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
-  error?: string;
-  helpText?: string;
-}
+import { cn } from "../../lib/utils"
 
-export const Input: React.FC<InputProps> = ({
-  label,
-  error,
-  helpText,
-  className,
-  id,
-  ...props
-}) => {
-  const inputId = id || label?.toLowerCase().replace(/\s+/g, '-');
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {}
 
-  return (
-    <div className="space-y-1">
-      {label && (
-        <label htmlFor={inputId} className="block text-sm font-medium text-gray-700">
-          {label}
-        </label>
-      )}
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type, ...props }, ref) => {
+    return (
       <input
-        id={inputId}
-        className={clsx(
-          'block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 transition-colors duration-200',
-          'focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500',
-          error && 'border-error-300 focus:border-error-500 focus:ring-error-500',
-          'disabled:bg-gray-50 disabled:text-gray-500',
+        type={type}
+        className={cn(
+          "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
           className
         )}
+        ref={ref}
         {...props}
       />
-      {error && (
-        <p className="text-sm text-error-600">{error}</p>
-      )}
-      {helpText && !error && (
-        <p className="text-sm text-gray-500">{helpText}</p>
-      )}
-    </div>
-  );
-};
+    )
+  }
+)
+Input.displayName = "Input"
+
+export { Input }

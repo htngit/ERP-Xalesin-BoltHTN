@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Search, Filter, Calendar, Package, ArrowDownUp, Warehouse, MapPin } from 'lucide-react';
+import { Search, Filter, Calendar, Package, ArrowDownUp, Warehouse as WarehouseIcon, MapPin } from 'lucide-react';
 import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
@@ -166,53 +166,70 @@ export const StockMovements: React.FC = () => {
                 <label htmlFor="itemId" className="block text-sm font-medium text-gray-700 mb-1">
                   Item
                 </label>
-                <select
-                  id="itemId"
+                <Select
                   name="itemId"
-                  className="w-full rounded-lg border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
                   defaultValue={filters.itemId}
+                  onValueChange={(value) => setFilters(prev => ({ ...prev, itemId: value }))}
                 >
-                  <option value="">Semua Item</option>
-                  {items.map(item => (
-                    <option key={item.id} value={item.id}>{item.name}</option>
-                  ))}
-                </select>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Semua Item" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">Semua Item</SelectItem>
+                    {items.map((item) => (
+                      <SelectItem key={item.id} value={item.id}>
+                        {item.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
               
               <div>
                 <label htmlFor="warehouseId" className="block text-sm font-medium text-gray-700 mb-1">
                   Gudang
                 </label>
-                <select
-                  id="warehouseId"
+                <Select
                   name="warehouseId"
-                  className="w-full rounded-lg border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
                   defaultValue={filters.warehouseId}
+                  onValueChange={(value) => setFilters(prev => ({ ...prev, warehouseId: value }))}
                 >
-                  <option value="">Semua Gudang</option>
-                  {warehouses.map(warehouse => (
-                    <option key={warehouse.id} value={warehouse.id}>{warehouse.name}</option>
-                  ))}
-                </select>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Semua Gudang" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">Semua Gudang</SelectItem>
+                    {warehouses.map((warehouse) => (
+                      <SelectItem key={warehouse.id} value={warehouse.id}>
+                        {warehouse.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
               
               <div>
                 <label htmlFor="locationId" className="block text-sm font-medium text-gray-700 mb-1">
                   Lokasi
                 </label>
-                <select
-                  id="locationId"
+                <Select
                   name="locationId"
-                  className="w-full rounded-lg border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
                   defaultValue={filters.locationId}
+                  onValueChange={(value) => setFilters(prev => ({ ...prev, locationId: value }))}
+                  disabled={!filters.warehouseId}
                 >
-                  <option value="">Semua Lokasi</option>
-                  {locations
-                    .filter(location => !filters.warehouseId || location.warehouse_id === filters.warehouseId)
-                    .map(location => (
-                      <option key={location.id} value={location.id}>{location.name}</option>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Semua Lokasi" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">Semua Lokasi</SelectItem>
+                    {locations.map((location) => (
+                      <SelectItem key={location.id} value={location.id}>
+                        {location.name}
+                      </SelectItem>
                     ))}
-                </select>
+                  </SelectContent>
+                </Select>
               </div>
               
               <div>
@@ -220,9 +237,9 @@ export const StockMovements: React.FC = () => {
                   Tanggal Mulai
                 </label>
                 <Input
+                  type="date"
                   id="startDate"
                   name="startDate"
-                  type="date"
                   defaultValue={filters.startDate}
                 />
               </div>
@@ -232,31 +249,34 @@ export const StockMovements: React.FC = () => {
                   Tanggal Akhir
                 </label>
                 <Input
+                  type="date"
                   id="endDate"
                   name="endDate"
-                  type="date"
                   defaultValue={filters.endDate}
                 />
               </div>
               
               <div>
                 <label htmlFor="movementType" className="block text-sm font-medium text-gray-700 mb-1">
-                  Tipe Pergerakan
+                  Jenis Pergerakan
                 </label>
-                <select
-                  id="movementType"
+                <Select
                   name="movementType"
-                  className="w-full rounded-lg border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
                   defaultValue={filters.movementType}
+                  onValueChange={(value) => setFilters(prev => ({ ...prev, movementType: value }))}
                 >
-                  <option value="">Semua Tipe</option>
-                  <option value="adjustment_in">Penyesuaian Masuk</option>
-                  <option value="adjustment_out">Penyesuaian Keluar</option>
-                  <option value="transfer_in">Transfer Masuk</option>
-                  <option value="transfer_out">Transfer Keluar</option>
-                  <option value="purchase">Pembelian</option>
-                  <option value="sale">Penjualan</option>
-                </select>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Semua Jenis" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">Semua Jenis</SelectItem>
+                    {Object.keys(getMovementTypeDisplay).map(type => (
+                      <SelectItem key={type} value={type}>
+                        {getMovementTypeDisplay(type).name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
             </div>
             
@@ -275,15 +295,15 @@ export const StockMovements: React.FC = () => {
       {/* Search */}
       <Card>
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-          <input
-            type="text"
-            placeholder="Cari berdasarkan nomor referensi atau catatan..."
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+        <Input
+          type="text"
+          placeholder="Cari berdasarkan nomor referensi atau catatan..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="pl-10"
+        />
+      </div>
       </Card>
 
       {/* Active Filters */}
@@ -296,8 +316,9 @@ export const StockMovements: React.FC = () => {
             </div>
           )}
           {filters.warehouseId && (
-            <div className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-gray-100 text-gray-800">
-              <Warehouse className="h-3 w-3 mr-1" />
+
+<div className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-gray-100 text-gray-800">
+              <WarehouseIcon className="h-3 w-3 mr-1" />
               Gudang: {getWarehouseName(filters.warehouseId)}
             </div>
           )}

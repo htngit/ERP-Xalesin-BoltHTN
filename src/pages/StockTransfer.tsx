@@ -5,6 +5,7 @@ import { Plus, Search, Package, Warehouse, MapPin, ArrowRightLeft } from 'lucide
 import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/Select';
 import { inventoryApi, warehouseApi, locationApi, itemApi } from '../lib/api/warehouse';
 import type { Item, Warehouse as WarehouseType, Location, StockTransferForm } from '../lib/types';
 
@@ -226,19 +227,21 @@ export const StockTransfer: React.FC = () => {
                 <label htmlFor="item_id" className="block text-sm font-medium text-gray-700 mb-1">
                   Item <span className="text-red-500">*</span>
                 </label>
-                <select
-                  id="item_id"
-                  name="item_id"
-                  className="w-full rounded-lg border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
+                <Select
                   value={formData.item_id}
-                  onChange={handleInputChange}
-                  required
+                  onValueChange={(value) => handleInputChange({ target: { name: 'item_id', value } } as React.ChangeEvent<HTMLSelectElement>)}
                 >
-                  <option value="">Pilih Item</option>
-                  {filteredItems.map(item => (
-                    <option key={item.id} value={item.id}>{item.name} ({item.sku})</option>
-                  ))}
-                </select>
+                  <SelectTrigger className="w-full rounded-lg border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500">
+                    <SelectValue placeholder="Pilih Item" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {filteredItems.map(item => (
+                      <SelectItem key={item.id} value={item.id}>
+                        {item.name} ({item.sku})
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               <div>
@@ -264,39 +267,43 @@ export const StockTransfer: React.FC = () => {
                     <label htmlFor="source_warehouse_id" className="block text-sm font-medium text-gray-700 mb-1">
                       Gudang Sumber <span className="text-red-500">*</span>
                     </label>
-                    <select
-                      id="source_warehouse_id"
-                      name="source_warehouse_id"
-                      className="w-full rounded-lg border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
+                    <Select
                       value={formData.source_warehouse_id}
-                      onChange={handleInputChange}
-                      required
+                      onValueChange={(value) => handleInputChange({ target: { name: 'source_warehouse_id', value } } as React.ChangeEvent<HTMLSelectElement>)}
                     >
-                      <option value="">Pilih Gudang</option>
-                      {warehouses.map(warehouse => (
-                        <option key={warehouse.id} value={warehouse.id}>{warehouse.name}</option>
-                      ))}
-                    </select>
+                      <SelectTrigger className="w-full rounded-lg border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500">
+                        <SelectValue placeholder="Pilih Gudang" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {warehouses.map(warehouse => (
+                          <SelectItem key={warehouse.id} value={warehouse.id}>
+                            {warehouse.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </div>
 
                   <div>
                     <label htmlFor="source_location_id" className="block text-sm font-medium text-gray-700 mb-1">
                       Lokasi Sumber <span className="text-red-500">*</span>
                     </label>
-                    <select
-                      id="source_location_id"
-                      name="source_location_id"
-                      className="w-full rounded-lg border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
+                    <Select
                       value={formData.source_location_id}
-                      onChange={handleInputChange}
-                      required
+                      onValueChange={(value) => handleInputChange({ target: { name: 'source_location_id', value } } as React.ChangeEvent<HTMLSelectElement>)}
                       disabled={!formData.source_warehouse_id}
                     >
-                      <option value="">Pilih Lokasi</option>
-                      {sourceLocations.map(location => (
-                        <option key={location.id} value={location.id}>{location.name}</option>
-                      ))}
-                    </select>
+                      <SelectTrigger className="w-full rounded-lg border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500">
+                        <SelectValue placeholder="Pilih Lokasi" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {sourceLocations.map(location => (
+                          <SelectItem key={location.id} value={location.id}>
+                            {location.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </div>
                 </div>
               </div>
@@ -309,39 +316,43 @@ export const StockTransfer: React.FC = () => {
                     <label htmlFor="destination_warehouse_id" className="block text-sm font-medium text-gray-700 mb-1">
                       Gudang Tujuan <span className="text-red-500">*</span>
                     </label>
-                    <select
-                      id="destination_warehouse_id"
-                      name="destination_warehouse_id"
-                      className="w-full rounded-lg border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
+                    <Select
                       value={formData.destination_warehouse_id}
-                      onChange={handleInputChange}
-                      required
+                      onValueChange={(value) => handleInputChange({ target: { name: 'destination_warehouse_id', value } } as React.ChangeEvent<HTMLSelectElement>)}
                     >
-                      <option value="">Pilih Gudang</option>
-                      {warehouses.map(warehouse => (
-                        <option key={warehouse.id} value={warehouse.id}>{warehouse.name}</option>
-                      ))}
-                    </select>
+                      <SelectTrigger className="w-full rounded-lg border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500">
+                        <SelectValue placeholder="Pilih Gudang" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {warehouses.map(warehouse => (
+                          <SelectItem key={warehouse.id} value={warehouse.id}>
+                            {warehouse.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </div>
 
                   <div>
                     <label htmlFor="destination_location_id" className="block text-sm font-medium text-gray-700 mb-1">
                       Lokasi Tujuan <span className="text-red-500">*</span>
                     </label>
-                    <select
-                      id="destination_location_id"
-                      name="destination_location_id"
-                      className="w-full rounded-lg border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
+                    <Select
                       value={formData.destination_location_id}
-                      onChange={handleInputChange}
-                      required
+                      onValueChange={(value) => handleInputChange({ target: { name: 'destination_location_id', value } } as React.ChangeEvent<HTMLSelectElement>)}
                       disabled={!formData.destination_warehouse_id}
                     >
-                      <option value="">Pilih Lokasi</option>
-                      {destinationLocations.map(location => (
-                        <option key={location.id} value={location.id}>{location.name}</option>
-                      ))}
-                    </select>
+                      <SelectTrigger className="w-full rounded-lg border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500">
+                        <SelectValue placeholder="Pilih Lokasi" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {destinationLocations.map(location => (
+                          <SelectItem key={location.id} value={location.id}>
+                            {location.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </div>
                 </div>
               </div>
@@ -351,24 +362,25 @@ export const StockTransfer: React.FC = () => {
                 <h3 className="text-md font-medium text-gray-800 mb-3 border-b pb-2">Detail Transfer</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {formData.item_id && items.find(i => i.id === formData.item_id)?.is_batch_tracked && (
-                    <div>
-                      <label htmlFor="batch_id" className="block text-sm font-medium text-gray-700 mb-1">
-                        Batch
-                      </label>
-                      <select
-                        id="batch_id"
-                        name="batch_id"
-                        className="w-full rounded-lg border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
+                    <div className="mb-4">
+                      <label htmlFor="batch_id" className="block text-sm font-medium text-gray-700 mb-1">Batch (Opsional)</label>
+                      <Select
                         value={formData.batch_id || ''}
-                        onChange={handleInputChange}
+                        onValueChange={(value) => handleInputChange({ target: { name: 'batch_id', value } } as React.ChangeEvent<HTMLSelectElement>)}
+                        disabled={!formData.item_id}
                       >
-                        <option value="">Tanpa Batch</option>
-                        {batches.map(batch => (
-                          <option key={batch.id} value={batch.id}>
-                            {batch.batch_number} (Exp: {new Date(batch.expiry_date).toLocaleDateString()})
-                          </option>
-                        ))}
-                      </select>
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Pilih Batch" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="">Pilih Batch</SelectItem>
+                          {batches.map((batch) => (
+                            <SelectItem key={batch.id} value={batch.id}>
+                              {batch.batch_number} (Qty: {batch.quantity})
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                     </div>
                   )}
 
@@ -463,12 +475,12 @@ export const StockTransfer: React.FC = () => {
         <div className="mb-4">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-            <input
+            <Input
               type="text"
-              placeholder="Cari berdasarkan nama item atau referensi..."
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
+              placeholder="Cari transfer..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-10"
             />
           </div>
         </div>
