@@ -1,15 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDebounce } from '../hooks';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-hot-toast';
 import { Plus, Search, Package, Warehouse as WarehouseIcon, MapPin, ArrowUp, ArrowDown } from 'lucide-react';
 import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '../components/ui/Select';
+import { FormWrapper } from '../components/common/FormWrapper';
+import { ErrorBoundary } from '../components/common/ErrorBoundary';
+import { LoadingSpinner } from '../components/common/LoadingSpinner';
+import { TableWrapper, TableHead, TableBody, TableHeader, TableCell, TableEmpty } from '../components/common/TableWrapper';
 import { inventoryApi, warehouseApi, locationApi, itemApi } from '../lib/api/warehouse';
 import type { Item, Warehouse as WarehouseType, Location, InventoryAdjustmentForm } from '../lib/types';
 
+/**
+ * Komponen StockAdjustment untuk mengelola penyesuaian stok barang
+ * Memungkinkan pengguna untuk menambah atau mengurangi stok barang di lokasi tertentu
+ */
 export const StockAdjustment: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
   const [showForm, setShowForm] = useState(false);
   const [adjustmentType, setAdjustmentType] = useState<'in' | 'out'>('in');
   const [formData, setFormData] = useState<InventoryAdjustmentForm>({
@@ -159,6 +170,7 @@ export const StockAdjustment: React.FC = () => {
   );
 
   return (
+    <ErrorBoundary>
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
@@ -174,10 +186,12 @@ export const StockAdjustment: React.FC = () => {
 
       {/* Adjustment Form */}
       {showForm && (
-        <Card>
+        <FormWrapper
+          title="Form Penyesuaian Stok"
+          description="Tambah atau kurangi stok barang di lokasi tertentu"
+        >
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-medium text-gray-900">Form Penyesuaian Stok</h2>
               <div className="flex space-x-2">
                 <Button
                   type="button"
@@ -346,7 +360,7 @@ export const StockAdjustment: React.FC = () => {
               >
                 {adjustmentMutation.isPending ? (
                   <>
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                    <LoadingSpinner size={16} />
                     Memproses...
                   </>
                 ) : (
@@ -367,15 +381,14 @@ export const StockAdjustment: React.FC = () => {
               </Button>
             </div>
           </form>
-        </Card>
+        </FormWrapper>
       )}
 
       {/* Recent Adjustments */}
-      <Card>
-        <div className="mb-4">
-          <h2 className="text-lg font-medium text-gray-900">Penyesuaian Stok Terbaru</h2>
-          <p className="text-sm text-gray-600">Lihat riwayat penyesuaian stok terbaru</p>
-        </div>
+      <FormWrapper
+        title="Penyesuaian Stok Terbaru"
+        description="Lihat riwayat penyesuaian stok terbaru"
+      >
         
         <div className="mb-4">
           <div className="relative w-full max-w-sm">
@@ -390,44 +403,25 @@ export const StockAdjustment: React.FC = () => {
           </div>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-              <tr>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Tanggal
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Item
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Lokasi
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Tipe
-                </th>
-                <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Kuantitas
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Alasan
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Referensi
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {/* This would be populated with actual data from an API call */}
-              <tr>
-                <td colSpan={7} className="px-6 py-4 text-center text-sm text-gray-500">
-                  Lihat riwayat penyesuaian stok di halaman Pergerakan Stok
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </Card>
+        <TableWrapper>
+          <TableHead>
+            <tr>
+              <TableHeader>Tanggal</TableHeader>
+              <TableHeader>Item</TableHeader>
+              <TableHeader>Lokasi</TableHeader>
+              <TableHeader>Tipe</TableHeader>
+              <TableHeader align="right">Kuantitas</TableHeader>
+              <TableHeader>Alasan</TableHeader>
+              <TableHeader>Referensi</TableHeader>
+            </tr>
+          </TableHead>
+          <TableBody>
+            {/* This would be populated with actual data from an API call */}
+            <TableEmpty colSpan={7} message="Lihat riwayat penyesuaian stok di halaman Pergerakan Stok" />
+          </TableBody>
+        </TableWrapper>
+      </FormWrapper>
     </div>
+    </ErrorBoundary>
   );
 };

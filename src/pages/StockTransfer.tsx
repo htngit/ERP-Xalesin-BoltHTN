@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useDebounce } from '../hooks';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-hot-toast';
 import { Plus, Search, Package, Warehouse, MapPin, ArrowRightLeft } from 'lucide-react';
@@ -11,6 +12,7 @@ import type { Item, Warehouse as WarehouseType, Location, StockTransferForm } fr
 
 export const StockTransfer: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState<StockTransferForm>({
     item_id: '',
@@ -194,10 +196,10 @@ export const StockTransfer: React.FC = () => {
     setShowForm(false);
   };
 
-  // Filter items based on search term
+  // Filter items based on debounced search term
   const filteredItems = items.filter(item =>
-    item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    item.sku.toLowerCase().includes(searchTerm.toLowerCase())
+    item.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
+    item.sku.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
   );
 
   return (

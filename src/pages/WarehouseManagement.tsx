@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDebounce } from '../hooks';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Plus, Search, Edit, Trash2, Package, MapPin } from 'lucide-react';
 import { Card } from '../components/ui/Card';
@@ -10,6 +11,7 @@ import toast from 'react-hot-toast';
 
 export const WarehouseManagement: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
   const [selectedWarehouse, setSelectedWarehouse] = useState<string>('');
   const [showWarehouseForm, setShowWarehouseForm] = useState(false);
   const [showLocationForm, setShowLocationForm] = useState(false);
@@ -106,13 +108,13 @@ export const WarehouseManagement: React.FC = () => {
   });
 
   const filteredWarehouses = warehouses.filter(warehouse =>
-    warehouse.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    warehouse.address?.toLowerCase().includes(searchTerm.toLowerCase())
+    warehouse.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
+    warehouse.address?.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
   );
 
   const filteredLocations = locations.filter(location =>
-    location.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    location.description?.toLowerCase().includes(searchTerm.toLowerCase())
+    location.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
+    location.description?.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
   );
 
   const handleWarehouseSubmit = (e: React.FormEvent<HTMLFormElement>) => {

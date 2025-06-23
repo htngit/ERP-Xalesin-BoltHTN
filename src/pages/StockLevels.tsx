@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDebounce } from '../hooks';
 import { useQuery } from '@tanstack/react-query';
 import { Search, Filter, Package, Warehouse as WarehouseIcon, MapPin, BarChart } from 'lucide-react';
 import { Card } from '../components/ui/Card';
@@ -9,6 +10,7 @@ import type { Item, Warehouse as WarehouseType, Location } from '../lib/types';
 
 export const StockLevels: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
   const [filters, setFilters] = useState({
     itemId: '',
     warehouseId: '',
@@ -59,8 +61,8 @@ export const StockLevels: React.FC = () => {
       const itemSku = item ? item.sku : '';
       
       const matchesSearch = 
-        itemName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        itemSku.toLowerCase().includes(searchTerm.toLowerCase());
+        itemName.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
+        itemSku.toLowerCase().includes(debouncedSearchTerm.toLowerCase());
       
       const matchesZeroStock = filters.showZeroStock || stock.quantity > 0;
       

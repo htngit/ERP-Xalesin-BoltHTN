@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDebounce } from '../hooks';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Plus, Search, Edit, Trash2, Tag } from 'lucide-react';
 import { Card } from '../components/ui/Card';
@@ -10,6 +11,7 @@ import toast from 'react-hot-toast';
 
 export const ProductCategories: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
   const [showForm, setShowForm] = useState(false);
   const [editingCategory, setEditingCategory] = useState<ProductCategory | null>(null);
 
@@ -59,8 +61,8 @@ export const ProductCategories: React.FC = () => {
   });
 
   const filteredCategories = categories.filter(category =>
-    category.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    category.description?.toLowerCase().includes(searchTerm.toLowerCase())
+    category.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
+    category.description?.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
   );
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

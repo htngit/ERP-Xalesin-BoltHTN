@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useDebounce } from '../hooks';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Plus, Search, Edit, Trash2, Package, Calendar, Clock, BarChart } from 'lucide-react';
 import { Card } from '../components/ui/Card';
@@ -10,6 +11,7 @@ import toast from 'react-hot-toast';
 
 export const BatchManagement: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
   const [showForm, setShowForm] = useState(false);
   const [editingBatch, setEditingBatch] = useState<Batch | null>(null);
   const [selectedItemId, setSelectedItemId] = useState<string>('');
@@ -77,7 +79,7 @@ export const BatchManagement: React.FC = () => {
   });
 
   const filteredBatches = batches.filter(batch =>
-    batch.batch_number.toLowerCase().includes(searchTerm.toLowerCase())
+    batch.batch_number.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
   );
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

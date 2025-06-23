@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useDebounce } from '../hooks';
 import { useQuery } from '@tanstack/react-query';
 import { Search, Filter, Calendar, Package, ArrowDownUp, Warehouse as WarehouseIcon, MapPin } from 'lucide-react';
 import { Card } from '../components/ui/Card';
@@ -9,6 +10,7 @@ import type { InventoryMovement, Item, Warehouse, Location } from '../lib/types'
 
 export const StockMovements: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
   const [filters, setFilters] = useState({
     itemId: '',
     warehouseId: '',
@@ -53,11 +55,11 @@ export const StockMovements: React.FC = () => {
     enabled: true, // Always fetch all locations or filtered by warehouse
   });
 
-  // Filter movements based on search term
+  // Filter movements based on debounced search term
   const filteredMovements = movements.filter(movement =>
-    movement.reference_number.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    movement.notes?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    movement.movement_type.toLowerCase().includes(searchTerm.toLowerCase())
+    movement.reference_number.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
+    movement.notes?.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
+    movement.movement_type.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
   );
 
   // Reset location when warehouse changes
