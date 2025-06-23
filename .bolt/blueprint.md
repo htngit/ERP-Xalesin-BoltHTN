@@ -97,9 +97,13 @@ Basic CRUD Operations:
 Develop basic CRUD interfaces for warehouses, locations, product_categories, items, and batches.
 Main Warehouse Operations:
 
-Develop the Stock Tracking Interface.
-Implement Inventory Movement Forms.
-Integrate Barcode/QR code scanning.
+- **Implemented**: Item Management Interface (`src/pages/Items.tsx`)
+- **Implemented**: Batch Tracking Interface (`src/pages/BatchManagement.tsx`)
+- **Implemented**: Stock Movement Tracking Page (`src/pages/StockMovements.tsx`)
+- **Implemented**: Stock Tracking Interface (`src/pages/StockLevels.tsx`)
+- **Implemented**: Inventory Adjustment Form (`src/pages/StockAdjustment.tsx`)
+- **Implemented**: Stock Transfer Form (`src/pages/StockTransfer.tsx`)
+- Integrate Barcode/QR code scanning.
 Advanced Features and Automation:
 
 Implement the inventory_adjustment and stock_transfer Edge Functions and integrate them into the UI.
