@@ -4,7 +4,7 @@
  */
 
 import React, { forwardRef } from 'react';
-import { styled, Button as TamaguiButton, ButtonProps as TamaguiButtonProps } from '@tamagui/core';
+import { styled, Stack, StackProps } from '@tamagui/core';
 import { Loader2 } from 'lucide-react';
 
 // Button variant types
@@ -22,7 +22,7 @@ export type ButtonVariant =
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 // Extended button props
-export interface ButtonProps extends Omit<TamaguiButtonProps, 'size' | 'variant'> {
+export interface ButtonProps extends Omit<StackProps, 'size' | 'variant'> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   loading?: boolean;
@@ -33,7 +33,7 @@ export interface ButtonProps extends Omit<TamaguiButtonProps, 'size' | 'variant'
 }
 
 // Styled button component with variants
-const StyledButton = styled(TamaguiButton, {
+const StyledButton = styled(Stack, {
   name: 'Button',
   context: { inButtonGroup: false },
   

@@ -4,7 +4,7 @@
  */
 
 import React, { forwardRef, useState } from 'react';
-import { styled, Input as TamaguiInput, InputProps as TamaguiInputProps, XStack, YStack, Text } from '@tamagui/core';
+import { styled, Stack, StackProps, XStack, YStack, Text } from '@tamagui/core';
 import { Eye, EyeOff, AlertCircle, CheckCircle, Info } from 'lucide-react';
 
 // Input variant types
@@ -17,7 +17,7 @@ export type InputSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 type InputState = 'default' | 'error' | 'success' | 'warning';
 
 // Extended input props
-export interface InputProps extends Omit<TamaguiInputProps, 'size' | 'variant'> {
+export interface InputProps extends Omit<StackProps, 'size' | 'variant'> {
   variant?: InputVariant;
   size?: InputSize;
   state?: InputState;
@@ -196,7 +196,7 @@ const InputContainer = styled(XStack, {
 });
 
 // Styled input field
-const StyledInput = styled(TamaguiInput, {
+const StyledInput = styled('input', {
   name: 'StyledInput',
   flex: 1,
   borderWidth: 0,
