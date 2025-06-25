@@ -1,0 +1,30 @@
+{
+  "name": "@xalesin/config",
+  "version": "1.0.0",
+  "description": "Shared configuration for Xalesin ERP",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src --ext .ts,.tsx"
+  },
+  "dependencies": {
+    "@tamagui/config": "^1.87.0",
+    "@tamagui/core": "^1.87.0",
+    "@tamagui/animations-react-native": "^1.87.0",
+    "@tamagui/font-inter": "^1.87.0",
+    "@tamagui/theme-base": "^1.87.0",
+    "@tamagui/tokens": "^1.87.0"
+  },
+  "devDependencies": {
+    "@xalesin/eslint-config": "workspace:*",
+    "eslint": "^8.55.0",
+    "typescript": "^5.3.0"
+  }
+}
