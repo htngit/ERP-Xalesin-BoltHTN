@@ -20,7 +20,7 @@
     "@tamagui/animations-react-native": "^1.87.0",
     "@tamagui/font-inter": "^1.87.0",
     "@tamagui/theme-base": "^1.87.0",
-    "@tamagui/tokens": "^1.87.0"
+    "@tamagui/themes": "^1.87.0"
   },
   "devDependencies": {
     "@xalesin/eslint-config": "workspace:*",
