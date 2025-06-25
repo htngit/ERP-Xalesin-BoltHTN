@@ -11,7 +11,7 @@ export {
   usePermissions,
   useSession,
   useAuthGuard
-} from './useAuth'
+} from './useAuth.tsx'
 
 // API hooks
 export {
@@ -51,4 +51,4 @@ export type {
   ResetPasswordRequest,
   UpdatePasswordRequest,
   UpdateProfileRequest
-} from './useAuth'
+} from './useAuth.tsx'

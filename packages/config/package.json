@@ -17,7 +17,7 @@
   "dependencies": {
     "@tamagui/config": "^1.87.0",
     "@tamagui/core": "^1.87.0",
-    "@tamagui/animations-react-native": "^1.87.0",
+    "@tamagui/animations-css": "^1.87.0",
     "@tamagui/font-inter": "^1.87.0",
     "@tamagui/theme-base": "^1.87.0",
     "@tamagui/themes": "^1.87.0"

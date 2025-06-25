@@ -3,7 +3,15 @@
  * Common utility functions for data manipulation, formatting, and validation
  */
 
-import { format, parseISO, isValid, differenceInDays, addDays, startOfDay, endOfDay } from 'date-fns'
+import { 
+  format, 
+  parseISO, 
+  isValid, 
+  differenceInDays, 
+  addDays as dateFnsAddDays, 
+  startOfDay as dateFnsStartOfDay, 
+  endOfDay as dateFnsEndOfDay 
+} from 'date-fns'
 import Decimal from 'decimal.js'
 import { v4 as uuidv4 } from 'uuid'
 import { cloneDeep, debounce, throttle, pick, omit, groupBy, orderBy } from 'lodash'
@@ -76,7 +84,7 @@ export const dateUtils = {
    */
   startOfDay(date: string | Date): Date {
     const dateObj = typeof date === 'string' ? parseISO(date) : date
-    return startOfDay(dateObj)
+    return dateFnsStartOfDay(dateObj)
   },
 
   /**
@@ -84,7 +92,7 @@ export const dateUtils = {
    */
   endOfDay(date: string | Date): Date {
     const dateObj = typeof date === 'string' ? parseISO(date) : date
-    return endOfDay(dateObj)
+    return dateFnsEndOfDay(dateObj)
   },
 
   /**
@@ -92,7 +100,7 @@ export const dateUtils = {
    */
   addDays(date: string | Date, days: number): Date {
     const dateObj = typeof date === 'string' ? parseISO(date) : date
-    return addDays(dateObj, days)
+    return dateFnsAddDays(dateObj, days)
   },
 
   /**
@@ -847,17 +855,5 @@ export const statusUtils = {
 }
 
 /**
- * Export all utilities
+ * All utilities are already exported above as individual const exports
  */
-export {
-  dateUtils,
-  moneyUtils,
-  quantityUtils,
-  stringUtils,
-  numberUtils,
-  arrayUtils,
-  objectUtils,
-  functionUtils,
-  validationUtils,
-  statusUtils
-}

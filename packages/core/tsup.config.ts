@@ -19,7 +19,10 @@ export default defineConfig({
     'react',
     'react-dom',
     '@supabase/supabase-js',
-    '@xalesin/config'
+    '@xalesin/config',
+    '@tamagui/core',
+    '@tamagui/config',
+    '@tamagui/animations-css'
   ],
   esbuildOptions(options) {
     options.banner = {

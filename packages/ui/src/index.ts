@@ -36,7 +36,7 @@ export {
 export {
   AnimatePresence,
   type AnimationDriver,
-} from '@tamagui/animations-react-native'
+} from '@tamagui/animations-css'
 
 // Re-export common Tamagui components that we use frequently
 export {
@@ -463,4 +463,4 @@ export {
   
   // Clock icon
   Clock as ClockIcon,
-} from 'lucide-react-native'
+} from 'lucide-react'

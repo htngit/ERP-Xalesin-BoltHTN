@@ -610,26 +610,4 @@ export class ErrorReporter {
   }
 }
 
-/**
- * Export all error types and utilities
- */
-export {
-  XalesinError,
-  ValidationError,
-  AuthenticationError,
-  AuthorizationError,
-  NotFoundError,
-  ConflictError,
-  BusinessLogicError,
-  RateLimitError,
-  InternalServerError,
-  ServiceUnavailableError,
-  DatabaseError,
-  NetworkError,
-  ConfigurationError,
-  FileOperationError,
-  ErrorFactory,
-  ErrorHandler,
-  ResultUtils,
-  ErrorReporter
-}
+// All error types and utilities are already exported above as individual exports

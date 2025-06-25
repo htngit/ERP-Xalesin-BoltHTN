@@ -1,5 +1,6 @@
 import { config } from '@tamagui/config/v3'
 import { createTamagui } from '@tamagui/core'
+import { createAnimations } from '@tamagui/animations-css'
 
 // Custom tokens for Xalesin ERP
 const tokens = {
@@ -148,7 +149,25 @@ export const tamaguiConfig = createTamagui({
     pointerCoarse: { pointer: 'coarse' },
   },
   // Animation settings
-  animations: config.animations,
+  animations: createAnimations({
+    bouncy: {
+      type: 'spring',
+      damping: 10,
+      mass: 0.9,
+      stiffness: 100,
+    },
+    lazy: {
+      type: 'spring',
+      damping: 20,
+      stiffness: 60,
+    },
+    quick: {
+      type: 'spring',
+      damping: 20,
+      mass: 1.2,
+      stiffness: 250,
+    },
+  }),
   // Font settings
   fonts: config.fonts,
   // Shorthands for common style properties
