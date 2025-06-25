@@ -6,7 +6,6 @@
 import { createTamagui } from '@tamagui/core';
 import { config } from '@tamagui/config/v3';
 import { createInterFont } from '@tamagui/font-inter';
-import { createMedia } from '@tamagui/responsive-media';
 
 // Custom font configuration
 const interFont = createInterFont({
@@ -250,7 +249,7 @@ const customTokens = {
 };
 
 // Media queries for responsive design
-const media = createMedia({
+const media = {
   xs: { maxWidth: 660 },
   sm: { maxWidth: 800 },
   md: { maxWidth: 1020 },
@@ -265,7 +264,7 @@ const media = createMedia({
   tall: { minHeight: 820 },
   hoverNone: { hover: 'none' },
   pointerCoarse: { pointer: 'coarse' },
-});
+}
 
 // Create the Tamagui configuration
 export const tamaguiConfig = createTamagui({

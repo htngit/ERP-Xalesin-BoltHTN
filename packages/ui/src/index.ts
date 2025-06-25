@@ -3,12 +3,12 @@
  * @author Xalesin Team
  */
 
-// Theme configuration
-export { tamaguiConfig } from './theme';
-export type { TamaguiConfig, ThemeName, TokenCategory } from './theme';
+// Export theme configuration
+export { tamaguiConfig, type TamaguiConfig, type ThemeName, type TokenCategory } from './theme';
 
-// Basic components that work
-export * from './components/Spinner';
-
-// Providers
-export * from './providers';
+// Export components
+export { Button } from './components/Button';
+export { Input } from './components/Input';
+export { Card } from './components/Card';
+export { Modal } from './components/Modal';
+export { Spinner } from './components/Spinner';

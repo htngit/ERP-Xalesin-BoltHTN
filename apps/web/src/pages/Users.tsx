@@ -672,7 +672,7 @@ const Users: React.FC = () => {
                             </Stack>
                           </Stack>
                         </YStack>
-                      </XStack>
+                      </Stack>
                       
                       {/* Actions */}
                       <Stack space="$2" flexDirection="row">

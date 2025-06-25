@@ -13,5 +13,9 @@ export default defineConfig({
   target: 'es2020',
   esbuildOptions(options) {
     options.jsx = 'automatic';
+    options.loader = {
+      ...options.loader,
+      '.js': 'jsx',
+    };
   },
 });
