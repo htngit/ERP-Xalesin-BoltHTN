@@ -1,7 +1,7 @@
 {
   "name": "@xalesin/core",
-  "version": "0.1.0",
-  "description": "Core business logic and data models for Xalesin ERP",
+  "version": "1.0.0",
+  "description": "Core business logic and utilities for Xalesin ERP",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -10,39 +10,105 @@
       "import": "./dist/index.esm.js",
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
+    },
+    "./types": {
+      "import": "./dist/types/index.esm.js",
+      "require": "./dist/types/index.js",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./services": {
+      "import": "./dist/services/index.esm.js",
+      "require": "./dist/services/index.js",
+      "types": "./dist/services/index.d.ts"
+    },
+    "./utils": {
+      "import": "./dist/utils/index.esm.js",
+      "require": "./dist/utils/index.js",
+      "types": "./dist/utils/index.d.ts"
+    },
+    "./hooks": {
+      "import": "./dist/hooks/index.esm.js",
+      "require": "./dist/hooks/index.js",
+      "types": "./dist/hooks/index.d.ts"
+    },
+    "./stores": {
+      "import": "./dist/stores/index.esm.js",
+      "require": "./dist/stores/index.js",
+      "types": "./dist/stores/index.d.ts"
     }
   },
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
-    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
-    "lint": "eslint src --ext .ts,.tsx --fix",
+    "build": "tsup",
+    "build:watch": "tsup --watch",
+    "dev": "tsup --watch",
     "type-check": "tsc --noEmit",
-    "clean": "rm -rf dist"
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "test:coverage": "vitest --coverage",
+    "clean": "rimraf dist"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.39.0",
+    "@supabase/supabase-js": "^2.38.0",
     "@xalesin/config": "workspace:*",
-    "zod": "^3.22.4",
-    "date-fns": "^3.0.6",
-    "uuid": "^9.0.1",
+    "zustand": "^4.4.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "decimal.js": "^10.4.3",
-    "lodash": "^4.17.21"
+    "date-fns": "^2.30.0",
+    "lodash": "^4.17.21",
+    "uuid": "^9.0.1",
+    "nanoid": "^5.0.4",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@xalesin/eslint-config": "workspace:*",
-    "@types/uuid": "^9.0.7",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
     "@types/lodash": "^4.14.202",
-    "eslint": "^8.56.0",
+    "@types/uuid": "^9.0.7",
+    "@types/node": "^20.10.4",
     "typescript": "^5.3.3",
-    "tsup": "^8.0.1"
+    "tsup": "^8.0.1",
+    "vitest": "^1.0.4",
+    "@vitest/coverage-v8": "^1.0.4",
+    "eslint": "^8.55.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.1",
+    "@typescript-eslint/parser": "^6.13.1",
+    "rimraf": "^5.0.5"
   },
   "peerDependencies": {
-    "react": "^18.2.0"
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "publishConfig": {
     "access": "restricted"
   },
   "files": [
-    "dist"
-  ]
+    "dist",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xalesin/erp-xalesin.git",
+    "directory": "packages/core"
+  },
+  "keywords": [
+    "erp",
+    "business",
+    "core",
+    "utilities",
+    "typescript",
+    "react",
+    "supabase",
+    "zustand"
+  ],
+  "author": "Xalesin Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "sideEffects": false
 }
