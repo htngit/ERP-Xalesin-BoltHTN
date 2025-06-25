@@ -11,8 +11,8 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@xalesin/core": "workspace:*",
-    "@xalesin/ui": "workspace:*",
+    "@xalesin/core": "file:../../packages/core",
+    "@xalesin/ui": "file:../../packages/ui",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.20.1"
