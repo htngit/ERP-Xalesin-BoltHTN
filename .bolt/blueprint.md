@@ -8,13 +8,15 @@
 
 ### ✨ Overview
 
-This blueprint outlines a comprehensive **Enterprise Resource Planning (ERP) System** named **Xalesin ERP** - a full-featured business management solution built with:
+This blueprint outlines a comprehensive **Enterprise Resource Planning (ERP) System** named **Xalesin ERP** - a full-featured business management solution built with a **Web-First Development Approach**:
 
 * **Supabase** (PostgreSQL database, authentication, edge functions, RLS, real-time)
-* **React + Vite** (Web Application)
-* **React Native + Expo + Expo Router** (Mobile Application)
-* **Tamagui** (Cross-platform UI framework)
-* **Monorepo Architecture** for maximum code reusability and maintainability
+* **React + Vite** (Primary Web Application)
+* **Tamagui** (Universal UI components for web and mobile)
+* **Monorepo Architecture** for scalable development
+* **Future Mobile Expansion** (React Native + Expo in Phase 7-8)
+
+**Development Strategy**: Focus on delivering a fully functional, enterprise-grade web application first. Mobile development will be introduced in later phases (7-8) after the web platform is stable and feature-complete.
 
 **Core ERP Modules:**
 - 📦 **Inventory Management** - Multi-warehouse, batch tracking, real-time stock
@@ -114,31 +116,27 @@ inventory_movements (id, reference, document_type, user_id, tenant_id)
 
 ## 2. Enterprise Architecture & Project Structure
 
-### 🏢 Monorepo Architecture (Enterprise-Grade)
+### 🏢 Cross-Platform Monorepo Architecture
 
 ```
 xalesin-erp/
 ├── apps/
-│   ├── web/                     # React + Vite Web Application
-│   │   ├── src/
-│   │   │   ├── modules/         # Feature-based modules
-│   │   │   │   ├── inventory/   # Inventory management
-│   │   │   │   ├── financial/   # Financial management
-│   │   │   │   ├── sales/       # Sales & CRM
-│   │   │   │   ├── purchasing/  # Procurement
-│   │   │   │   ├── documents/   # Document management
-│   │   │   │   └── analytics/   # Reporting & BI
-│   │   │   ├── shared/          # Shared web components
-│   │   │   └── layouts/         # Application layouts
-│   │   └── public/
-│   └── native/                  # React Native + Expo Mobile App
-│       ├── app/                 # Expo Router file-based routing
-│       │   ├── (tabs)/          # Tab-based navigation
-│       │   │   ├── inventory/   # Mobile inventory features
-│       │   │   ├── sales/       # Mobile sales features
-│       │   │   └── scanner/     # QR/Barcode scanning
-│       │   └── auth/            # Authentication flows
-│       └── components/          # Native-specific components
+│   └── web/                     # React + Vite Web Application (Primary Focus)
+│       ├── src/
+│       │   ├── modules/         # Feature-based ERP modules
+│       │   │   ├── inventory/   # Inventory management
+│       │   │   ├── financial/   # Financial management
+│       │   │   ├── sales/       # Sales & CRM
+│       │   │   ├── purchasing/  # Procurement
+│       │   │   ├── documents/   # Document management
+│       │   │   └── analytics/   # Reporting & BI
+│       │   ├── components/      # Web-specific components
+│       │   ├── layouts/         # Application layouts
+│       │   ├── pages/           # Route pages
+│       │   ├── hooks/           # Web-specific hooks
+│       │   └── utils/           # Web utilities
+│       ├── public/              # Static assets
+│       └── index.html           # Entry point
 ├── packages/
 │   ├── core/                    # Shared Business Logic
 │   │   ├── api/                 # Supabase client & queries
@@ -151,11 +149,13 @@ xalesin-erp/
 │   │   ├── hooks/               # Shared React hooks
 │   │   ├── utils/               # Utility functions
 │   │   ├── types/               # TypeScript definitions
-│   │   └── constants/           # Application constants
-│   ├── ui/                      # Tamagui Universal Components
+│   │   ├── constants/           # Application constants
+│   │   └── validation/          # Business logic validation
+│   ├── ui/                      # Universal UI Components (Tamagui)
 │   │   ├── components/          # Reusable UI components
 │   │   ├── forms/               # Form components
 │   │   ├── layouts/             # Layout components
+│   │   ├── charts/              # Chart components
 │   │   └── themes/              # Theme configurations
 │   ├── config/                  # Configuration
 │   │   ├── tamagui.config.ts    # Tamagui configuration
@@ -170,6 +170,20 @@ xalesin-erp/
     ├── api/                     # API documentation
     ├── architecture/            # Architecture decisions
     └── user-guides/             # User documentation
+```
+
+**Phase 7-8 Mobile Expansion:**
+```
+├── apps/
+│   ├── web/                     # Existing web application
+│   └── native/                  # React Native + Expo Mobile App
+│       ├── app/                 # Expo Router file-based routing
+│       │   ├── (tabs)/          # Tab-based navigation
+│       │   │   ├── inventory/   # Mobile inventory features
+│       │   │   ├── sales/       # Mobile sales features
+│       │   │   └── scanner/     # QR/Barcode scanning
+│       │   └── auth/            # Authentication flows
+│       └── components/          # Native-specific components
 ```
 
 ### 🎯 Module-Based Architecture
@@ -262,26 +276,79 @@ hooks/
 
 ---
 
-## 4. UI Layer
+## 4. UI Layer - Tamagui Universal Components
+
+### 🎨 /packages/ui - Universal Component Library
+
+**Tamagui Component Architecture:**
+```typescript
+ui/
+├── components/
+│   ├── forms/
+│   │   ├── Input.tsx            # Universal input component
+│   │   ├── Select.tsx           # Dropdown select
+│   │   ├── DatePicker.tsx       # Date selection
+│   │   ├── NumberInput.tsx      # Numeric input with validation
+│   │   └── FormField.tsx        # Form field wrapper
+│   ├── data-display/
+│   │   ├── Table.tsx            # Data table component
+│   │   ├── Card.tsx             # Content card
+│   │   ├── Badge.tsx            # Status badges
+│   │   ├── Avatar.tsx           # User avatars
+│   │   └── Charts/              # Chart components
+│   ├── navigation/
+│   │   ├── Sidebar.tsx          # Navigation sidebar
+│   │   ├── Breadcrumb.tsx       # Breadcrumb navigation
+│   │   ├── Tabs.tsx             # Tab navigation
+│   │   └── Pagination.tsx       # Data pagination
+│   ├── feedback/
+│   │   ├── Toast.tsx            # Notification toasts
+│   │   ├── Modal.tsx            # Modal dialogs
+│   │   ├── Alert.tsx            # Alert messages
+│   │   └── Loading.tsx          # Loading indicators
+│   └── layout/
+│       ├── Container.tsx        # Layout container
+│       ├── Grid.tsx             # Grid system
+│       ├── Stack.tsx            # Flex stack
+│       └── Spacer.tsx           # Spacing component
+├── themes/
+│   ├── light.ts                 # Light theme
+│   ├── dark.ts                  # Dark theme
+│   └── tokens.ts                # Design tokens
+└── config/
+    └── tamagui.config.ts        # Tamagui configuration
+```
 
 ### 📱 Cross-Platform Responsiveness Strategy
 
-To ensure optimal user experience across platforms:
+**Responsive Design Principles:**
+* Use **Tamagui responsive props** (`$sm`, `$md`, `$lg`, `$xl` breakpoints)
+* Platform detection with `Platform.OS` for web vs mobile optimizations
+* **Web**: Wide layouts, grid/table views, hover states
+* **Mobile**: Stacked layouts, touch-friendly interactions, swipe gestures
 
-* Use **Tamagui responsive props** (`size`, `flexDirection`, `padding`, etc.)
-* Detect platform using `Platform.OS` to conditionally style based on Web vs Mobile
-* Web focuses on **wide layouts, grid/table views**
-* Native focuses on **stacked, scrollable layouts** for small viewports
+**Component Adaptation:**
+```typescript
+// Example: Responsive Table Component
+<YStack $gtSm={{ flexDirection: 'row' }}>
+  <XStack $sm={{ display: 'none' }} $gtSm={{ flex: 1 }}>
+    {/* Desktop table view */}
+  </XStack>
+  <YStack $gtSm={{ display: 'none' }}>
+    {/* Mobile card view */}
+  </YStack>
+</YStack>
+```
 
-> 💡 Keep in mind: Write components once, then adjust layout or styling via `mediaQueries` or platform-aware conditions.
+### 🎯 Design System Features
 
-### Tamagui Setup:
+**Universal Styling:**
+* Consistent design tokens across platforms
+* Theme switching (light/dark mode)
+* Accessibility-first component design
+* Animation and micro-interactions
 
-* Shared styled components: `Button`, `Input`, `Card`, `Table`, etc.
-* Theme + Variant config in `tamagui.config.ts`
-* Responsive and cross-platform UI
-
-### Platform-specific folders (if needed):
+**Platform Optimizations:**
 
 ```
 components/

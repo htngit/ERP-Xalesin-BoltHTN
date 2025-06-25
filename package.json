@@ -1,0 +1,79 @@
+{
+  "name": "xalesin-erp",
+  "version": "1.0.0",
+  "description": "Enterprise Resource Planning System - Xalesin ERP",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "type-check": "turbo run type-check",
+    "clean": "turbo run clean",
+    "test": "turbo run test",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/htngit/ERP-Xalesin-BoltHTN.git"
+  },
+  "keywords": [
+    "erp",
+    "inventory",
+    "financial",
+    "supabase",
+    "react",
+    "typescript",
+    "monorepo"
+  ],
+  "author": "Xalesin Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/htngit/ERP-Xalesin-BoltHTN/issues"
+  },
+  "homepage": "https://github.com/htngit/ERP-Xalesin-BoltHTN#readme",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "devDependencies": {
+    "@types/date-fns": "^2.5.3",
+    "@types/node": "^24.0.4",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@typescript-eslint/eslint-plugin": "^8.35.0",
+    "@typescript-eslint/parser": "^8.35.0",
+    "@vitejs/plugin-react": "^4.6.0",
+    "eslint": "^9.29.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.5.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
+    "prettier": "^3.6.1",
+    "supabase": "^2.26.9",
+    "tsup": "^8.5.0",
+    "turbo": "^2.5.4",
+    "typescript": "^5.8.3",
+    "vite": "^7.0.0"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.1.1",
+    "@supabase/supabase-js": "^2.50.2",
+    "@tamagui/animations-react-native": "^1.129.2",
+    "@tamagui/config": "^1.129.2",
+    "@tamagui/core": "^1.129.2",
+    "@tamagui/vite-plugin": "^1.129.2",
+    "date-fns": "^4.1.0",
+    "lucide-react": "^0.523.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-hook-form": "^7.58.1",
+    "react-router-dom": "^7.6.2",
+    "zod": "^3.25.67"
+  }
+}
