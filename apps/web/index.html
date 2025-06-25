@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Xalesin ERP - Enterprise Resource Planning System for modern businesses" />
+    <meta name="keywords" content="ERP, inventory, financial, business management, Xalesin" />
+    <meta name="author" content="Xalesin Team" />
+    <meta name="theme-color" content="#3b82f6" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://erp.xalesin.com/" />
+    <meta property="og:title" content="Xalesin ERP - Enterprise Resource Planning" />
+    <meta property="og:description" content="Modern ERP system for inventory, financial management, and business operations" />
+    <meta property="og:image" content="/og-image.png" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://erp.xalesin.com/" />
+    <meta property="twitter:title" content="Xalesin ERP - Enterprise Resource Planning" />
+    <meta property="twitter:description" content="Modern ERP system for inventory, financial management, and business operations" />
+    <meta property="twitter:image" content="/og-image.png" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/src/main.tsx" as="script" />
+    
+    <title>Xalesin ERP - Enterprise Resource Planning</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Loading fallback for users with JavaScript disabled -->
+    <noscript>
+      <div style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        font-family: Inter, sans-serif;
+        text-align: center;
+        padding: 2rem;
+      ">
+        <div>
+          <h1 style="margin-bottom: 1rem; color: #1f2937;">JavaScript Required</h1>
+          <p style="color: #6b7280; line-height: 1.6;">
+            Xalesin ERP requires JavaScript to function properly.<br>
+            Please enable JavaScript in your browser settings and refresh the page.
+          </p>
+        </div>
+      </div>
+    </noscript>
+  </body>
+</html>
