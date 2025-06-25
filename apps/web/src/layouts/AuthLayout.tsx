@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
-import { XStack, YStack, Text, Image } from '@tamagui/core';
+import { Stack, Text, Image } from '@tamagui/core';
 
 /**
  * Authentication layout component
@@ -13,9 +13,9 @@ import { XStack, YStack, Text, Image } from '@tamagui/core';
  */
 const AuthLayout: React.FC = () => {
   return (
-    <XStack flex={1} height="100vh">
+    <Stack flex={1} height="100vh" flexDirection="row">
       {/* Left side - Brand and illustration */}
-      <YStack
+      <Stack
         flex={1}
         backgroundColor="$blue9"
         alignItems="center"
@@ -23,7 +23,7 @@ const AuthLayout: React.FC = () => {
         padding="$6"
         $sm={{ display: 'none' }}
       >
-        <YStack space="$6" maxWidth={500} alignItems="center">
+        <Stack space="$6" maxWidth={500} alignItems="center">
           <Text
             fontSize="$10"
             fontWeight="bold"
@@ -42,7 +42,7 @@ const AuthLayout: React.FC = () => {
           </Text>
           
           {/* Placeholder for illustration */}
-          <YStack
+          <Stack
             width={400}
             height={300}
             backgroundColor="rgba(255, 255, 255, 0.2)"
@@ -53,7 +53,7 @@ const AuthLayout: React.FC = () => {
             <Text color="white" opacity={0.7}>
               Illustration Placeholder
             </Text>
-          </YStack>
+          </Stack>
           
           <Text
             fontSize="$3"
@@ -64,18 +64,18 @@ const AuthLayout: React.FC = () => {
             Streamline your business operations with our comprehensive ERP solution.
             Manage inventory, finances, and team members all in one place.
           </Text>
-        </YStack>
-      </YStack>
+        </Stack>
+      </Stack>
       
       {/* Right side - Auth form */}
-      <YStack
+      <Stack
         flex={1}
         backgroundColor="$background"
         alignItems="center"
         justifyContent="center"
         padding="$6"
       >
-        <YStack
+        <Stack
           width="100%"
           maxWidth={450}
           space="$4"
@@ -86,22 +86,22 @@ const AuthLayout: React.FC = () => {
           backgroundColor="$backgroundHover"
         >
           {/* Logo for mobile view */}
-          <XStack justifyContent="center" $gtSm={{ display: 'none' }}>
+          <Stack justifyContent="center" $gtSm={{ display: 'none' }} flexDirection="row">
             <Text fontSize="$8" fontWeight="bold" color="$blue10" marginBottom="$4">
               Xalesin ERP
             </Text>
-          </XStack>
+          </Stack>
           
           {/* Auth form content */}
           <Outlet />
-        </YStack>
+        </Stack>
         
         {/* Footer */}
-        <YStack marginTop="$6" alignItems="center" space="$2">
+        <Stack marginTop="$6" alignItems="center" space="$2">
           <Text fontSize="$2" color="$gray10">
             © {new Date().getFullYear()} Xalesin. All rights reserved.
           </Text>
-          <XStack space="$4">
+          <Stack space="$4" flexDirection="row">
             <Link to="/terms" style={{ textDecoration: 'none' }}>
               <Text fontSize="$2" color="$blue10">
                 Terms of Service
@@ -117,10 +117,10 @@ const AuthLayout: React.FC = () => {
                 Help Center
               </Text>
             </Link>
-          </XStack>
-        </YStack>
-      </YStack>
-    </XStack>
+          </Stack>
+        </Stack>
+      </Stack>
+    </Stack>
   );
 };
 

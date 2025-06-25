@@ -4,7 +4,7 @@
  */
 
 import React, { forwardRef, useEffect } from 'react';
-import { styled, YStack, XStack, YStackProps, XStackProps } from '@tamagui/core';
+import { styled, Stack, StackProps } from '@tamagui/core';
 import { X } from 'lucide-react';
 import { Button } from '../Button';
 
@@ -23,28 +23,28 @@ export interface ModalProps {
 }
 
 // Modal overlay props
-export interface ModalOverlayProps extends YStackProps {
+export interface ModalOverlayProps extends StackProps {
   onPress?: () => void;
 }
 
 // Modal content props
-export interface ModalContentProps extends YStackProps {
+export interface ModalContentProps extends StackProps {
   size?: ModalSize;
 }
 
 // Modal header props
-export interface ModalHeaderProps extends XStackProps {
+export interface ModalHeaderProps extends StackProps {
   showCloseButton?: boolean;
   onClose?: () => void;
 }
 
 // Modal body props
-export interface ModalBodyProps extends YStackProps {
+export interface ModalBodyProps extends StackProps {
   // No additional props for now
 }
 
 // Modal footer props
-export interface ModalFooterProps extends XStackProps {
+export interface ModalFooterProps extends StackProps {
   justify?: 'start' | 'center' | 'end' | 'between';
 }
 
@@ -55,7 +55,7 @@ export interface ModalCloseButtonProps {
 }
 
 // Styled modal overlay
-const StyledModalOverlay = styled(YStack, {
+const StyledModalOverlay = styled(Stack, {
   name: 'ModalOverlay',
   position: 'fixed',
   top: 0,
@@ -89,7 +89,7 @@ const StyledModalOverlay = styled(YStack, {
 });
 
 // Styled modal content
-const StyledModalContent = styled(YStack, {
+const StyledModalContent = styled(Stack, {
   name: 'ModalContent',
   backgroundColor: '$backgroundPrimary',
   borderRadius: '$4',
@@ -163,7 +163,8 @@ const StyledModalContent = styled(YStack, {
 });
 
 // Styled modal header
-const StyledModalHeader = styled(XStack, {
+const StyledModalHeader = styled(Stack, {
+  flexDirection: 'row',
   name: 'ModalHeader',
   padding: '$5',
   borderBottomWidth: 1,
@@ -174,7 +175,7 @@ const StyledModalHeader = styled(XStack, {
 });
 
 // Styled modal body
-const StyledModalBody = styled(YStack, {
+const StyledModalBody = styled(Stack, {
   name: 'ModalBody',
   padding: '$5',
   flex: 1,
@@ -182,7 +183,8 @@ const StyledModalBody = styled(YStack, {
 });
 
 // Styled modal footer
-const StyledModalFooter = styled(XStack, {
+const StyledModalFooter = styled(Stack, {
+  flexDirection: 'row',
   name: 'ModalFooter',
   padding: '$5',
   borderTopWidth: 1,
@@ -350,9 +352,9 @@ export const ModalHeader = forwardRef<
       ref={ref}
       {...props}
     >
-      <YStack flex={1}>
+      <Stack flex={1}>
         {children}
-      </YStack>
+      </Stack>
       
       {showCloseButton && (
         <ModalCloseButton onPress={handleClose} />

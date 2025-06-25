@@ -5,7 +5,7 @@
 
 import React, { Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { YStack } from '@tamagui/core';
+import { Stack } from '@tamagui/core';
 import { Spinner } from '@xalesin/ui';
 
 // Layout components
@@ -27,9 +27,9 @@ const NotFound = React.lazy(() => import('./pages/NotFound'));
 
 // Loading fallback component
 const LoadingFallback = () => (
-  <YStack flex={1} alignItems="center" justifyContent="center" height="100vh">
+  <Stack flex={1} alignItems="center" justifyContent="center" height="100vh">
     <Spinner size="lg" variant="default" label="Loading..." />
-  </YStack>
+  </Stack>
 );
 
 /**

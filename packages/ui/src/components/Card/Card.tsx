@@ -4,7 +4,7 @@
  */
 
 import React, { forwardRef } from 'react';
-import { styled, YStack, XStack, YStackProps, XStackProps } from '@tamagui/core';
+import { styled, Stack, StackProps } from '@tamagui/core';
 
 // Card variant types
 type CardVariant = 'elevated' | 'outlined' | 'filled' | 'ghost';
@@ -13,7 +13,7 @@ type CardVariant = 'elevated' | 'outlined' | 'filled' | 'ghost';
 type CardSize = 'sm' | 'md' | 'lg';
 
 // Base card props
-export interface CardProps extends YStackProps {
+export interface CardProps extends StackProps {
   variant?: CardVariant;
   size?: CardSize;
   hoverable?: boolean;
@@ -21,23 +21,23 @@ export interface CardProps extends YStackProps {
 }
 
 // Card header props
-export interface CardHeaderProps extends YStackProps {
+export interface CardHeaderProps extends StackProps {
   divider?: boolean;
 }
 
 // Card body props
-export interface CardBodyProps extends YStackProps {
+export interface CardBodyProps extends StackProps {
   // No additional props for now
 }
 
 // Card footer props
-export interface CardFooterProps extends XStackProps {
+export interface CardFooterProps extends StackProps {
   divider?: boolean;
   justify?: 'start' | 'center' | 'end' | 'between';
 }
 
 // Styled card container
-const StyledCard = styled(YStack, {
+const StyledCard = styled(Stack, {
   name: 'Card',
   backgroundColor: '$backgroundPrimary',
   borderRadius: '$4',
@@ -136,7 +136,7 @@ const StyledCard = styled(YStack, {
 });
 
 // Styled card header
-const StyledCardHeader = styled(YStack, {
+const StyledCardHeader = styled(Stack, {
   name: 'CardHeader',
   padding: '$4',
   
@@ -169,7 +169,7 @@ const StyledCardHeader = styled(YStack, {
 });
 
 // Styled card body
-const StyledCardBody = styled(YStack, {
+const StyledCardBody = styled(Stack, {
   name: 'CardBody',
   padding: '$4',
   flex: 1,
@@ -196,7 +196,8 @@ const StyledCardBody = styled(YStack, {
 });
 
 // Styled card footer
-const StyledCardFooter = styled(XStack, {
+const StyledCardFooter = styled(Stack, {
+  flexDirection: 'row',
   name: 'CardFooter',
   padding: '$4',
   alignItems: 'center',

@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { XStack, YStack, Text, ScrollView } from '@tamagui/core';
+import { Stack, Text, ScrollView } from '@tamagui/core';
 import { Card, CardHeader, CardBody, Button } from '@xalesin/ui';
 import {
   Building2,
@@ -47,8 +47,8 @@ const MetricCard: React.FC<MetricCardProps> = ({
   return (
     <Card variant="elevated" size="md">
       <CardBody>
-        <XStack justifyContent="space-between" alignItems="flex-start">
-          <YStack space="$2" flex={1}>
+        <Stack justifyContent="space-between" alignItems="flex-start" flexDirection="row">
+          <Stack space="$2" flex={1}>
             <Text fontSize="$3" color="$gray11">
               {title}
             </Text>
@@ -58,8 +58,8 @@ const MetricCard: React.FC<MetricCardProps> = ({
             <Text fontSize="$2" color={changeColor}>
               {change}
             </Text>
-          </YStack>
-          <YStack
+          </Stack>
+          <Stack
             backgroundColor="$blue2"
             padding="$3"
             borderRadius="$3"
@@ -67,8 +67,8 @@ const MetricCard: React.FC<MetricCardProps> = ({
             justifyContent="center"
           >
             <Icon size={24} color="$blue10" />
-          </YStack>
-        </XStack>
+          </Stack>
+        </Stack>
       </CardBody>
     </Card>
   );
@@ -123,7 +123,7 @@ const RecentActivity: React.FC = () => {
   return (
     <Card variant="elevated" size="md">
       <CardHeader>
-        <XStack justifyContent="space-between" alignItems="center">
+        <Stack justifyContent="space-between" alignItems="center" flexDirection="row">
           <Text fontSize="$5" fontWeight="600">
             Recent Activity
           </Text>
@@ -131,24 +131,24 @@ const RecentActivity: React.FC = () => {
             View All
             <ArrowRight size={16} />
           </Button>
-        </XStack>
+        </Stack>
       </CardHeader>
       <CardBody>
-        <YStack space="$3">
+        <Stack space="$3">
           {activities.map((activity) => (
-            <XStack key={activity.id} space="$3" alignItems="flex-start">
-              <YStack
+            <Stack key={activity.id} space="$3" alignItems="flex-start" flexDirection="row">
+              <Stack
                 width={8}
                 height={8}
                 backgroundColor="$blue9"
                 borderRadius="$10"
                 marginTop="$2"
               />
-              <YStack flex={1} space="$1">
+              <Stack flex={1} space="$1">
                 <Text fontSize="$3" color="$color">
                   {activity.message}
                 </Text>
-                <XStack space="$2" alignItems="center">
+                <Stack space="$2" alignItems="center" flexDirection="row">
                   <Text fontSize="$2" color="$gray10">
                     {activity.timestamp}
                   </Text>
@@ -156,11 +156,11 @@ const RecentActivity: React.FC = () => {
                   <Text fontSize="$2" color="$gray10">
                     {activity.user}
                   </Text>
-                </XStack>
-              </YStack>
-            </XStack>
+                </Stack>
+              </Stack>
+            </Stack>
           ))}
-        </YStack>
+        </Stack>
       </CardBody>
     </Card>
   );
@@ -209,7 +209,7 @@ const QuickActions: React.FC = () => {
         </Text>
       </CardHeader>
       <CardBody>
-        <XStack flexWrap="wrap" gap="$3">
+        <Stack flexWrap="wrap" gap="$3" flexDirection="row">
           {actions.map((action) => {
             const Icon = action.icon;
             return (
@@ -230,7 +230,7 @@ const QuickActions: React.FC = () => {
               </Button>
             );
           })}
-        </XStack>
+        </Stack>
       </CardBody>
     </Card>
   );
@@ -263,30 +263,31 @@ const SystemAlerts: React.FC = () => {
         </Text>
       </CardHeader>
       <CardBody>
-        <YStack space="$3">
+        <Stack space="$3">
           {alerts.map((alert) => (
-            <XStack
-              key={alert.id}
-              space="$3"
-              alignItems="center"
-              padding="$3"
-              backgroundColor="$yellow2"
-              borderRadius="$3"
-              borderLeftWidth={4}
-              borderLeftColor="$yellow9"
-            >
+            <Stack
+                key={alert.id}
+                space="$3"
+                alignItems="center"
+                padding="$3"
+                backgroundColor="$yellow2"
+                borderRadius="$3"
+                borderLeftWidth={4}
+                borderLeftColor="$yellow9"
+                flexDirection="row"
+              >
               <AlertCircle size={20} color="$yellow10" />
-              <YStack flex={1} space="$1">
+              <Stack flex={1} space="$1">
                 <Text fontSize="$3" color="$color">
                   {alert.message}
                 </Text>
-              </YStack>
+              </Stack>
               <Button size="sm" variant="outline">
                 {alert.action}
               </Button>
-            </XStack>
+            </Stack>
           ))}
-        </YStack>
+        </Stack>
       </CardBody>
     </Card>
   );
@@ -329,40 +330,40 @@ const Dashboard: React.FC = () => {
 
   return (
     <ScrollView flex={1}>
-      <YStack padding="$6" space="$6">
+      <Stack padding="$6" space="$6">
         {/* Header */}
-        <YStack space="$2">
+        <Stack space="$2">
           <Text fontSize="$9" fontWeight="bold" color="$color">
             Dashboard
           </Text>
           <Text fontSize="$4" color="$gray11">
             Welcome back! Here's what's happening with your business today.
           </Text>
-        </YStack>
+        </Stack>
 
         {/* Metrics Grid */}
-        <XStack flexWrap="wrap" gap="$4">
+        <Stack flexWrap="wrap" gap="$4" flexDirection="row">
           {metrics.map((metric, index) => (
-            <YStack key={index} flex={1} minWidth={280}>
+            <Stack key={index} flex={1} minWidth={280}>
               <MetricCard {...metric} />
-            </YStack>
+            </Stack>
           ))}
-        </XStack>
+        </Stack>
 
         {/* Content Grid */}
-        <XStack flexWrap="wrap" gap="$6" alignItems="flex-start">
+        <Stack flexWrap="wrap" gap="$6" alignItems="flex-start" flexDirection="row">
           {/* Left Column */}
-          <YStack flex={2} minWidth={400} space="$6">
+          <Stack flex={2} minWidth={400} space="$6">
             <RecentActivity />
             <SystemAlerts />
-          </YStack>
+          </Stack>
 
           {/* Right Column */}
-          <YStack flex={1} minWidth={300}>
+          <Stack flex={1} minWidth={300}>
             <QuickActions />
-          </YStack>
-        </XStack>
-      </YStack>
+          </Stack>
+        </Stack>
+      </Stack>
     </ScrollView>
   );
 };
