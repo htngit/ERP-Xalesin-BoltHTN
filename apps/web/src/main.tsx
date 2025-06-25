@@ -7,8 +7,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { TamaguiProvider } from '@tamagui/core';
-import { UIProvider } from '@xalesin/ui';
-import { tamaguiConfig } from '@xalesin/ui/theme';
+import { UIProvider, tamaguiConfig } from '@xalesin/ui';
 import App from './App';
 import './index.css';
 

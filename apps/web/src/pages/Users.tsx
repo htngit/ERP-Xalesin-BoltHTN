@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { YStack, XStack, Text } from '@tamagui/core';
+import { YStack, Stack, Text } from '@tamagui/core';
 import { Button, Input, Card, Modal, Spinner } from '@xalesin/ui';
 import {
   Users as UsersIcon,
@@ -420,7 +420,7 @@ const Users: React.FC = () => {
     <YStack flex={1} space="$6">
       {/* Header */}
       <YStack space="$4">
-        <XStack justifyContent="space-between" alignItems="center">
+        <Stack justifyContent="space-between" alignItems="center" flexDirection="row">
           <YStack space="$1">
             <Text fontSize="$8" fontWeight="bold" color="$color">
               Users
@@ -430,7 +430,7 @@ const Users: React.FC = () => {
             </Text>
           </YStack>
           
-          <XStack space="$3">
+          <Stack space="$3" flexDirection="row">
             <Button variant="outline" size="md" leftIcon={Download}>
               Export
             </Button>
@@ -445,11 +445,11 @@ const Users: React.FC = () => {
             >
               Add User
             </Button>
-          </XStack>
-        </XStack>
+          </Stack>
+              </Stack>
 
         {/* Filters */}
-        <XStack space="$4" alignItems="center" flexWrap="wrap">
+        <Stack space="$4" alignItems="center" flexWrap="wrap" flexDirection="row">
           <Input
             placeholder="Search users..."
             value={searchQuery}
@@ -459,7 +459,7 @@ const Users: React.FC = () => {
             width={300}
           />
           
-          <XStack space="$2" alignItems="center">
+          <Stack space="$2" alignItems="center" flexDirection="row">
             <Filter size={16} color="$gray11" />
             <Text fontSize="$3" color="$gray11">Role:</Text>
             <select 
@@ -477,9 +477,9 @@ const Users: React.FC = () => {
               <option value="manager">Manager</option>
               <option value="user">User</option>
             </select>
-          </XStack>
-          
-          <XStack space="$2" alignItems="center">
+          </Stack>
+
+           <Stack space="$2" alignItems="center" flexDirection="row">
             <Text fontSize="$3" color="$gray11">Status:</Text>
             <select 
               value={selectedStatus} 
@@ -496,9 +496,9 @@ const Users: React.FC = () => {
               <option value="inactive">Inactive</option>
               <option value="pending">Pending</option>
             </select>
-          </XStack>
-          
-          <XStack space="$2" alignItems="center">
+          </Stack>
+
+           <Stack space="$2" alignItems="center" flexDirection="row">
             <Text fontSize="$3" color="$gray11">Organization:</Text>
             <select 
               value={selectedOrganization} 
@@ -515,8 +515,8 @@ const Users: React.FC = () => {
                 <option key={org.id} value={org.id}>{org.name}</option>
               ))}
             </select>
-          </XStack>
-        </XStack>
+          </Stack>
+         </Stack>
       </YStack>
 
       {/* Users Grid */}
@@ -557,8 +557,8 @@ const Users: React.FC = () => {
               return (
                 <Card key={user.id} variant="outlined" size="md" hoverable>
                   <Card.Body>
-                    <XStack justifyContent="space-between" alignItems="flex-start">
-                      <XStack space="$4" flex={1} alignItems="flex-start">
+                    <Stack justifyContent="space-between" alignItems="flex-start" flexDirection="row">
+                <Stack space="$4" flex={1} alignItems="flex-start" flexDirection="row">
                         {/* Avatar */}
                         <YStack
                           width={48}
@@ -577,19 +577,19 @@ const Users: React.FC = () => {
                         <YStack space="$3" flex={1}>
                           {/* User Header */}
                           <YStack space="$1">
-                            <XStack space="$3" alignItems="center">
+                            <Stack space="$3" alignItems="center" flexDirection="row">
                               <Text fontSize="$5" fontWeight="600" color="$color">
                                 {user.firstName} {user.lastName}
                               </Text>
                               
-                              <XStack space="$2" alignItems="center">
+                              <Stack space="$2" alignItems="center" flexDirection="row">
                                 <YStack
                                   paddingHorizontal="$2"
                                   paddingVertical="$1"
                                   backgroundColor={getRoleColor(user.role) + '20'}
                                   borderRadius="$2"
                                 >
-                                  <XStack space="$1" alignItems="center">
+                                  <Stack space="$1" alignItems="center" flexDirection="row">
                                     <RoleIcon size={12} color={getRoleColor(user.role)} />
                                     <Text 
                                       fontSize="$1" 
@@ -599,7 +599,7 @@ const Users: React.FC = () => {
                                     >
                                       {user.role}
                                     </Text>
-                                  </XStack>
+                                  </Stack>
                                 </YStack>
                                 
                                 <YStack
@@ -617,8 +617,8 @@ const Users: React.FC = () => {
                                     {user.status}
                                   </Text>
                                 </YStack>
-                              </XStack>
-                            </XStack>
+                              </Stack>
+                            </Stack>
                             
                             <Text fontSize="$3" color="$gray11">
                               {user.jobTitle} {user.department && `• ${user.department}`}
@@ -626,56 +626,56 @@ const Users: React.FC = () => {
                           </YStack>
                           
                           {/* Contact & Organization Info */}
-                          <XStack space="$6" flexWrap="wrap">
-                            <XStack space="$2" alignItems="center">
+                          <Stack space="$6" flexWrap="wrap" flexDirection="row">
+                            <Stack space="$2" alignItems="center" flexDirection="row">
                               <Mail size={14} color="$gray10" />
                               <Text fontSize="$3" color="$gray11">
                                 {user.email}
                               </Text>
-                            </XStack>
+                            </Stack>
                             
                             {user.phone && (
-                              <XStack space="$2" alignItems="center">
+                              <Stack space="$2" alignItems="center" flexDirection="row">
                                 <Phone size={14} color="$gray10" />
                                 <Text fontSize="$3" color="$gray11">
                                   {user.phone}
                                 </Text>
-                              </XStack>
+                              </Stack>
                             )}
                             
                             {user.organizationName && (
-                              <XStack space="$2" alignItems="center">
+                              <Stack space="$2" alignItems="center" flexDirection="row">
                                 <Shield size={14} color="$gray10" />
                                 <Text fontSize="$3" color="$gray11">
                                   {user.organizationName}
                                 </Text>
-                              </XStack>
+                              </Stack>
                             )}
-                          </XStack>
+                          </Stack>
                           
                           {/* Timestamps */}
-                          <XStack space="$6" flexWrap="wrap">
+                          <Stack space="$6" flexWrap="wrap" flexDirection="row">
                             {user.lastLogin && (
-                              <XStack space="$2" alignItems="center">
+                              <Stack space="$2" alignItems="center" flexDirection="row">
                                 <Calendar size={14} color="$gray10" />
                                 <Text fontSize="$3" color="$gray11">
                                   Last login {formatRelativeTime(user.lastLogin)}
                                 </Text>
-                              </XStack>
+                              </Stack>
                             )}
                             
-                            <XStack space="$2" alignItems="center">
+                            <Stack space="$2" alignItems="center" flexDirection="row">
                               <Calendar size={14} color="$gray10" />
                               <Text fontSize="$3" color="$gray11">
                                 Created {formatDate(user.createdAt)}
                               </Text>
-                            </XStack>
-                          </XStack>
+                            </Stack>
+                          </Stack>
                         </YStack>
                       </XStack>
                       
                       {/* Actions */}
-                      <XStack space="$2">
+                      <Stack space="$2" flexDirection="row">
                         <Button 
                           variant="ghost" 
                           size="sm" 
@@ -688,8 +688,8 @@ const Users: React.FC = () => {
                           icon={Trash2}
                           onPress={() => handleDeleteUser(user.id)}
                         />
-                      </XStack>
-                    </XStack>
+                      </Stack>
+                    </Stack>
                   </Card.Body>
                 </Card>
               );
@@ -716,7 +716,7 @@ const Users: React.FC = () => {
           
           <Modal.Body>
             <YStack space="$4">
-              <XStack space="$3">
+              <Stack space="$3" flexDirection="row">
                 <Input
                   label="First Name"
                   placeholder="Enter first name"
@@ -736,9 +736,9 @@ const Users: React.FC = () => {
                   flex={1}
                   required
                 />
-              </XStack>
+              </Stack>
               
-              <XStack space="$3">
+              <Stack space="$3" flexDirection="row">
                 <Input
                   label="Email"
                   placeholder="user@example.com"
@@ -759,7 +759,7 @@ const Users: React.FC = () => {
                   keyboardType="phone-pad"
                   flex={1}
                 />
-              </XStack>
+              </Stack>
               
               <Input
                 label="Password"
@@ -773,7 +773,7 @@ const Users: React.FC = () => {
                 required
               />
               
-              <XStack space="$3">
+              <Stack space="$3" flexDirection="row">
                 <YStack space="$2" flex={1}>
                   <Text fontSize="$3" fontWeight="600" color="$color">
                     Role
@@ -816,9 +816,9 @@ const Users: React.FC = () => {
                     ))}
                   </select>
                 </YStack>
-              </XStack>
+              </Stack>
               
-              <XStack space="$3">
+              <Stack space="$3" flexDirection="row">
                 <Input
                   label="Department"
                   placeholder="e.g., Engineering"
@@ -836,12 +836,12 @@ const Users: React.FC = () => {
                   size="md"
                   flex={1}
                 />
-              </XStack>
+              </Stack>
             </YStack>
           </Modal.Body>
           
           <Modal.Footer>
-            <XStack space="$3" justifyContent="flex-end">
+            <Stack space="$3" justifyContent="flex-end" flexDirection="row">
               <Button 
                 variant="outline" 
                 size="md"
@@ -860,7 +860,7 @@ const Users: React.FC = () => {
               >
                 Create User
               </Button>
-            </XStack>
+            </Stack>
           </Modal.Footer>
         </Modal.Content>
       </Modal>
@@ -884,7 +884,7 @@ const Users: React.FC = () => {
           
           <Modal.Body>
             <YStack space="$4">
-              <XStack space="$3">
+              <Stack space="$3" flexDirection="row">
                 <Input
                   label="First Name"
                   placeholder="Enter first name"
@@ -904,9 +904,9 @@ const Users: React.FC = () => {
                   flex={1}
                   required
                 />
-              </XStack>
+              </Stack>
               
-              <XStack space="$3">
+              <Stack space="$3" flexDirection="row">
                 <Input
                   label="Email"
                   placeholder="user@example.com"
@@ -927,9 +927,9 @@ const Users: React.FC = () => {
                   keyboardType="phone-pad"
                   flex={1}
                 />
-              </XStack>
+              </Stack>
               
-              <XStack space="$3">
+              <Stack space="$3" flexDirection="row">
                 <YStack space="$2" flex={1}>
                   <Text fontSize="$3" fontWeight="600" color="$color">
                     Role
@@ -972,9 +972,9 @@ const Users: React.FC = () => {
                     ))}
                   </select>
                 </YStack>
-              </XStack>
+              </Stack>
               
-              <XStack space="$3">
+              <Stack space="$3" flexDirection="row">
                 <Input
                   label="Department"
                   placeholder="e.g., Engineering"
@@ -992,12 +992,12 @@ const Users: React.FC = () => {
                   size="md"
                   flex={1}
                 />
-              </XStack>
+              </Stack>
             </YStack>
           </Modal.Body>
           
           <Modal.Footer>
-            <XStack space="$3" justifyContent="flex-end">
+            <Stack space="$3" justifyContent="flex-end" flexDirection="row">
               <Button 
                 variant="outline" 
                 size="md"
@@ -1017,7 +1017,7 @@ const Users: React.FC = () => {
               >
                 Update User
               </Button>
-            </XStack>
+            </Stack>
           </Modal.Footer>
         </Modal.Content>
       </Modal>

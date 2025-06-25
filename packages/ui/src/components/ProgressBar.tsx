@@ -3,17 +3,18 @@
  * @author Xalesin Team
  */
 
-import React from 'react';
+import * as React from 'react';
 import { styled } from '@tamagui/core';
-import { Progress } from '@tamagui/progress';
 
 // Styled progress container
-const ProgressContainer = styled(Progress, {
+const ProgressContainer = styled('div', {
   name: 'ProgressBar',
   backgroundColor: '$backgroundHover',
   borderRadius: '$2',
   height: 8,
   overflow: 'hidden',
+  width: '100%',
+  position: 'relative',
   
   variants: {
     size: {
@@ -49,11 +50,13 @@ const ProgressContainer = styled(Progress, {
   },
 });
 
-const ProgressIndicator = styled(Progress.Indicator, {
+// Styled progress indicator
+const ProgressIndicator = styled('div', {
   name: 'ProgressIndicator',
   backgroundColor: '$blue9',
   height: '100%',
   transition: 'transform 0.3s ease',
+  borderRadius: '$2',
   
   variants: {
     variant: {
@@ -77,7 +80,7 @@ const ProgressIndicator = styled(Progress.Indicator, {
   },
 });
 
-export interface ProgressBarProps {
+interface ProgressBarProps {
   /** Progress value from 0 to 100 */
   value: number;
   /** Maximum value (default: 100) */
@@ -98,7 +101,6 @@ export interface ProgressBarProps {
  * ProgressBar component for displaying progress indicators
  * 
  * @param props - ProgressBar component props
- * @returns JSX element representing the progress bar
  */
 export const ProgressBar: React.FC<ProgressBarProps> = ({
   value,
@@ -120,7 +122,6 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
           alignItems: 'center',
           marginBottom: 4,
           fontSize: 14,
-          color: '$color'
         }}>
           {label && <span>{label}</span>}
           {showPercentage && <span>{Math.round(percentage)}%</span>}
@@ -128,12 +129,13 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
       )}
       
       <ProgressContainer
-        value={percentage}
-        max={100}
         size={size}
         variant={variant}
       >
-        <ProgressIndicator variant={variant} />
+        <ProgressIndicator 
+          variant={variant}
+          style={{ width: `${percentage}%` }}
+        />
       </ProgressContainer>
     </div>
   );

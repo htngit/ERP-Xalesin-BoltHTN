@@ -24,6 +24,7 @@
     "@tamagui/core": "^1.87.0",
     "@tamagui/config": "^1.87.0",
     "@tamagui/animations-react-native": "^1.87.0",
+    "@tamagui/font-inter": "^1.87.0",
     "lucide-react": "^0.294.0"
   },
   "devDependencies": {
@@ -33,7 +34,7 @@
     "typescript": "^5.2.2"
   },
   "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   }
 }
