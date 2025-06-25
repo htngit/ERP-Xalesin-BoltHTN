@@ -5,7 +5,6 @@
 
 import React, { forwardRef, useEffect } from 'react';
 import { styled, YStack, XStack, YStackProps, XStackProps } from '@tamagui/core';
-import { AnimatePresence } from '@tamagui/animations-moti';
 import { X } from 'lucide-react';
 import { Button } from '../Button';
 
@@ -263,15 +262,13 @@ export const Modal: React.FC<ModalProps> = ({
   
   return (
     <ModalContext.Provider value={{ size, onClose }}>
-      <AnimatePresence>
-        {isOpen && (
-          <ModalOverlay
-            onPress={closeOnOverlayClick ? onClose : undefined}
-          >
-            {children}
-          </ModalOverlay>
-        )}
-      </AnimatePresence>
+      {isOpen && (
+        <ModalOverlay
+          onPress={closeOnOverlayClick ? onClose : undefined}
+        >
+          {children}
+        </ModalOverlay>
+      )}
     </ModalContext.Provider>
   );
 };
