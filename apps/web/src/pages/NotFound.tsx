@@ -4,8 +4,7 @@
  */
 
 import React from 'react';
-import { YStack, XStack, Text } from '@tamagui/core';
-import { Button } from '@xalesin/ui';
+import { Stack, Text, Button } from '@xalesin/ui';
 import { Home, ArrowLeft, Search, AlertTriangle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 

@@ -4,8 +4,8 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { YStack, XStack, Text } from '@tamagui/core';
-import { Button, Input, Card, Modal, Spinner } from '@xalesin/ui';
+import { Stack, Text, Button, Input } from '@tamagui/core';
+import { Card, Modal, Spinner } from '@xalesin/ui';
 import {
   Building2,
   Plus,
@@ -306,30 +306,30 @@ const Organizations: React.FC = () => {
 
   if (isLoading) {
     return (
-      <YStack flex={1} alignItems="center" justifyContent="center">
+      <Stack flex={1} alignItems="center" justifyContent="center">
         <Spinner size="lg" />
         <Text fontSize="$4" color="$gray11" marginTop="$4">
           Loading organizations...
         </Text>
-      </YStack>
+      </Stack>
     );
   }
 
   return (
-    <YStack flex={1} space="$6">
+    <Stack flex={1} space="$6">
       {/* Header */}
-      <YStack space="$4">
-        <XStack justifyContent="space-between" alignItems="center">
-          <YStack space="$1">
+      <Stack space="$4">
+        <Stack flexDirection="row" justifyContent="space-between" alignItems="center">
+          <Stack space="$1">
             <Text fontSize="$8" fontWeight="bold" color="$color">
               Organizations
             </Text>
             <Text fontSize="$4" color="$gray11">
               Manage your organization directory
             </Text>
-          </YStack>
+          </Stack>
           
-          <XStack space="$3">
+          <Stack flexDirection="row" space="$3">
             <Button variant="outline" size="md" leftIcon={Download}>
               Export
             </Button>
@@ -344,11 +344,11 @@ const Organizations: React.FC = () => {
             >
               Add Organization
             </Button>
-          </XStack>
-        </XStack>
+          </Stack>
+        </Stack>
 
         {/* Filters */}
-        <XStack space="$4" alignItems="center">
+        <Stack flexDirection="row" space="$4" alignItems="center">
           <Input
             placeholder="Search organizations..."
             value={searchQuery}
@@ -358,7 +358,7 @@ const Organizations: React.FC = () => {
             width={300}
           />
           
-          <XStack space="$2" alignItems="center">
+          <Stack flexDirection="row" space="$2" alignItems="center">
             <Filter size={16} color="$gray11" />
             <Text fontSize="$3" color="$gray11">Industry:</Text>
             <select 
@@ -376,9 +376,9 @@ const Organizations: React.FC = () => {
                 <option key={industry} value={industry}>{industry}</option>
               ))}
             </select>
-          </XStack>
+          </Stack>
           
-          <XStack space="$2" alignItems="center">
+          <Stack flexDirection="row" space="$2" alignItems="center">
             <Text fontSize="$3" color="$gray11">Status:</Text>
             <select 
               value={selectedStatus} 
@@ -395,18 +395,18 @@ const Organizations: React.FC = () => {
               <option value="inactive">Inactive</option>
               <option value="pending">Pending</option>
             </select>
-          </XStack>
-        </XStack>
-      </YStack>
+          </Stack>
+        </Stack>
+      </Stack>
 
       {/* Organizations Grid */}
-      <YStack space="$4">
+      <Stack space="$4">
         {filteredOrganizations.length === 0 ? (
           <Card variant="outlined" size="lg">
             <Card.Body>
-              <YStack space="$4" alignItems="center" paddingVertical="$8">
+              <Stack space="$4" alignItems="center" paddingVertical="$8">
                 <Building2 size={48} color="$gray9" />
-                <YStack space="$2" alignItems="center">
+                <Stack space="$2" alignItems="center">
                   <Text fontSize="$5" fontWeight="600" color="$color">
                     No organizations found
                   </Text>
@@ -416,7 +416,7 @@ const Organizations: React.FC = () => {
                       : 'Get started by adding your first organization'
                     }
                   </Text>
-                </YStack>
+                </Stack>
                 {!searchQuery && selectedIndustry === 'all' && selectedStatus === 'all' && (
                   <Button 
                     variant="primary" 
@@ -427,24 +427,24 @@ const Organizations: React.FC = () => {
                     Add Organization
                   </Button>
                 )}
-              </YStack>
+              </Stack>
             </Card.Body>
           </Card>
         ) : (
-          <YStack space="$3">
+          <Stack space="$3">
             {filteredOrganizations.map((organization) => (
               <Card key={organization.id} variant="outlined" size="md" hoverable>
                 <Card.Body>
-                  <XStack justifyContent="space-between" alignItems="flex-start">
-                    <YStack space="$3" flex={1}>
+                  <Stack flexDirection="row" justifyContent="space-between" alignItems="flex-start">
+                    <Stack space="$3" flex={1}>
                       {/* Organization Header */}
-                      <XStack justifyContent="space-between" alignItems="flex-start">
-                        <YStack space="$1" flex={1}>
-                          <XStack space="$3" alignItems="center">
+                      <Stack flexDirection="row" justifyContent="space-between" alignItems="flex-start">
+                        <Stack space="$1" flex={1}>
+                          <Stack flexDirection="row" space="$3" alignItems="center">
                             <Text fontSize="$5" fontWeight="600" color="$color">
                               {organization.name}
                             </Text>
-                            <YStack
+                            <Stack
                               paddingHorizontal="$2"
                               paddingVertical="$1"
                               backgroundColor={getStatusColor(organization.status) + '20'}
@@ -458,16 +458,16 @@ const Organizations: React.FC = () => {
                               >
                                 {organization.status}
                               </Text>
-                            </YStack>
-                          </XStack>
+                            </Stack>
+                          </Stack>
                           {organization.description && (
                             <Text fontSize="$3" color="$gray11" lineHeight="$1">
                               {organization.description}
                             </Text>
-                          )}
-                        </YStack>
+                          )}  
+                        </Stack>
                         
-                        <XStack space="$2">
+                        <Stack flexDirection="row" space="$2">
                           <Button 
                             variant="ghost" 
                             size="sm" 
@@ -480,77 +480,77 @@ const Organizations: React.FC = () => {
                             icon={Trash2}
                             onPress={() => handleDeleteOrganization(organization.id)}
                           />
-                        </XStack>
-                      </XStack>
+                        </Stack>
+                      </Stack>
                       
                       {/* Organization Details */}
-                      <XStack space="$6" flexWrap="wrap">
-                        <XStack space="$2" alignItems="center">
+                      <Stack flexDirection="row" space="$6" flexWrap="wrap">
+                        <Stack flexDirection="row" space="$2" alignItems="center">
                           <Building2 size={14} color="$gray10" />
                           <Text fontSize="$3" color="$gray11">
                             {organization.industry}
                           </Text>
-                        </XStack>
+                        </Stack>
                         
-                        <XStack space="$2" alignItems="center">
+                        <Stack flexDirection="row" space="$2" alignItems="center">
                           <MapPin size={14} color="$gray10" />
                           <Text fontSize="$3" color="$gray11">
                             {organization.location}
                           </Text>
-                        </XStack>
+                        </Stack>
                         
-                        <XStack space="$2" alignItems="center">
+                        <Stack flexDirection="row" space="$2" alignItems="center">
                           <Users size={14} color="$gray10" />
                           <Text fontSize="$3" color="$gray11">
                             {organization.employeeCount} employees
                           </Text>
-                        </XStack>
+                        </Stack>
                         
                         {organization.website && (
-                          <XStack space="$2" alignItems="center">
+                          <Stack flexDirection="row" space="$2" alignItems="center">
                             <Globe size={14} color="$gray10" />
                             <Text fontSize="$3" color="$blue10">
                               {organization.website.replace(/^https?:\/\//, '')}
                             </Text>
-                          </XStack>
+                          </Stack>
                         )}
-                      </XStack>
+                      </Stack>
                       
                       {/* Contact Information */}
-                      <XStack space="$6" flexWrap="wrap">
+                      <Stack flexDirection="row" space="$6" flexWrap="wrap">
                         {organization.email && (
-                          <XStack space="$2" alignItems="center">
+                          <Stack flexDirection="row" space="$2" alignItems="center">
                             <Mail size={14} color="$gray10" />
                             <Text fontSize="$3" color="$gray11">
                               {organization.email}
                             </Text>
-                          </XStack>
+                          </Stack>
                         )}
                         
                         {organization.phone && (
-                          <XStack space="$2" alignItems="center">
+                          <Stack flexDirection="row" space="$2" alignItems="center">
                             <Phone size={14} color="$gray10" />
                             <Text fontSize="$3" color="$gray11">
                               {organization.phone}
                             </Text>
-                          </XStack>
+                          </Stack>
                         )}
                         
-                        <XStack space="$2" alignItems="center">
+                        <Stack flexDirection="row" space="$2" alignItems="center">
                           <Calendar size={14} color="$gray10" />
                           <Text fontSize="$3" color="$gray11">
                             Created {formatDate(organization.createdAt)}
                           </Text>
-                        </XStack>
-                      </XStack>
-                    </YStack>
-                  </XStack>
+                        </Stack>
+                      </Stack>
+                    </Stack>
+                  </Stack>
                 </Card.Body>
               </Card>
             ))}
-          </YStack>
+          </Stack>
         )}
-      </YStack>
+      </Stack>
 
       {/* Create Organization Modal */}
       <Modal 
@@ -569,7 +569,7 @@ const Organizations: React.FC = () => {
           </Modal.Header>
           
           <Modal.Body>
-            <YStack space="$4">
+            <Stack space="$4">
               <Input
                 label="Organization Name"
                 placeholder="Enter organization name"
@@ -589,7 +589,7 @@ const Organizations: React.FC = () => {
                 numberOfLines={3}
               />
               
-              <XStack space="$3">
+              <Stack flexDirection="row" space="$3">
                 <Input
                   label="Industry"
                   placeholder="e.g., Technology"
@@ -608,7 +608,7 @@ const Organizations: React.FC = () => {
                   keyboardType="numeric"
                   flex={1}
                 />
-              </XStack>
+              </Stack>
               
               <Input
                 label="Location"
@@ -618,7 +618,7 @@ const Organizations: React.FC = () => {
                 size="md"
               />
               
-              <XStack space="$3">
+              <Stack flexDirection="row" space="$3">
                 <Input
                   label="Website"
                   placeholder="https://example.com"
@@ -637,7 +637,7 @@ const Organizations: React.FC = () => {
                   keyboardType="email-address"
                   flex={1}
                 />
-              </XStack>
+              </Stack>
               
               <Input
                 label="Phone"
@@ -647,11 +647,11 @@ const Organizations: React.FC = () => {
                 size="md"
                 keyboardType="phone-pad"
               />
-            </YStack>
+            </Stack>
           </Modal.Body>
           
           <Modal.Footer>
-            <XStack space="$3" justifyContent="flex-end">
+            <Stack flexDirection="row" space="$3" justifyContent="flex-end">
               <Button 
                 variant="outline" 
                 size="md"
@@ -670,7 +670,7 @@ const Organizations: React.FC = () => {
               >
                 Create Organization
               </Button>
-            </XStack>
+            </Stack>
           </Modal.Footer>
         </Modal.Content>
       </Modal>
@@ -693,7 +693,7 @@ const Organizations: React.FC = () => {
           </Modal.Header>
           
           <Modal.Body>
-            <YStack space="$4">
+            <Stack space="$4">
               <Input
                 label="Organization Name"
                 placeholder="Enter organization name"
@@ -713,7 +713,7 @@ const Organizations: React.FC = () => {
                 numberOfLines={3}
               />
               
-              <XStack space="$3">
+              <Stack flexDirection="row" space="$3">
                 <Input
                   label="Industry"
                   placeholder="e.g., Technology"
@@ -732,7 +732,7 @@ const Organizations: React.FC = () => {
                   keyboardType="numeric"
                   flex={1}
                 />
-              </XStack>
+              </Stack>
               
               <Input
                 label="Location"
@@ -742,7 +742,7 @@ const Organizations: React.FC = () => {
                 size="md"
               />
               
-              <XStack space="$3">
+              <Stack flexDirection="row" space="$3">
                 <Input
                   label="Website"
                   placeholder="https://example.com"
@@ -761,7 +761,7 @@ const Organizations: React.FC = () => {
                   keyboardType="email-address"
                   flex={1}
                 />
-              </XStack>
+              </Stack>
               
               <Input
                 label="Phone"
@@ -771,11 +771,11 @@ const Organizations: React.FC = () => {
                 size="md"
                 keyboardType="phone-pad"
               />
-            </YStack>
+            </Stack>
           </Modal.Body>
           
           <Modal.Footer>
-            <XStack space="$3" justifyContent="flex-end">
+            <Stack flexDirection="row" space="$3" justifyContent="flex-end">
               <Button 
                 variant="outline" 
                 size="md"
@@ -795,11 +795,11 @@ const Organizations: React.FC = () => {
               >
                 Update Organization
               </Button>
-            </XStack>
+            </Stack>
           </Modal.Footer>
         </Modal.Content>
       </Modal>
-    </YStack>
+    </Stack>
   );
 };
 

@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { YStack, XStack, Text } from '@tamagui/core';
+import { Stack, Text } from '@tamagui/core';
 import { Button, Input } from '@xalesin/ui';
 import { Mail, ArrowLeft, CheckCircle } from 'lucide-react';
 
@@ -104,9 +104,9 @@ const ForgotPassword: React.FC = () => {
 
   if (isSuccess) {
     return (
-      <YStack space="$6" alignItems="center">
+      <Stack space="$6" alignItems="center">
         {/* Success Icon */}
-        <YStack
+        <Stack
           width={80}
           height={80}
           backgroundColor="$green2"
@@ -115,10 +115,10 @@ const ForgotPassword: React.FC = () => {
           justifyContent="center"
         >
           <CheckCircle size={40} color="$green10" />
-        </YStack>
+        </Stack>
 
         {/* Success Message */}
-        <YStack space="$3" alignItems="center">
+        <Stack space="$3" alignItems="center">
           <Text fontSize="$7" fontWeight="bold" color="$color" textAlign="center">
             Check Your Email
           </Text>
@@ -132,10 +132,10 @@ const ForgotPassword: React.FC = () => {
             Click the link in the email to reset your password. If you don't see the email,
             check your spam folder.
           </Text>
-        </YStack>
+        </Stack>
 
         {/* Actions */}
-        <YStack space="$3" width="100%">
+        <Stack space="$3" width="100%">
           <Button
             variant="primary"
             size="lg"
@@ -150,34 +150,34 @@ const ForgotPassword: React.FC = () => {
               Back to Sign In
             </Button>
           </Link>
-        </YStack>
+        </Stack>
 
         {/* Help Text */}
         <Text fontSize="$2" color="$gray10" textAlign="center">
           Still having trouble? Contact our support team for assistance.
         </Text>
-      </YStack>
+      </Stack>
     );
   }
 
   return (
-    <YStack space="$4">
+    <Stack space="$4">
       {/* Header */}
-      <YStack space="$2" alignItems="center">
+      <Stack space="$2" alignItems="center">
         <Text fontSize="$7" fontWeight="bold" color="$color">
           Forgot Password?
         </Text>
         <Text fontSize="$4" color="$gray11" textAlign="center" lineHeight="$2">
           No worries! Enter your email address and we'll send you a link to reset your password.
         </Text>
-      </YStack>
+      </Stack>
 
       {/* Forgot Password Form */}
       <form onSubmit={handleSubmit}>
-        <YStack space="$4">
+        <Stack space="$4">
           {/* General Error */}
           {errors.general && (
-            <YStack
+            <Stack
               padding="$3"
               backgroundColor="$red2"
               borderRadius="$3"
@@ -187,7 +187,7 @@ const ForgotPassword: React.FC = () => {
               <Text fontSize="$3" color="$red11">
                 {errors.general}
               </Text>
-            </YStack>
+            </Stack>
           )}
 
           {/* Email Input */}
@@ -216,21 +216,21 @@ const ForgotPassword: React.FC = () => {
           >
             {isLoading ? 'Sending Reset Link...' : 'Send Reset Link'}
           </Button>
-        </YStack>
+        </Stack>
       </form>
 
       {/* Back to Login */}
-      <XStack justifyContent="center" space="$2">
+      <Stack flexDirection="row" justifyContent="center" space="$2">
         <Link to="/auth/login" style={{ textDecoration: 'none' }}>
           <Button variant="ghost" size="md">
             <ArrowLeft size={16} />
             Back to Sign In
           </Button>
         </Link>
-      </XStack>
+      </Stack>
 
       {/* Help Text */}
-      <YStack space="$2" alignItems="center">
+      <Stack space="$2" alignItems="center">
         <Text fontSize="$2" color="$gray10" textAlign="center">
           Remember your password?
         </Text>
@@ -239,8 +239,8 @@ const ForgotPassword: React.FC = () => {
             Sign in instead
           </Text>
         </Link>
-      </YStack>
-    </YStack>
+      </Stack>
+    </Stack>
   );
 };
 

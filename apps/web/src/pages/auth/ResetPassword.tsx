@@ -5,8 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { YStack, XStack, Text } from '@tamagui/core';
-import { Button, Input } from '@xalesin/ui';
+import { Stack, Text, Button, Input } from '@tamagui/core';
 import { Lock, Eye, EyeOff, CheckCircle, AlertCircle } from 'lucide-react';
 
 /**
@@ -152,9 +151,9 @@ const ResetPassword: React.FC = () => {
   // Invalid token state
   if (!isValidToken) {
     return (
-      <YStack space="$6" alignItems="center">
+      <Stack space="$6" alignItems="center">
         {/* Error Icon */}
-        <YStack
+        <Stack
           width={80}
           height={80}
           backgroundColor="$red2"
@@ -163,10 +162,10 @@ const ResetPassword: React.FC = () => {
           justifyContent="center"
         >
           <AlertCircle size={40} color="$red10" />
-        </YStack>
+        </Stack>
 
         {/* Error Message */}
-        <YStack space="$3" alignItems="center">
+        <Stack space="$3" alignItems="center">
           <Text fontSize="$7" fontWeight="bold" color="$color" textAlign="center">
             Invalid Reset Link
           </Text>
@@ -176,10 +175,10 @@ const ResetPassword: React.FC = () => {
           <Text fontSize="$3" color="$gray10" textAlign="center" lineHeight="$2">
             Please request a new password reset link to continue.
           </Text>
-        </YStack>
+        </Stack>
 
         {/* Actions */}
-        <YStack space="$3" width="100%">
+        <Stack space="$3" width="100%">
           <Link to="/auth/forgot-password" style={{ textDecoration: 'none' }}>
             <Button variant="primary" size="lg" width="100%">
               Request New Reset Link
@@ -191,17 +190,17 @@ const ResetPassword: React.FC = () => {
               Back to Sign In
             </Button>
           </Link>
-        </YStack>
-      </YStack>
+        </Stack>
+      </Stack>
     );
   }
 
   // Success state
   if (isSuccess) {
     return (
-      <YStack space="$6" alignItems="center">
+      <Stack space="$6" alignItems="center">
         {/* Success Icon */}
-        <YStack
+        <Stack
           width={80}
           height={80}
           backgroundColor="$green2"
@@ -210,10 +209,10 @@ const ResetPassword: React.FC = () => {
           justifyContent="center"
         >
           <CheckCircle size={40} color="$green10" />
-        </YStack>
+        </Stack>
 
         {/* Success Message */}
-        <YStack space="$3" alignItems="center">
+        <Stack space="$3" alignItems="center">
           <Text fontSize="$7" fontWeight="bold" color="$color" textAlign="center">
             Password Reset Successful
           </Text>
@@ -223,24 +222,24 @@ const ResetPassword: React.FC = () => {
           <Text fontSize="$3" color="$gray10" textAlign="center" lineHeight="$2">
             You can now sign in with your new password.
           </Text>
-        </YStack>
+        </Stack>
 
         {/* Actions */}
-        <YStack space="$3" width="100%">
+        <Stack space="$3" width="100%">
           <Link to="/auth/login" style={{ textDecoration: 'none' }}>
             <Button variant="primary" size="lg" width="100%">
               Sign In Now
             </Button>
           </Link>
-        </YStack>
-      </YStack>
+        </Stack>
+      </Stack>
     );
   }
 
   return (
-    <YStack space="$4">
+    <Stack space="$4">
       {/* Header */}
-      <YStack space="$2" alignItems="center">
+      <Stack space="$2" alignItems="center">
         <Text fontSize="$7" fontWeight="bold" color="$color">
           Reset Password
         </Text>
@@ -252,14 +251,14 @@ const ResetPassword: React.FC = () => {
             for {email}
           </Text>
         )}
-      </YStack>
+      </Stack>
 
       {/* Reset Password Form */}
       <form onSubmit={handleSubmit}>
-        <YStack space="$4">
+        <Stack space="$4">
           {/* General Error */}
           {errors.general && (
-            <YStack
+            <Stack
               padding="$3"
               backgroundColor="$red2"
               borderRadius="$3"
@@ -269,11 +268,11 @@ const ResetPassword: React.FC = () => {
               <Text fontSize="$3" color="$red11">
                 {errors.general}
               </Text>
-            </YStack>
+            </Stack>
           )}
 
           {/* Password Input */}
-          <YStack space="$2">
+          <Stack space="$2">
             <Input
               label="New Password"
               placeholder="Enter your new password"
@@ -292,10 +291,10 @@ const ResetPassword: React.FC = () => {
             
             {/* Password Strength Indicator */}
             {formData.password && (
-              <YStack space="$1">
-                <XStack space="$1">
+              <Stack space="$1">
+                <Stack flexDirection="row" space="$1">
                   {[...Array(5)].map((_, i) => (
-                    <YStack
+                    <Stack
                       key={i}
                       flex={1}
                       height={4}
@@ -303,13 +302,13 @@ const ResetPassword: React.FC = () => {
                       borderRadius="$1"
                     />
                   ))}
-                </XStack>
+                </Stack>
                 <Text fontSize="$2" color={passwordStrength.color}>
                   Password strength: {passwordStrength.label}
                 </Text>
-              </YStack>
+              </Stack>
             )}
-          </YStack>
+          </Stack>
 
           {/* Confirm Password Input */}
           <Input
@@ -338,18 +337,18 @@ const ResetPassword: React.FC = () => {
           >
             {isLoading ? 'Resetting Password...' : 'Reset Password'}
           </Button>
-        </YStack>
+        </Stack>
       </form>
 
       {/* Back to Login */}
-      <XStack justifyContent="center" space="$2">
+      <Stack flexDirection="row" justifyContent="center" space="$2">
         <Link to="/auth/login" style={{ textDecoration: 'none' }}>
           <Text fontSize="$3" color="$blue10" fontWeight="600">
             Back to Sign In
           </Text>
         </Link>
-      </XStack>
-    </YStack>
+      </Stack>
+    </Stack>
   );
 };
 

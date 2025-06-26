@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { YStack, XStack, Text } from '@tamagui/core';
+import { Stack, Text } from '@tamagui/core';
 import { Button, Input } from '@xalesin/ui';
 import { Eye, EyeOff, Mail, Lock, User, Building2 } from 'lucide-react';
 
@@ -188,23 +188,23 @@ const Register: React.FC = () => {
   const passwordStrength = getPasswordStrength(formData.password);
 
   return (
-    <YStack space="$4">
+    <Stack space="$4">
       {/* Header */}
-      <YStack space="$2" alignItems="center">
+      <Stack space="$2" alignItems="center">
         <Text fontSize="$7" fontWeight="bold" color="$color">
           Create Account
         </Text>
         <Text fontSize="$4" color="$gray11" textAlign="center">
           Join Xalesin ERP and start managing your business
         </Text>
-      </YStack>
+      </Stack>
 
       {/* Registration Form */}
       <form onSubmit={handleSubmit}>
-        <YStack space="$4">
+        <Stack space="$4">
           {/* General Error */}
           {errors.general && (
-            <YStack
+            <Stack
               padding="$3"
               backgroundColor="$red2"
               borderRadius="$3"
@@ -214,12 +214,12 @@ const Register: React.FC = () => {
               <Text fontSize="$3" color="$red11">
                 {errors.general}
               </Text>
-            </YStack>
+            </Stack>
           )}
 
           {/* Name Fields */}
-          <XStack space="$3">
-            <YStack flex={1}>
+          <Stack flexDirection="row" space="$3">
+            <Stack flex={1}>
               <Input
                 label="First Name"
                 placeholder="Enter your first name"
@@ -232,8 +232,8 @@ const Register: React.FC = () => {
                 autoComplete="given-name"
                 disabled={isLoading}
               />
-            </YStack>
-            <YStack flex={1}>
+            </Stack>
+            <Stack flex={1}>
               <Input
                 label="Last Name"
                 placeholder="Enter your last name"
@@ -246,8 +246,8 @@ const Register: React.FC = () => {
                 autoComplete="family-name"
                 disabled={isLoading}
               />
-            </YStack>
-          </XStack>
+            </Stack>
+          </Stack>
 
           {/* Email Input */}
           <Input
@@ -280,7 +280,7 @@ const Register: React.FC = () => {
           />
 
           {/* Password Input */}
-          <YStack space="$2">
+          <Stack space="$2">
             <Input
               label="Password"
               placeholder="Create a strong password"
@@ -299,10 +299,10 @@ const Register: React.FC = () => {
             
             {/* Password Strength Indicator */}
             {formData.password && (
-              <YStack space="$1">
-                <XStack space="$1">
+              <Stack space="$1">
+                <Stack flexDirection="row" space="$1">
                   {[...Array(5)].map((_, i) => (
-                    <YStack
+                    <Stack
                       key={i}
                       flex={1}
                       height={4}
@@ -310,13 +310,13 @@ const Register: React.FC = () => {
                       borderRadius="$1"
                     />
                   ))}
-                </XStack>
+                </Stack>
                 <Text fontSize="$2" color={passwordStrength.color}>
                   Password strength: {passwordStrength.label}
                 </Text>
-              </YStack>
+              </Stack>
             )}
-          </YStack>
+          </Stack>
 
           {/* Confirm Password Input */}
           <Input
@@ -336,8 +336,8 @@ const Register: React.FC = () => {
           />
 
           {/* Terms and Conditions */}
-          <YStack space="$2">
-            <XStack space="$2" alignItems="flex-start">
+          <Stack space="$2">
+            <Stack flexDirection="row" space="$2" alignItems="flex-start">
               <input
                 type="checkbox"
                 id="acceptTerms"
@@ -351,7 +351,7 @@ const Register: React.FC = () => {
                   accentColor: '#3b82f6',
                 }}
               />
-              <YStack flex={1}>
+              <Stack flex={1}>
                 <Text fontSize="$3" color="$gray11" lineHeight="$1">
                   I agree to the{' '}
                   <Link to="/terms" style={{ color: '#3b82f6', textDecoration: 'none' }}>
@@ -362,14 +362,14 @@ const Register: React.FC = () => {
                     Privacy Policy
                   </Link>
                 </Text>
-              </YStack>
-            </XStack>
+              </Stack>
+            </Stack>
             {errors.acceptTerms && (
               <Text fontSize="$2" color="$red10">
                 {errors.acceptTerms}
               </Text>
             )}
-          </YStack>
+          </Stack>
 
           {/* Submit Button */}
           <Button
@@ -381,11 +381,11 @@ const Register: React.FC = () => {
           >
             {isLoading ? 'Creating Account...' : 'Create Account'}
           </Button>
-        </YStack>
+        </Stack>
       </form>
 
       {/* Sign In Link */}
-      <XStack justifyContent="center" space="$2">
+      <Stack flexDirection="row" justifyContent="center" space="$2">
         <Text fontSize="$3" color="$gray11">
           Already have an account?
         </Text>
@@ -394,8 +394,8 @@ const Register: React.FC = () => {
             Sign in
           </Text>
         </Link>
-      </XStack>
-    </YStack>
+      </Stack>
+    </Stack>
   );
 };
 

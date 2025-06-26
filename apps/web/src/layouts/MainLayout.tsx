@@ -6,8 +6,7 @@
 import React, { useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import {
-  XStack,
-  YStack,
+  Stack,
   Button,
   Text,
   Separator,
@@ -89,7 +88,7 @@ const Sidebar: React.FC<{
   };
 
   return (
-    <YStack
+    <Stack
       width={280}
       height="100vh"
       backgroundColor="$background"
@@ -105,7 +104,8 @@ const Sidebar: React.FC<{
       }}
     >
       {/* Sidebar Header */}
-      <XStack
+      <Stack
+        flexDirection="row"
         padding="$4"
         alignItems="center"
         justifyContent="space-between"
@@ -122,11 +122,11 @@ const Sidebar: React.FC<{
           onPress={onClose}
           $gtSm={{ display: 'none' }}
         />
-      </XStack>
+      </Stack>
 
       {/* Navigation */}
       <ScrollView flex={1} padding="$3">
-        <YStack space="$2">
+        <Stack space="$2">
           {navigationItems.map((item) => {
             const isActive = location.pathname === item.path;
             const IconComponent = item.icon;
@@ -169,11 +169,11 @@ const Sidebar: React.FC<{
               </Button>
             );
           })}
-        </YStack>
+        </Stack>
       </ScrollView>
 
       {/* User Section */}
-      <YStack padding="$3" space="$2">
+      <Stack padding="$3" space="$2">
         <Separator />
         <Button
           variant="ghost"
@@ -193,8 +193,8 @@ const Sidebar: React.FC<{
         >
           <Text>Logout</Text>
         </Button>
-      </YStack>
-    </YStack>
+      </Stack>
+    </Stack>
   );
 };
 
@@ -205,7 +205,8 @@ const Header: React.FC<{
   onMenuClick: () => void;
 }> = ({ onMenuClick }) => {
   return (
-    <XStack
+    <Stack
+      flexDirection="row"
       height={64}
       paddingHorizontal="$4"
       alignItems="center"
@@ -216,7 +217,7 @@ const Header: React.FC<{
       zIndex={100}
     >
       {/* Left section */}
-      <XStack alignItems="center" space="$3">
+      <Stack flexDirection="row" alignItems="center" space="$3">
         <Button
           size="$3"
           variant="ghost"
@@ -226,22 +227,22 @@ const Header: React.FC<{
         />
         
         {/* Search */}
-        <XStack $sm={{ display: 'none' }}>
+        <Stack flexDirection="row" $sm={{ display: 'none' }}>
           <Input
             placeholder="Search..."
             leftIcon={Search}
             size="sm"
             width={300}
           />
-        </XStack>
-      </XStack>
+        </Stack>
+      </Stack>
 
       {/* Right section */}
-      <XStack alignItems="center" space="$2">
+      <Stack flexDirection="row" alignItems="center" space="$2">
         <Button size="$3" variant="ghost" icon={Bell} />
         <Button size="$3" variant="ghost" icon={User} />
-      </XStack>
-    </XStack>
+      </Stack>
+    </Stack>
   );
 };
 
@@ -255,20 +256,20 @@ const MainLayout: React.FC = () => {
   const closeSidebar = () => setSidebarOpen(false);
 
   return (
-    <XStack flex={1} height="100vh">
+    <Stack flexDirection="row" flex={1} height="100vh">
       {/* Sidebar */}
-      <YStack $sm={{ display: 'none' }}>
+      <Stack $sm={{ display: 'none' }}>
         <Sidebar isOpen={true} onClose={closeSidebar} />
-      </YStack>
+      </Stack>
       
       {/* Mobile Sidebar */}
-      <YStack $gtSm={{ display: 'none' }}>
+      <Stack $gtSm={{ display: 'none' }}>
         <Sidebar isOpen={sidebarOpen} onClose={closeSidebar} />
-      </YStack>
+      </Stack>
 
       {/* Mobile Overlay */}
       {sidebarOpen && (
-        <YStack
+        <Stack
           position="fixed"
           top={0}
           left={0}
@@ -282,15 +283,15 @@ const MainLayout: React.FC = () => {
       )}
 
       {/* Main Content */}
-      <YStack flex={1} overflow="hidden">
+      <Stack flex={1} overflow="hidden">
         <Header onMenuClick={toggleSidebar} />
         
         {/* Page Content */}
-        <YStack flex={1} overflow="auto">
+        <Stack flex={1} overflow="auto">
           <Outlet />
-        </YStack>
-      </YStack>
-    </XStack>
+        </Stack>
+      </Stack>
+    </Stack>
   );
 };
 

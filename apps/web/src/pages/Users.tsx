@@ -4,8 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { YStack, Stack, Text } from '@tamagui/core';
-import { Button, Input, Card, Modal, Spinner } from '@xalesin/ui';
+import { Stack, Text, Button, Input, Card, Modal, Spinner } from '@xalesin/ui';
 import {
   Users as UsersIcon,
   Plus,
@@ -407,21 +406,21 @@ const Users: React.FC = () => {
 
   if (isLoading) {
     return (
-      <YStack flex={1} alignItems="center" justifyContent="center">
+      <Stack flex={1} alignItems="center" justifyContent="center">
         <Spinner size="lg" />
         <Text fontSize="$4" color="$gray11" marginTop="$4">
           Loading users...
         </Text>
-      </YStack>
+      </Stack>
     );
   }
 
   return (
-    <YStack flex={1} space="$6">
+    <Stack flex={1} space="$6">
       {/* Header */}
-      <YStack space="$4">
+      <Stack space="$4">
         <Stack justifyContent="space-between" alignItems="center" flexDirection="row">
-          <YStack space="$1">
+          <Stack space="$1">
             <Text fontSize="$8" fontWeight="bold" color="$color">
               Users
             </Text>
@@ -517,16 +516,16 @@ const Users: React.FC = () => {
             </select>
           </Stack>
          </Stack>
-      </YStack>
+      </Stack>
 
       {/* Users Grid */}
-      <YStack space="$4">
+      <Stack space="$4">
         {filteredUsers.length === 0 ? (
           <Card variant="outlined" size="lg">
             <Card.Body>
-              <YStack space="$4" alignItems="center" paddingVertical="$8">
+              <Stack space="$4" alignItems="center" paddingVertical="$8">
                 <UsersIcon size={48} color="$gray9" />
-                <YStack space="$2" alignItems="center">
+                <Stack space="$2" alignItems="center">
                   <Text fontSize="$5" fontWeight="600" color="$color">
                     No users found
                   </Text>
@@ -536,7 +535,7 @@ const Users: React.FC = () => {
                       : 'Get started by adding your first user'
                     }
                   </Text>
-                </YStack>
+                </Stack>
                 {!searchQuery && selectedRole === 'all' && selectedStatus === 'all' && selectedOrganization === 'all' && (
                   <Button 
                     variant="primary" 
@@ -547,11 +546,11 @@ const Users: React.FC = () => {
                     Add User
                   </Button>
                 )}
-              </YStack>
+              </Stack>
             </Card.Body>
           </Card>
         ) : (
-          <YStack space="$3">
+          <Stack space="$3">
             {filteredUsers.map((user) => {
               const RoleIcon = getRoleIcon(user.role);
               return (
@@ -560,7 +559,7 @@ const Users: React.FC = () => {
                     <Stack justifyContent="space-between" alignItems="flex-start" flexDirection="row">
                 <Stack space="$4" flex={1} alignItems="flex-start" flexDirection="row">
                         {/* Avatar */}
-                        <YStack
+                        <Stack
                           width={48}
                           height={48}
                           backgroundColor="$blue3"
@@ -571,19 +570,19 @@ const Users: React.FC = () => {
                           <Text fontSize="$4" fontWeight="600" color="$blue11">
                             {getUserInitials(user.firstName, user.lastName)}
                           </Text>
-                        </YStack>
+                        </Stack>
                         
                         {/* User Info */}
-                        <YStack space="$3" flex={1}>
+                        <Stack space="$3" flex={1}>
                           {/* User Header */}
-                          <YStack space="$1">
+                          <Stack space="$1">
                             <Stack space="$3" alignItems="center" flexDirection="row">
                               <Text fontSize="$5" fontWeight="600" color="$color">
                                 {user.firstName} {user.lastName}
                               </Text>
                               
                               <Stack space="$2" alignItems="center" flexDirection="row">
-                                <YStack
+                                <Stack
                                   paddingHorizontal="$2"
                                   paddingVertical="$1"
                                   backgroundColor={getRoleColor(user.role) + '20'}
@@ -600,9 +599,9 @@ const Users: React.FC = () => {
                                       {user.role}
                                     </Text>
                                   </Stack>
-                                </YStack>
+                                </Stack>
                                 
-                                <YStack
+                                <Stack
                                   paddingHorizontal="$2"
                                   paddingVertical="$1"
                                   backgroundColor={getStatusColor(user.status) + '20'}
@@ -616,14 +615,14 @@ const Users: React.FC = () => {
                                   >
                                     {user.status}
                                   </Text>
-                                </YStack>
+                                </Stack>
                               </Stack>
                             </Stack>
                             
                             <Text fontSize="$3" color="$gray11">
                               {user.jobTitle} {user.department && `• ${user.department}`}
                             </Text>
-                          </YStack>
+                          </Stack>
                           
                           {/* Contact & Organization Info */}
                           <Stack space="$6" flexWrap="wrap" flexDirection="row">
@@ -671,7 +670,7 @@ const Users: React.FC = () => {
                               </Text>
                             </Stack>
                           </Stack>
-                        </YStack>
+                        </Stack>
                       </Stack>
                       
                       {/* Actions */}
@@ -694,9 +693,9 @@ const Users: React.FC = () => {
                 </Card>
               );
             })}
-          </YStack>
+          </Stack>
         )}
-      </YStack>
+      </Stack>
 
       {/* Create User Modal */}
       <Modal 
@@ -715,7 +714,7 @@ const Users: React.FC = () => {
           </Modal.Header>
           
           <Modal.Body>
-            <YStack space="$4">
+            <Stack space="$4">
               <Stack space="$3" flexDirection="row">
                 <Input
                   label="First Name"
@@ -774,7 +773,7 @@ const Users: React.FC = () => {
               />
               
               <Stack space="$3" flexDirection="row">
-                <YStack space="$2" flex={1}>
+                <Stack space="$2" flex={1}>
                   <Text fontSize="$3" fontWeight="600" color="$color">
                     Role
                   </Text>
@@ -793,9 +792,9 @@ const Users: React.FC = () => {
                     <option value="manager">Manager</option>
                     <option value="admin">Admin</option>
                   </select>
-                </YStack>
+                </Stack>
                 
-                <YStack space="$2" flex={1}>
+                <Stack space="$2" flex={1}>
                   <Text fontSize="$3" fontWeight="600" color="$color">
                     Organization
                   </Text>

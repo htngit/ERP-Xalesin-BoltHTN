@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { YStack, XStack, Text } from '@tamagui/core';
+import { Stack, Text } from '@tamagui/core';
 import { Button, Input } from '@xalesin/ui';
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
 
@@ -127,16 +127,16 @@ const Login: React.FC = () => {
   };
 
   return (
-    <YStack space="$4">
+    <Stack space="$4">
       {/* Header */}
-      <YStack space="$2" alignItems="center">
+      <Stack space="$2" alignItems="center">
         <Text fontSize="$7" fontWeight="bold" color="$color">
           Welcome Back
         </Text>
         <Text fontSize="$4" color="$gray11" textAlign="center">
           Sign in to your account to continue
         </Text>
-      </YStack>
+      </Stack>
 
       {/* Demo Login Button */}
       <Button
@@ -150,10 +150,10 @@ const Login: React.FC = () => {
 
       {/* Login Form */}
       <form onSubmit={handleSubmit}>
-        <YStack space="$4">
+        <Stack space="$4">
           {/* General Error */}
           {errors.general && (
-            <YStack
+            <Stack
               padding="$3"
               backgroundColor="$red2"
               borderRadius="$3"
@@ -163,7 +163,7 @@ const Login: React.FC = () => {
               <Text fontSize="$3" color="$red11">
                 {errors.general}
               </Text>
-            </YStack>
+            </Stack>
           )}
 
           {/* Email Input */}
@@ -200,8 +200,8 @@ const Login: React.FC = () => {
           />
 
           {/* Remember Me & Forgot Password */}
-          <XStack justifyContent="space-between" alignItems="center">
-            <XStack space="$2" alignItems="center">
+          <Stack flexDirection="row" justifyContent="space-between" alignItems="center">
+            <Stack flexDirection="row" space="$2" alignItems="center">
               <input
                 type="checkbox"
                 id="rememberMe"
@@ -217,7 +217,7 @@ const Login: React.FC = () => {
               <Text fontSize="$3" color="$gray11">
                 Remember me
               </Text>
-            </XStack>
+            </Stack>
             <Link
               to="/auth/forgot-password"
               style={{ textDecoration: 'none' }}
@@ -226,7 +226,7 @@ const Login: React.FC = () => {
                 Forgot password?
               </Text>
             </Link>
-          </XStack>
+          </Stack>
 
           {/* Submit Button */}
           <Button
@@ -238,11 +238,11 @@ const Login: React.FC = () => {
           >
             {isLoading ? 'Signing In...' : 'Sign In'}
           </Button>
-        </YStack>
+        </Stack>
       </form>
 
       {/* Sign Up Link */}
-      <XStack justifyContent="center" space="$2">
+      <Stack flexDirection="row" justifyContent="center" space="$2">
         <Text fontSize="$3" color="$gray11">
           Don't have an account?
         </Text>
@@ -251,14 +251,14 @@ const Login: React.FC = () => {
             Sign up
           </Text>
         </Link>
-      </XStack>
+      </Stack>
 
       {/* Additional Links */}
-      <YStack space="$2" alignItems="center">
+      <Stack space="$2" alignItems="center">
         <Text fontSize="$2" color="$gray10">
           By signing in, you agree to our
         </Text>
-        <XStack space="$2">
+        <Stack flexDirection="row" space="$2">
           <Link to="/terms" style={{ textDecoration: 'none' }}>
             <Text fontSize="$2" color="$blue10">
               Terms of Service
@@ -270,9 +270,9 @@ const Login: React.FC = () => {
               Privacy Policy
             </Text>
           </Link>
-        </XStack>
-      </YStack>
-    </YStack>
+        </Stack>
+      </Stack>
+    </Stack>
   );
 };
 

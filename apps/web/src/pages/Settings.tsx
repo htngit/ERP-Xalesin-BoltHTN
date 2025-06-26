@@ -4,8 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { YStack, XStack, Text } from '@tamagui/core';
-import { Button, Input, Card, Modal, Spinner } from '@xalesin/ui';
+import { Stack, Text, Button, Input, Card, Modal, Spinner } from '@xalesin/ui';
 import {
   Settings as SettingsIcon,
   User,
@@ -287,8 +286,8 @@ const Settings: React.FC = () => {
    * Render profile settings
    */
   const renderProfileSettings = () => (
-    <YStack space="$6">
-      <YStack space="$4">
+    <Stack space="$6">
+      <Stack space="$4">
         <Text fontSize="$6" fontWeight="600" color="$color">
           Profile Information
         </Text>
@@ -296,8 +295,8 @@ const Settings: React.FC = () => {
         {/* Avatar Section */}
         <Card variant="outlined" size="md">
           <Card.Body>
-            <XStack space="$4" alignItems="center">
-              <YStack
+            <Stack space="$4" alignItems="center" flexDirection="row">
+              <Stack
                 width={80}
                 height={80}
                 backgroundColor="$blue3"
@@ -308,25 +307,25 @@ const Settings: React.FC = () => {
                 <Text fontSize="$8" fontWeight="600" color="$blue11">
                   {profile.firstName.charAt(0)}{profile.lastName.charAt(0)}
                 </Text>
-              </YStack>
+              </Stack>
               
-              <YStack space="$2" flex={1}>
+              <Stack space="$2" flex={1}>
                 <Text fontSize="$5" fontWeight="600" color="$color">
                   Profile Photo
                 </Text>
                 <Text fontSize="$3" color="$gray11">
                   Upload a new profile photo or remove the current one
                 </Text>
-                <XStack space="$2">
+                <Stack space="$2" flexDirection="row">
                   <Button variant="outline" size="sm" leftIcon={Camera}>
                     Upload Photo
                   </Button>
                   <Button variant="ghost" size="sm" leftIcon={Trash2}>
                     Remove
                   </Button>
-                </XStack>
-              </YStack>
-            </XStack>
+                </Stack>
+              </Stack>
+            </Stack>
           </Card.Body>
         </Card>
         
@@ -338,8 +337,8 @@ const Settings: React.FC = () => {
             </Text>
           </Card.Header>
           <Card.Body>
-            <YStack space="$4">
-              <XStack space="$3">
+            <Stack space="$4">
+              <Stack space="$3" flexDirection="row">
                 <Input
                   label="First Name"
                   value={profile.firstName}
@@ -354,9 +353,9 @@ const Settings: React.FC = () => {
                   size="md"
                   flex={1}
                 />
-              </XStack>
+              </Stack>
               
-              <XStack space="$3">
+              <Stack space="$3" flexDirection="row">
                 <Input
                   label="Email"
                   value={profile.email}
@@ -375,9 +374,9 @@ const Settings: React.FC = () => {
                   leftIcon={Phone}
                   flex={1}
                 />
-              </XStack>
+              </Stack>
               
-              <XStack space="$3">
+              <Stack space="$3" flexDirection="row">
                 <Input
                   label="Job Title"
                   value={profile.jobTitle || ''}
@@ -392,9 +391,9 @@ const Settings: React.FC = () => {
                   size="md"
                   flex={1}
                 />
-              </XStack>
+              </Stack>
               
-              <YStack space="$2">
+              <Stack space="$2">
                 <Text fontSize="$3" fontWeight="600" color="$color">
                   Bio
                 </Text>
@@ -413,10 +412,10 @@ const Settings: React.FC = () => {
                     width: '100%',
                   }}
                 />
-              </YStack>
+              </Stack>
               
-              <XStack space="$3">
-                <YStack space="$2" flex={1}>
+              <Stack space="$3" flexDirection="row">
+                <Stack space="$2" flex={1}>
                   <Text fontSize="$3" fontWeight="600" color="$color">
                     Timezone
                   </Text>
@@ -439,9 +438,9 @@ const Settings: React.FC = () => {
                     <option value="Europe/Paris">Paris (CET)</option>
                     <option value="Asia/Tokyo">Tokyo (JST)</option>
                   </select>
-                </YStack>
+                </Stack>
                 
-                <YStack space="$2" flex={1}>
+                <Stack space="$2" flex={1}>
                   <Text fontSize="$3" fontWeight="600" color="$color">
                     Language
                   </Text>
@@ -464,9 +463,9 @@ const Settings: React.FC = () => {
                     <option value="ja-JP">Japanese</option>
                     <option value="zh-CN">Chinese (Simplified)</option>
                   </select>
-                </YStack>
-              </XStack>
-            </YStack>
+                </Stack>
+              </Stack>
+            </Stack>
           </Card.Body>
         </Card>
         
@@ -478,7 +477,7 @@ const Settings: React.FC = () => {
             </Text>
           </Card.Header>
           <Card.Body>
-            <YStack space="$4">
+            <Stack space="$4">
               <Input
                 label="Current Password"
                 value={passwordForm.currentPassword}
@@ -519,18 +518,18 @@ const Settings: React.FC = () => {
               >
                 Change Password
               </Button>
-            </YStack>
+            </Stack>
           </Card.Body>
         </Card>
-      </YStack>
-    </YStack>
+      </Stack>
+    </Stack>
   );
 
   /**
    * Render notification settings
    */
   const renderNotificationSettings = () => (
-    <YStack space="$6">
+    <Stack space="$6">
       <Text fontSize="$6" fontWeight="600" color="$color">
         Notification Preferences
       </Text>
@@ -542,31 +541,31 @@ const Settings: React.FC = () => {
           </Text>
         </Card.Header>
         <Card.Body>
-          <YStack space="$4">
+          <Stack space="$4">
             {[
               { key: 'emailNotifications', label: 'Email Notifications', description: 'Receive notifications via email' },
               { key: 'pushNotifications', label: 'Push Notifications', description: 'Receive push notifications in your browser' },
               { key: 'smsNotifications', label: 'SMS Notifications', description: 'Receive important alerts via SMS' },
               { key: 'marketingEmails', label: 'Marketing Emails', description: 'Receive product updates and promotional content' },
             ].map(({ key, label, description }) => (
-              <XStack key={key} justifyContent="space-between" alignItems="center">
-                <YStack space="$1" flex={1}>
+              <Stack key={key} justifyContent="space-between" alignItems="center" flexDirection="row">
+                <Stack space="$1" flex={1}>
                   <Text fontSize="$4" fontWeight="500" color="$color">
                     {label}
                   </Text>
                   <Text fontSize="$3" color="$gray11">
                     {description}
                   </Text>
-                </YStack>
+                </Stack>
                 <Button
                   variant={notifications[key as keyof NotificationSettings] ? 'primary' : 'outline'}
                   size="sm"
                   icon={notifications[key as keyof NotificationSettings] ? Check : X}
                   onPress={() => setNotifications(prev => ({ ...prev, [key]: !prev[key as keyof NotificationSettings] }))}
                 />
-              </XStack>
+              </Stack>
             ))}
-          </YStack>
+          </Stack>
         </Card.Body>
       </Card>
       
@@ -577,7 +576,7 @@ const Settings: React.FC = () => {
           </Text>
         </Card.Header>
         <Card.Body>
-          <YStack space="$4">
+          <Stack space="$4">
             {[
               { key: 'securityAlerts', label: 'Security Alerts', description: 'Important security-related notifications' },
               { key: 'systemUpdates', label: 'System Updates', description: 'Notifications about system maintenance and updates' },
@@ -585,34 +584,34 @@ const Settings: React.FC = () => {
               { key: 'mentionNotifications', label: 'Mentions', description: 'When someone mentions you in comments or discussions' },
               { key: 'commentNotifications', label: 'Comments', description: 'When someone comments on your content' },
             ].map(({ key, label, description }) => (
-              <XStack key={key} justifyContent="space-between" alignItems="center">
-                <YStack space="$1" flex={1}>
+              <Stack key={key} justifyContent="space-between" alignItems="center" flexDirection="row">
+                <Stack space="$1" flex={1}>
                   <Text fontSize="$4" fontWeight="500" color="$color">
                     {label}
                   </Text>
                   <Text fontSize="$3" color="$gray11">
                     {description}
                   </Text>
-                </YStack>
+                </Stack>
                 <Button
                   variant={notifications[key as keyof NotificationSettings] ? 'primary' : 'outline'}
                   size="sm"
                   icon={notifications[key as keyof NotificationSettings] ? Check : X}
                   onPress={() => setNotifications(prev => ({ ...prev, [key]: !prev[key as keyof NotificationSettings] }))}
                 />
-              </XStack>
+              </Stack>
             ))}
-          </YStack>
+          </Stack>
         </Card.Body>
       </Card>
-    </YStack>
+    </Stack>
   );
 
   /**
    * Render security settings
    */
   const renderSecuritySettings = () => (
-    <YStack space="$6">
+    <Stack space="$6">
       <Text fontSize="$6" fontWeight="600" color="$color">
         Security & Privacy
       </Text>
@@ -624,16 +623,16 @@ const Settings: React.FC = () => {
           </Text>
         </Card.Header>
         <Card.Body>
-          <YStack space="$4">
-            <XStack justifyContent="space-between" alignItems="center">
-              <YStack space="$1" flex={1}>
+          <Stack space="$4">
+            <Stack justifyContent="space-between" alignItems="center" flexDirection="row">
+              <Stack space="$1" flex={1}>
                 <Text fontSize="$4" fontWeight="500" color="$color">
                   Two-Factor Authentication
                 </Text>
                 <Text fontSize="$3" color="$gray11">
                   Add an extra layer of security to your account
                 </Text>
-              </YStack>
+              </Stack>
               <Button
                 variant={security.twoFactorEnabled ? 'primary' : 'outline'}
                 size="sm"
@@ -642,42 +641,42 @@ const Settings: React.FC = () => {
               >
                 {security.twoFactorEnabled ? 'Enabled' : 'Enable'}
               </Button>
-            </XStack>
+            </Stack>
             
-            <XStack justifyContent="space-between" alignItems="center">
-              <YStack space="$1" flex={1}>
+            <Stack justifyContent="space-between" alignItems="center" flexDirection="row">
+              <Stack space="$1" flex={1}>
                 <Text fontSize="$4" fontWeight="500" color="$color">
                   Login Notifications
                 </Text>
                 <Text fontSize="$3" color="$gray11">
                   Get notified when someone logs into your account
                 </Text>
-              </YStack>
+              </Stack>
               <Button
                 variant={security.loginNotifications ? 'primary' : 'outline'}
                 size="sm"
                 icon={security.loginNotifications ? Check : X}
                 onPress={() => setSecurity(prev => ({ ...prev, loginNotifications: !prev.loginNotifications }))}
               />
-            </XStack>
+            </Stack>
             
-            <XStack justifyContent="space-between" alignItems="center">
-              <YStack space="$1" flex={1}>
+            <Stack justifyContent="space-between" alignItems="center" flexDirection="row">
+              <Stack space="$1" flex={1}>
                 <Text fontSize="$4" fontWeight="500" color="$color">
                   Device Trust
                 </Text>
                 <Text fontSize="$3" color="$gray11">
                   Remember trusted devices for faster login
                 </Text>
-              </YStack>
+              </Stack>
               <Button
                 variant={security.deviceTrust ? 'primary' : 'outline'}
                 size="sm"
                 icon={security.deviceTrust ? Smartphone : X}
                 onPress={() => setSecurity(prev => ({ ...prev, deviceTrust: !prev.deviceTrust }))}
               />
-            </XStack>
-          </YStack>
+            </Stack>
+          </Stack>
         </Card.Body>
       </Card>
       
@@ -688,8 +687,8 @@ const Settings: React.FC = () => {
           </Text>
         </Card.Header>
         <Card.Body>
-          <YStack space="$4">
-            <YStack space="$2">
+          <Stack space="$4">
+            <Stack space="$2">
               <Text fontSize="$4" fontWeight="500" color="$color">
                 Session Timeout (minutes)
               </Text>
@@ -714,9 +713,9 @@ const Settings: React.FC = () => {
                 <option value={480}>8 hours</option>
                 <option value={0}>Never</option>
               </select>
-            </YStack>
+            </Stack>
             
-            <YStack space="$2">
+            <Stack space="$2">
               <Text fontSize="$4" fontWeight="500" color="$color">
                 Password Expiry (days)
               </Text>
@@ -741,18 +740,18 @@ const Settings: React.FC = () => {
                 <option value={365}>1 year</option>
                 <option value={0}>Never</option>
               </select>
-            </YStack>
-          </YStack>
+            </Stack>
+          </Stack>
         </Card.Body>
       </Card>
-    </YStack>
+    </Stack>
   );
 
   /**
    * Render appearance settings
    */
   const renderAppearanceSettings = () => (
-    <YStack space="$6">
+    <Stack space="$6">
       <Text fontSize="$6" fontWeight="600" color="$color">
         Appearance & Display
       </Text>
@@ -764,12 +763,12 @@ const Settings: React.FC = () => {
           </Text>
         </Card.Header>
         <Card.Body>
-          <YStack space="$4">
-            <YStack space="$3">
+          <Stack space="$4">
+            <Stack space="$3">
               <Text fontSize="$4" fontWeight="500" color="$color">
                 Color Theme
               </Text>
-              <XStack space="$3">
+              <Stack space="$3" flexDirection="row">
                 {(['light', 'dark', 'system'] as const).map((theme) => {
                   const ThemeIcon = getThemeIcon(theme);
                   return (
@@ -784,14 +783,14 @@ const Settings: React.FC = () => {
                     </Button>
                   );
                 })}
-              </XStack>
-            </YStack>
+              </Stack>
+            </Stack>
             
-            <YStack space="$3">
+            <Stack space="$3">
               <Text fontSize="$4" fontWeight="500" color="$color">
                 Color Scheme
               </Text>
-              <XStack space="$3">
+              <Stack space="$3" flexDirection="row">
                 {(['blue', 'green', 'purple', 'orange'] as const).map((color) => (
                   <Button
                     key={color}
@@ -802,14 +801,14 @@ const Settings: React.FC = () => {
                     {color.charAt(0).toUpperCase() + color.slice(1)}
                   </Button>
                 ))}
-              </XStack>
-            </YStack>
+              </Stack>
+            </Stack>
             
-            <YStack space="$3">
+            <Stack space="$3">
               <Text fontSize="$4" fontWeight="500" color="$color">
                 Font Size
               </Text>
-              <XStack space="$3">
+              <Stack space="$3" flexDirection="row">
                 {(['small', 'medium', 'large'] as const).map((size) => (
                   <Button
                     key={size}
@@ -820,9 +819,9 @@ const Settings: React.FC = () => {
                     {size.charAt(0).toUpperCase() + size.slice(1)}
                   </Button>
                 ))}
-              </XStack>
-            </YStack>
-          </YStack>
+              </Stack>
+            </Stack>
+          </Stack>
         </Card.Body>
       </Card>
       
@@ -833,21 +832,21 @@ const Settings: React.FC = () => {
           </Text>
         </Card.Header>
         <Card.Body>
-          <YStack space="$4">
+          <Stack space="$4">
             {[
               { key: 'compactMode', label: 'Compact Mode', description: 'Use a more compact interface with less spacing' },
               { key: 'animations', label: 'Animations', description: 'Enable smooth animations and transitions' },
               { key: 'soundEffects', label: 'Sound Effects', description: 'Play sound effects for interactions' },
             ].map(({ key, label, description }) => (
-              <XStack key={key} justifyContent="space-between" alignItems="center">
-                <YStack space="$1" flex={1}>
+              <Stack key={key} justifyContent="space-between" alignItems="center" flexDirection="row">
+                <Stack space="$1" flex={1}>
                   <Text fontSize="$4" fontWeight="500" color="$color">
                     {label}
                   </Text>
                   <Text fontSize="$3" color="$gray11">
                     {description}
                   </Text>
-                </YStack>
+                </Stack>
                 <Button
                   variant={appearance[key as keyof AppearanceSettings] ? 'primary' : 'outline'}
                   size="sm"
@@ -857,19 +856,19 @@ const Settings: React.FC = () => {
                   }
                   onPress={() => setAppearance(prev => ({ ...prev, [key]: !prev[key as keyof AppearanceSettings] }))}
                 />
-              </XStack>
+              </Stack>
             ))}
-          </YStack>
+          </Stack>
         </Card.Body>
       </Card>
-    </YStack>
+    </Stack>
   );
 
   /**
    * Render privacy settings
    */
   const renderPrivacySettings = () => (
-    <YStack space="$6">
+    <Stack space="$6">
       <Text fontSize="$6" fontWeight="600" color="$color">
         Privacy & Data
       </Text>
@@ -881,18 +880,18 @@ const Settings: React.FC = () => {
           </Text>
         </Card.Header>
         <Card.Body>
-          <YStack space="$4">
-            <YStack space="$3">
+          <Stack space="$4">
+            <Stack space="$3">
               <Text fontSize="$4" fontWeight="500" color="$color">
                 Who can see your profile?
               </Text>
-              <YStack space="$2">
+              <Stack space="$2">
                 {[
                   { value: 'public', label: 'Public', description: 'Anyone can see your profile' },
                   { value: 'organization', label: 'Organization', description: 'Only members of your organization' },
                   { value: 'private', label: 'Private', description: 'Only you can see your profile' },
                 ].map(({ value, label, description }) => (
-                  <XStack key={value} space="$3" alignItems="center">
+                  <Stack key={value} space="$3" alignItems="center" flexDirection="row">
                     <input
                       type="radio"
                       name="profileVisibility"
@@ -900,19 +899,19 @@ const Settings: React.FC = () => {
                       checked={privacy.profileVisibility === value}
                       onChange={(e) => setPrivacy(prev => ({ ...prev, profileVisibility: e.target.value as any }))}
                     />
-                    <YStack space="$1" flex={1}>
+                    <Stack space="$1" flex={1}>
                       <Text fontSize="$4" fontWeight="500" color="$color">
                         {label}
                       </Text>
                       <Text fontSize="$3" color="$gray11">
                         {description}
                       </Text>
-                    </YStack>
-                  </XStack>
+                    </Stack>
+                  </Stack>
                 ))}
-              </YStack>
-            </YStack>
-          </YStack>
+              </Stack>
+            </Stack>
+          </Stack>
         </Card.Body>
       </Card>
       
@@ -923,41 +922,41 @@ const Settings: React.FC = () => {
           </Text>
         </Card.Header>
         <Card.Body>
-          <YStack space="$4">
+          <Stack space="$4">
             {[
               { key: 'activityTracking', label: 'Activity Tracking', description: 'Track your activity to improve the experience' },
               { key: 'dataCollection', label: 'Usage Data Collection', description: 'Collect anonymous usage data for analytics' },
               { key: 'thirdPartySharing', label: 'Third-party Sharing', description: 'Share data with trusted third-party services' },
               { key: 'analyticsOptOut', label: 'Opt-out of Analytics', description: 'Exclude your data from analytics reports' },
             ].map(({ key, label, description }) => (
-              <XStack key={key} justifyContent="space-between" alignItems="center">
-                <YStack space="$1" flex={1}>
+              <Stack key={key} justifyContent="space-between" alignItems="center" flexDirection="row">
+                <Stack space="$1" flex={1}>
                   <Text fontSize="$4" fontWeight="500" color="$color">
                     {label}
                   </Text>
                   <Text fontSize="$3" color="$gray11">
                     {description}
                   </Text>
-                </YStack>
+                </Stack>
                 <Button
                   variant={privacy[key as keyof PrivacySettings] ? 'primary' : 'outline'}
                   size="sm"
                   icon={privacy[key as keyof PrivacySettings] ? Check : X}
                   onPress={() => setPrivacy(prev => ({ ...prev, [key]: !prev[key as keyof PrivacySettings] }))}
                 />
-              </XStack>
+              </Stack>
             ))}
-          </YStack>
+          </Stack>
         </Card.Body>
       </Card>
-    </YStack>
+    </Stack>
   );
 
   /**
    * Render integrations settings
    */
   const renderIntegrationsSettings = () => (
-    <YStack space="$6">
+    <Stack space="$6">
       <Text fontSize="$6" fontWeight="600" color="$color">
         Integrations & API
       </Text>
@@ -969,14 +968,14 @@ const Settings: React.FC = () => {
           </Text>
         </Card.Header>
         <Card.Body>
-          <YStack space="$4">
+          <Stack space="$4">
             <Text fontSize="$3" color="$gray11">
               No integrations configured yet. Connect external services to enhance your workflow.
             </Text>
             <Button variant="primary" size="md" leftIcon={Globe}>
               Browse Integrations
             </Button>
-          </YStack>
+          </Stack>
         </Card.Body>
       </Card>
       
@@ -987,22 +986,22 @@ const Settings: React.FC = () => {
           </Text>
         </Card.Header>
         <Card.Body>
-          <YStack space="$4">
+          <Stack space="$4">
             <Text fontSize="$3" color="$gray11">
               Generate API keys to access your data programmatically.
             </Text>
-            <XStack space="$3">
+            <Stack space="$3" flexDirection="row">
               <Button variant="outline" size="md" leftIcon={Key}>
                 Generate API Key
               </Button>
               <Button variant="ghost" size="md" leftIcon={Download}>
                 View Documentation
               </Button>
-            </XStack>
-          </YStack>
+            </Stack>
+          </Stack>
         </Card.Body>
       </Card>
-    </YStack>
+    </Stack>
   );
 
   /**
