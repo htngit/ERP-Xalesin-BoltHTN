@@ -551,7 +551,7 @@ const Users: React.FC = () => {
             </Card.Body>
           </Card>
         ) : (
-          <YStack space="$3">
+          <Stack space="$3">
             {filteredUsers.map((user) => {
               const RoleIcon = getRoleIcon(user.role);
               return (
@@ -560,7 +560,7 @@ const Users: React.FC = () => {
                     <Stack justifyContent="space-between" alignItems="flex-start" flexDirection="row">
                 <Stack space="$4" flex={1} alignItems="flex-start" flexDirection="row">
                         {/* Avatar */}
-                        <YStack
+                        <Stack
                           width={48}
                           height={48}
                           backgroundColor="$blue3"
@@ -574,9 +574,9 @@ const Users: React.FC = () => {
                         </Stack>
                         
                         {/* User Info */}
-                        <YStack space="$3" flex={1}>
+                        <Stack space="$3" flex={1}>
                           {/* User Header */}
-                          <YStack space="$1">
+                          <Stack space="$1">
                             <Stack space="$3" alignItems="center" flexDirection="row">
                               <Text fontSize="$5" fontWeight="600" color="$color">
                                 {user.firstName} {user.lastName}
@@ -1021,7 +1021,7 @@ const Users: React.FC = () => {
           </Modal.Footer>
         </Modal.Content>
       </Modal>
-    </YStack>
+    </Stack>
   );
 };
 

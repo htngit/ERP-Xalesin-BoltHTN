@@ -576,11 +576,11 @@ const UserProfile: React.FC = () => {
                 numberOfLines={3}
                 disabled={!isEditing}
               />
-            </YStack>
+            </Stack>
 
             {/* Location Fields */}
-            <XStack gap="$3">
-              <YStack flex={1} gap="$2">
+            <Stack gap="$3">
+              <Stack flex={1} gap="$2">
                 <Text fontSize="$3" fontWeight="600" color="$gray12">Location</Text>
                 <Input
                   value={formData.location}
@@ -588,8 +588,8 @@ const UserProfile: React.FC = () => {
                   placeholder="Enter location"
                   disabled={!isEditing}
                 />
-              </YStack>
-              <YStack flex={1} gap="$2">
+              </Stack>
+              <Stack flex={1} gap="$2">
                 <Text fontSize="$3" fontWeight="600" color="$gray12">Timezone</Text>
                 <Input
                   value={formData.timezone}
@@ -597,26 +597,26 @@ const UserProfile: React.FC = () => {
                   placeholder="Enter timezone"
                   disabled={!isEditing}
                 />
-              </YStack>
-            </XStack>
-          </YStack>
+              </Stack>
+            </Stack>
+          </Stack>
         </Card>
       )}
 
       {activeTab === 'security' && (
         <Card padding="$4">
-          <YStack gap="$4">
+          <Stack gap="$4">
             <Text fontSize="$6" fontWeight="bold" color="$gray12">
               Security Settings
             </Text>
 
             {/* Password Section */}
-            <YStack gap="$3" padding="$3" borderRadius="$4" backgroundColor="$gray2">
-              <XStack justifyContent="space-between" alignItems="center">
-                <YStack>
+            <Stack gap="$3" padding="$3" borderRadius="$4" backgroundColor="$gray2">
+              <Stack justifyContent="space-between" alignItems="center" flexDirection="row">
+                <Stack>
                   <Text fontSize="$4" fontWeight="600" color="$gray12">Password</Text>
                   <Text fontSize="$3" color="$gray11">Last changed 30 days ago</Text>
-                </YStack>
+                </Stack>
                 <Button
                   variant="outline"
                   size="$3"
@@ -625,18 +625,18 @@ const UserProfile: React.FC = () => {
                 >
                   Change Password
                 </Button>
-              </XStack>
-            </YStack>
+              </Stack>
+            </Stack>
 
             {/* Two-Factor Authentication */}
-            <YStack gap="$3" padding="$3" borderRadius="$4" backgroundColor="$gray2">
-              <XStack justifyContent="space-between" alignItems="center">
-                <YStack>
+            <Stack gap="$3" padding="$3" borderRadius="$4" backgroundColor="$gray2">
+              <Stack justifyContent="space-between" alignItems="center" flexDirection="row">
+                <Stack>
                   <Text fontSize="$4" fontWeight="600" color="$gray12">Two-Factor Authentication</Text>
                   <Text fontSize="$3" color="$gray11">
                     {profile.preferences.twoFactorAuth ? 'Enabled' : 'Disabled'}
                   </Text>
-                </YStack>
+                </Stack>
                 <Button
                   variant={profile.preferences.twoFactorAuth ? 'destructive' : 'default'}
                   size="$3"
@@ -645,36 +645,36 @@ const UserProfile: React.FC = () => {
                 >
                   {profile.preferences.twoFactorAuth ? 'Disable' : 'Enable'}
                 </Button>
-              </XStack>
-            </YStack>
+              </Stack>
+            </Stack>
 
             {/* Login History */}
-            <YStack gap="$3" padding="$3" borderRadius="$4" backgroundColor="$gray2">
+            <Stack gap="$3" padding="$3" borderRadius="$4" backgroundColor="$gray2">
               <Text fontSize="$4" fontWeight="600" color="$gray12">Recent Login Activity</Text>
-              <XStack alignItems="center" gap="$2">
+              <Stack alignItems="center" gap="$2" flexDirection="row">
                 <Calendar size={16} color="var(--gray11)" />
                 <Text fontSize="$3" color="$gray11">
                   Last login: {new Date(profile.lastLogin || '').toLocaleDateString()}
                 </Text>
-              </XStack>
-            </YStack>
-          </YStack>
+              </Stack>
+            </Stack>
+          </Stack>
         </Card>
       )}
 
       {activeTab === 'preferences' && (
         <Card padding="$4">
-          <YStack gap="$4">
+          <Stack gap="$4">
             <Text fontSize="$6" fontWeight="bold" color="$gray12">
               Notification Preferences
             </Text>
 
             {/* Email Notifications */}
-            <XStack justifyContent="space-between" alignItems="center" padding="$3" borderRadius="$4" backgroundColor="$gray2">
-              <YStack>
+            <Stack justifyContent="space-between" alignItems="center" padding="$3" borderRadius="$4" backgroundColor="$gray2" flexDirection="row">
+              <Stack>
                 <Text fontSize="$4" fontWeight="600" color="$gray12">Email Notifications</Text>
                 <Text fontSize="$3" color="$gray11">Receive notifications via email</Text>
-              </YStack>
+              </Stack>
               <Button
                 variant={profile.preferences.emailNotifications ? 'default' : 'outline'}
                 size="$3"
@@ -682,14 +682,14 @@ const UserProfile: React.FC = () => {
               >
                 {profile.preferences.emailNotifications ? 'On' : 'Off'}
               </Button>
-            </XStack>
+            </Stack>
 
             {/* Push Notifications */}
-            <XStack justifyContent="space-between" alignItems="center" padding="$3" borderRadius="$4" backgroundColor="$gray2">
-              <YStack>
+            <Stack justifyContent="space-between" alignItems="center" padding="$3" borderRadius="$4" backgroundColor="$gray2" flexDirection="row">
+              <Stack>
                 <Text fontSize="$4" fontWeight="600" color="$gray12">Push Notifications</Text>
                 <Text fontSize="$3" color="$gray11">Receive push notifications</Text>
-              </YStack>
+              </Stack>
               <Button
                 variant={profile.preferences.pushNotifications ? 'default' : 'outline'}
                 size="$3"
@@ -697,14 +697,14 @@ const UserProfile: React.FC = () => {
               >
                 {profile.preferences.pushNotifications ? 'On' : 'Off'}
               </Button>
-            </XStack>
+            </Stack>
 
             {/* Marketing Emails */}
-            <XStack justifyContent="space-between" alignItems="center" padding="$3" borderRadius="$4" backgroundColor="$gray2">
-              <YStack>
+            <Stack justifyContent="space-between" alignItems="center" padding="$3" borderRadius="$4" backgroundColor="$gray2" flexDirection="row">
+              <Stack>
                 <Text fontSize="$4" fontWeight="600" color="$gray12">Marketing Emails</Text>
                 <Text fontSize="$3" color="$gray11">Receive promotional emails</Text>
-              </YStack>
+              </Stack>
               <Button
                 variant={profile.preferences.marketingEmails ? 'default' : 'outline'}
                 size="$3"
@@ -712,8 +712,8 @@ const UserProfile: React.FC = () => {
               >
                 {profile.preferences.marketingEmails ? 'On' : 'Off'}
               </Button>
-            </XStack>
-          </YStack>
+            </Stack>
+          </Stack>
         </Card>
       )}
 
@@ -724,11 +724,11 @@ const UserProfile: React.FC = () => {
         title="Change Password"
         description="Enter your current password and choose a new one"
       >
-        <YStack gap="$4" padding="$4">
+        <Stack gap="$4" padding="$4">
           {/* Current Password */}
-          <YStack gap="$2">
+          <Stack gap="$2">
             <Text fontSize="$3" fontWeight="600" color="$gray12">Current Password</Text>
-            <XStack alignItems="center" gap="$2">
+            <Stack alignItems="center" gap="$2" flexDirection="row">
               <Input
                 flex={1}
                 value={passwordData.currentPassword}
@@ -742,13 +742,13 @@ const UserProfile: React.FC = () => {
                 icon={showCurrentPassword ? EyeOff : Eye}
                 onPress={() => setShowCurrentPassword(!showCurrentPassword)}
               />
-            </XStack>
-          </YStack>
+            </Stack>
+          </Stack>
 
           {/* New Password */}
-          <YStack gap="$2">
+          <Stack gap="$2">
             <Text fontSize="$3" fontWeight="600" color="$gray12">New Password</Text>
-            <XStack alignItems="center" gap="$2">
+            <Stack alignItems="center" gap="$2" flexDirection="row">
               <Input
                 flex={1}
                 value={passwordData.newPassword}
@@ -762,13 +762,13 @@ const UserProfile: React.FC = () => {
                 icon={showNewPassword ? EyeOff : Eye}
                 onPress={() => setShowNewPassword(!showNewPassword)}
               />
-            </XStack>
-          </YStack>
+            </Stack>
+          </Stack>
 
           {/* Confirm Password */}
-          <YStack gap="$2">
+          <Stack gap="$2">
             <Text fontSize="$3" fontWeight="600" color="$gray12">Confirm New Password</Text>
-            <XStack alignItems="center" gap="$2">
+            <Stack alignItems="center" gap="$2" flexDirection="row">
               <Input
                 flex={1}
                 value={passwordData.confirmPassword}
@@ -782,11 +782,11 @@ const UserProfile: React.FC = () => {
                 icon={showConfirmPassword ? EyeOff : Eye}
                 onPress={() => setShowConfirmPassword(!showConfirmPassword)}
               />
-            </XStack>
-          </YStack>
+            </Stack>
+          </Stack>
 
           {/* Actions */}
-          <XStack gap="$2" justifyContent="flex-end">
+          <Stack gap="$2" justifyContent="flex-end" flexDirection="row">
             <Button
               variant="outline"
               onPress={() => {
@@ -803,10 +803,10 @@ const UserProfile: React.FC = () => {
             >
               {isSaving ? 'Changing...' : 'Change Password'}
             </Button>
-          </XStack>
-        </YStack>
+          </Stack>
+        </Stack>
       </Modal>
-    </YStack>
+    </Stack>
   );
 };
 
