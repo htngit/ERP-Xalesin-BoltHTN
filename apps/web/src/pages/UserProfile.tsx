@@ -4,7 +4,8 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { Stack, Text, Button, Input, Card, Modal, Spinner } from '@xalesin/ui';
+import { Stack, Text } from '@xalesin/ui';
+import { Button, Input, Card, Modal, Spinner } from '@xalesin/ui';
 import {
   User,
   Edit,
@@ -322,35 +323,35 @@ const UserProfile: React.FC = () => {
 
   if (isLoading) {
     return (
-      <YStack flex={1} alignItems="center" justifyContent="center" height="100vh">
+      <Stack flex={1} alignItems="center" justifyContent="center" height="100vh">
         <Spinner size="lg" variant="default" label="Loading profile..." />
-      </YStack>
+      </Stack>
     );
   }
 
   if (!profile) {
     return (
-      <YStack flex={1} alignItems="center" justifyContent="center" padding="$4">
+      <Stack flex={1} alignItems="center" justifyContent="center" padding="$4">
         <Text fontSize="$6" color="$gray11">Profile not found</Text>
-      </YStack>
+      </Stack>
     );
   }
 
   return (
-    <YStack flex={1} padding="$4" gap="$4">
+    <Stack flex={1} padding="$4" gap="$4">
       {/* Header */}
-      <XStack justifyContent="space-between" alignItems="center">
-        <YStack>
+      <Stack justifyContent="space-between" alignItems="center">
+        <Stack>
           <Text fontSize="$8" fontWeight="bold" color="$gray12">
             Profile Settings
           </Text>
           <Text fontSize="$4" color="$gray11">
             Manage your account settings and preferences
           </Text>
-        </YStack>
+        </Stack>
         
         {saveMessage && (
-          <XStack
+          <Stack
             alignItems="center"
             gap="$2"
             padding="$3"
@@ -370,16 +371,16 @@ const UserProfile: React.FC = () => {
             >
               {saveMessage.text}
             </Text>
-          </XStack>
+          </Stack>
         )}
-      </XStack>
+      </Stack>
 
       {/* Profile Header Card */}
       <Card padding="$4">
-        <XStack gap="$4" alignItems="center">
+        <Stack gap="$4" alignItems="center">
           {/* Avatar */}
-          <YStack alignItems="center" gap="$2">
-            <XStack
+          <Stack alignItems="center" gap="$2">
+            <Stack
               width={80}
               height={80}
               borderRadius="$12"
@@ -390,19 +391,19 @@ const UserProfile: React.FC = () => {
               borderColor="$blue7"
             >
               <User size={32} color="var(--blue11)" />
-            </XStack>
+            </Stack>
             <Button size="$2" variant="outline" icon={Camera}>
               Change
             </Button>
-          </YStack>
+          </Stack>
 
           {/* Basic Info */}
-          <YStack flex={1} gap="$2">
-            <XStack alignItems="center" gap="$3">
+          <Stack flex={1} gap="$2">
+            <Stack alignItems="center" gap="$3">
               <Text fontSize="$7" fontWeight="bold" color="$gray12">
                 {profile.firstName} {profile.lastName}
               </Text>
-              <XStack
+              <Stack
                 alignItems="center"
                 gap="$1"
                 paddingHorizontal="$2"
@@ -414,33 +415,33 @@ const UserProfile: React.FC = () => {
                 <Text fontSize="$2" color="white" fontWeight="bold" textTransform="uppercase">
                   {profile.role}
                 </Text>
-              </XStack>
-            </XStack>
+              </Stack>
+            </Stack>
             
-            <XStack alignItems="center" gap="$2">
+            <Stack alignItems="center" gap="$2">
               <Mail size={16} color="var(--gray11)" />
               <Text fontSize="$4" color="$gray11">{profile.email}</Text>
-            </XStack>
+            </Stack>
             
             {profile.phone && (
-              <XStack alignItems="center" gap="$2">
+              <Stack alignItems="center" gap="$2">
                 <Phone size={16} color="var(--gray11)" />
                 <Text fontSize="$4" color="$gray11">{profile.phone}</Text>
-              </XStack>
+              </Stack>
             )}
             
-            <XStack alignItems="center" gap="$2">
+            <Stack alignItems="center" gap="$2">
               <Building size={16} color="var(--gray11)" />
               <Text fontSize="$4" color="$gray11">
                 {profile.jobTitle} at {profile.organizationName}
               </Text>
-            </XStack>
-          </YStack>
-        </XStack>
+            </Stack>
+          </Stack>
+        </Stack>
       </Card>
 
       {/* Tabs */}
-      <XStack gap="$2" borderBottomWidth={1} borderBottomColor="$gray6" paddingBottom="$2">
+      <Stack gap="$2" borderBottomWidth={1} borderBottomColor="$gray6" paddingBottom="$2">
         {[
           { key: 'profile', label: 'Profile Information', icon: User },
           { key: 'security', label: 'Security', icon: Lock },
@@ -456,12 +457,12 @@ const UserProfile: React.FC = () => {
             {tab.label}
           </Button>
         ))}
-      </XStack>
+      </Stack>
 
       {/* Tab Content */}
       {activeTab === 'profile' && (
         <Card padding="$4">
-          <XStack justifyContent="space-between" alignItems="center" marginBottom="$4">
+          <Stack justifyContent="space-between" alignItems="center" marginBottom="$4">
             <Text fontSize="$6" fontWeight="bold" color="$gray12">
               Profile Information
             </Text>
@@ -475,7 +476,7 @@ const UserProfile: React.FC = () => {
                 Edit Profile
               </Button>
             ) : (
-              <XStack gap="$2">
+              <Stack gap="$2">
                 <Button
                   variant="outline"
                   size="$3"
@@ -493,14 +494,14 @@ const UserProfile: React.FC = () => {
                 >
                   {isSaving ? 'Saving...' : 'Save Changes'}
                 </Button>
-              </XStack>
+              </Stack>
             )}
-          </XStack>
+          </Stack>
 
-          <YStack gap="$4">
+          <Stack gap="$4">
             {/* Name Fields */}
-            <XStack gap="$3">
-              <YStack flex={1} gap="$2">
+            <Stack gap="$3">
+              <Stack flex={1} gap="$2">
                 <Text fontSize="$3" fontWeight="600" color="$gray12">First Name</Text>
                 <Input
                   value={formData.firstName}
@@ -508,8 +509,8 @@ const UserProfile: React.FC = () => {
                   placeholder="Enter first name"
                   disabled={!isEditing}
                 />
-              </YStack>
-              <YStack flex={1} gap="$2">
+              </Stack>
+              <Stack flex={1} gap="$2">
                 <Text fontSize="$3" fontWeight="600" color="$gray12">Last Name</Text>
                 <Input
                   value={formData.lastName}
@@ -517,12 +518,12 @@ const UserProfile: React.FC = () => {
                   placeholder="Enter last name"
                   disabled={!isEditing}
                 />
-              </YStack>
-            </XStack>
+              </Stack>
+            </Stack>
 
             {/* Contact Fields */}
-            <XStack gap="$3">
-              <YStack flex={1} gap="$2">
+            <Stack gap="$3">
+              <Stack flex={1} gap="$2">
                 <Text fontSize="$3" fontWeight="600" color="$gray12">Email</Text>
                 <Input
                   value={formData.email}
@@ -530,8 +531,8 @@ const UserProfile: React.FC = () => {
                   placeholder="Enter email"
                   disabled={!isEditing}
                 />
-              </YStack>
-              <YStack flex={1} gap="$2">
+              </Stack>
+              <Stack flex={1} gap="$2">
                 <Text fontSize="$3" fontWeight="600" color="$gray12">Phone</Text>
                 <Input
                   value={formData.phone}
@@ -539,12 +540,12 @@ const UserProfile: React.FC = () => {
                   placeholder="Enter phone number"
                   disabled={!isEditing}
                 />
-              </YStack>
-            </XStack>
+              </Stack>
+            </Stack>
 
             {/* Job Fields */}
-            <XStack gap="$3">
-              <YStack flex={1} gap="$2">
+            <Stack gap="$3">
+              <Stack flex={1} gap="$2">
                 <Text fontSize="$3" fontWeight="600" color="$gray12">Job Title</Text>
                 <Input
                   value={formData.jobTitle}
@@ -552,8 +553,8 @@ const UserProfile: React.FC = () => {
                   placeholder="Enter job title"
                   disabled={!isEditing}
                 />
-              </YStack>
-              <YStack flex={1} gap="$2">
+              </Stack>
+              <Stack flex={1} gap="$2">
                 <Text fontSize="$3" fontWeight="600" color="$gray12">Department</Text>
                 <Input
                   value={formData.department}
@@ -561,11 +562,11 @@ const UserProfile: React.FC = () => {
                   placeholder="Enter department"
                   disabled={!isEditing}
                 />
-              </YStack>
-            </XStack>
+              </Stack>
+            </Stack>
 
             {/* Bio */}
-            <YStack gap="$2">
+            <Stack gap="$2">
               <Text fontSize="$3" fontWeight="600" color="$gray12">Bio</Text>
               <Input
                 value={formData.bio}

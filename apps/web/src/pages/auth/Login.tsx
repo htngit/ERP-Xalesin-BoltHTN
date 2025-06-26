@@ -5,8 +5,7 @@
 
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Stack, Text } from '@tamagui/core';
-import { Button, Input } from '@xalesin/ui';
+import { Stack, Text, Button, Input } from '@xalesin/ui';
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
 
 /**

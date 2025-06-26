@@ -1008,7 +1008,7 @@ const Settings: React.FC = () => {
    * Render advanced settings
    */
   const renderAdvancedSettings = () => (
-    <YStack space="$6">
+    <Stack space="$6">
       <Text fontSize="$6" fontWeight="600" color="$color">
         Advanced Settings
       </Text>
@@ -1020,8 +1020,8 @@ const Settings: React.FC = () => {
           </Text>
         </Card.Header>
         <Card.Body>
-          <YStack space="$4">
-            <XStack space="$3">
+          <Stack space="$4">
+            <Stack space="$3" flexDirection="row">
               <Button variant="outline" size="md" leftIcon={Download}>
                 Export Data
               </Button>
@@ -1031,8 +1031,8 @@ const Settings: React.FC = () => {
               <Button variant="outline" size="md" leftIcon={RefreshCw}>
                 Reset Settings
               </Button>
-            </XStack>
-          </YStack>
+            </Stack>
+          </Stack>
         </Card.Body>
       </Card>
       
@@ -1043,8 +1043,8 @@ const Settings: React.FC = () => {
           </Text>
         </Card.Header>
         <Card.Body>
-          <YStack space="$4">
-            <YStack space="$2">
+          <Stack space="$4">
+            <Stack space="$2">
               <Text fontSize="$4" fontWeight="500" color="$red11">
                 Delete Account
               </Text>
@@ -1059,11 +1059,11 @@ const Settings: React.FC = () => {
               >
                 Delete Account
               </Button>
-            </YStack>
-          </YStack>
+            </Stack>
+          </Stack>
         </Card.Body>
       </Card>
-    </YStack>
+    </Stack>
   );
 
   /**
@@ -1092,27 +1092,27 @@ const Settings: React.FC = () => {
 
   if (isLoading) {
     return (
-      <YStack flex={1} alignItems="center" justifyContent="center">
+      <Stack flex={1} alignItems="center" justifyContent="center">
         <Spinner size="lg" />
         <Text fontSize="$4" color="$gray11" marginTop="$4">
           Loading settings...
         </Text>
-      </YStack>
+      </Stack>
     );
   }
 
   return (
-    <YStack flex={1} space="$6">
+    <Stack flex={1} space="$6">
       {/* Header */}
-      <XStack justifyContent="space-between" alignItems="center">
-        <YStack space="$1">
+      <Stack justifyContent="space-between" alignItems="center" flexDirection="row">
+        <Stack space="$1">
           <Text fontSize="$8" fontWeight="bold" color="$color">
             Settings
           </Text>
           <Text fontSize="$4" color="$gray11">
             Manage your account preferences and configuration
           </Text>
-        </YStack>
+        </Stack>
         
         <Button 
           variant="primary" 
@@ -1123,12 +1123,12 @@ const Settings: React.FC = () => {
         >
           Save Changes
         </Button>
-      </XStack>
+      </Stack>
 
       {/* Settings Layout */}
-      <XStack space="$6" flex={1}>
+      <Stack space="$6" flex={1} flexDirection="row">
         {/* Navigation Sidebar */}
-        <YStack space="$2" width={240} flexShrink={0}>
+        <Stack space="$2" width={240} flexShrink={0}>
           {settingsNavigation.map(({ id, label, icon: Icon }) => (
             <Button
               key={id}
@@ -1142,13 +1142,13 @@ const Settings: React.FC = () => {
               {label}
             </Button>
           ))}
-        </YStack>
+        </Stack>
         
         {/* Settings Content */}
-        <YStack flex={1}>
+        <Stack flex={1}>
           {renderSettingsContent()}
-        </YStack>
-      </XStack>
+        </Stack>
+      </Stack>
 
       {/* Delete Account Modal */}
       <Modal 
@@ -1158,41 +1158,41 @@ const Settings: React.FC = () => {
       >
         <Modal.Content>
           <Modal.Header>
-            <XStack space="$3" alignItems="center">
+            <Stack space="$3" alignItems="center" flexDirection="row">
               <AlertTriangle size={24} color="$red11" />
               <Text fontSize="$6" fontWeight="600" color="$red11">
                 Delete Account
               </Text>
-            </XStack>
+            </Stack>
           </Modal.Header>
           
           <Modal.Body>
-            <YStack space="$4">
+            <Stack space="$4">
               <Text fontSize="$4" color="$color">
                 Are you sure you want to delete your account? This action cannot be undone.
               </Text>
               
-              <YStack space="$2">
+              <Stack space="$2">
                 <Text fontSize="$3" color="$gray11">
                   This will permanently:
                 </Text>
-                <YStack space="$1" paddingLeft="$4">
+                <Stack space="$1" paddingLeft="$4">
                   <Text fontSize="$3" color="$gray11">• Delete all your personal data</Text>
                   <Text fontSize="$3" color="$gray11">• Remove access to all organizations</Text>
                   <Text fontSize="$3" color="$gray11">• Cancel any active subscriptions</Text>
                   <Text fontSize="$3" color="$gray11">• Permanently delete all your content</Text>
-                </YStack>
-              </YStack>
+                </Stack>
+              </Stack>
               
               <Input
                 placeholder="Type 'DELETE' to confirm"
                 size="md"
               />
-            </YStack>
+            </Stack>
           </Modal.Body>
           
           <Modal.Footer>
-            <XStack space="$3" justifyContent="flex-end">
+            <Stack space="$3" justifyContent="flex-end" flexDirection="row">
               <Button 
                 variant="outline" 
                 size="md"
@@ -1208,11 +1208,11 @@ const Settings: React.FC = () => {
               >
                 Delete Account
               </Button>
-            </XStack>
+            </Stack>
           </Modal.Footer>
         </Modal.Content>
       </Modal>
-    </YStack>
+    </Stack>
   );
 };
 

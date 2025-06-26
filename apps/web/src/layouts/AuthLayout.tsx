@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
-import { Stack, Text, Image } from '@tamagui/core';
+import { Stack, Text, Image } from '@xalesin/ui';
 
 /**
  * Authentication layout component

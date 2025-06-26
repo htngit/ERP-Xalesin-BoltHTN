@@ -4,8 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { Stack, Text, Button, Input } from '@tamagui/core';
-import { Card, Modal, Spinner } from '@xalesin/ui';
+import { Stack, Text, Button, Input, Card, Modal, Spinner } from '@xalesin/ui';
 import {
   Building2,
   Plus,

@@ -4,8 +4,7 @@
  */
 
 import React from 'react';
-import { Stack, Text, ScrollView } from '@tamagui/core';
-import { Card, CardHeader, CardBody, Button } from '@xalesin/ui';
+import { Stack, Text, ScrollView, Card, CardHeader, CardBody, Button } from '@xalesin/ui';
 import {
   Building2,
   Users,

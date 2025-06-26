@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { Stack, Text, Button, Input } from '@tamagui/core';
+import { Stack, Text, Button, Input } from '@xalesin/ui';
 import { Lock, Eye, EyeOff, CheckCircle, AlertCircle } from 'lucide-react';
 
 /**

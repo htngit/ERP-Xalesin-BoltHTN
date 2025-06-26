@@ -5,8 +5,7 @@
 
 import React, { Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { Stack } from '@tamagui/core';
-import { Spinner } from '@xalesin/ui';
+import { Stack, Spinner } from '@xalesin/ui';
 
 // Layout components
 import MainLayout from './layouts/MainLayout';

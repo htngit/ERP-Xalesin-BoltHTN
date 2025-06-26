@@ -11,7 +11,8 @@ import {
   Text,
   Separator,
   ScrollView,
-} from '@tamagui/core';
+  Input,
+} from '@xalesin/ui';
 import {
   Menu,
   X,
@@ -24,7 +25,6 @@ import {
   Bell,
   Search,
 } from 'lucide-react';
-import { Input } from '@xalesin/ui';
 
 /**
  * Navigation item interface

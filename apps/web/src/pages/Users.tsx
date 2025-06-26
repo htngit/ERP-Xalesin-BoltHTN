@@ -4,7 +4,8 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { Stack, Text, Button, Input, Card, Modal, Spinner } from '@xalesin/ui';
+import { Stack, Text } from '@xalesin/ui';
+import { Button, Input, Card, Modal, Spinner } from '@xalesin/ui';
 import {
   Users as UsersIcon,
   Plus,
@@ -427,7 +428,7 @@ const Users: React.FC = () => {
             <Text fontSize="$4" color="$gray11">
               Manage user accounts and permissions
             </Text>
-          </YStack>
+          </Stack>
           
           <Stack space="$3" flexDirection="row">
             <Button variant="outline" size="md" leftIcon={Download}>
@@ -550,7 +551,7 @@ const Users: React.FC = () => {
             </Card.Body>
           </Card>
         ) : (
-          <Stack space="$3">
+          <YStack space="$3">
             {filteredUsers.map((user) => {
               const RoleIcon = getRoleIcon(user.role);
               return (
@@ -559,7 +560,7 @@ const Users: React.FC = () => {
                     <Stack justifyContent="space-between" alignItems="flex-start" flexDirection="row">
                 <Stack space="$4" flex={1} alignItems="flex-start" flexDirection="row">
                         {/* Avatar */}
-                        <Stack
+                        <YStack
                           width={48}
                           height={48}
                           backgroundColor="$blue3"
@@ -573,9 +574,9 @@ const Users: React.FC = () => {
                         </Stack>
                         
                         {/* User Info */}
-                        <Stack space="$3" flex={1}>
+                        <YStack space="$3" flex={1}>
                           {/* User Header */}
-                          <Stack space="$1">
+                          <YStack space="$1">
                             <Stack space="$3" alignItems="center" flexDirection="row">
                               <Text fontSize="$5" fontWeight="600" color="$color">
                                 {user.firstName} {user.lastName}
@@ -814,7 +815,7 @@ const Users: React.FC = () => {
                       <option key={org.id} value={org.id}>{org.name}</option>
                     ))}
                   </select>
-                </YStack>
+                </Stack>
               </Stack>
               
               <Stack space="$3" flexDirection="row">
@@ -836,7 +837,7 @@ const Users: React.FC = () => {
                   flex={1}
                 />
               </Stack>
-            </YStack>
+            </Stack>
           </Modal.Body>
           
           <Modal.Footer>
@@ -882,7 +883,7 @@ const Users: React.FC = () => {
           </Modal.Header>
           
           <Modal.Body>
-            <YStack space="$4">
+            <Stack space="$4">
               <Stack space="$3" flexDirection="row">
                 <Input
                   label="First Name"
@@ -929,7 +930,7 @@ const Users: React.FC = () => {
               </Stack>
               
               <Stack space="$3" flexDirection="row">
-                <YStack space="$2" flex={1}>
+                <Stack space="$2" flex={1}>
                   <Text fontSize="$3" fontWeight="600" color="$color">
                     Role
                   </Text>
@@ -948,9 +949,9 @@ const Users: React.FC = () => {
                     <option value="manager">Manager</option>
                     <option value="admin">Admin</option>
                   </select>
-                </YStack>
+                </Stack>
                 
-                <YStack space="$2" flex={1}>
+                <Stack space="$2" flex={1}>
                   <Text fontSize="$3" fontWeight="600" color="$color">
                     Organization
                   </Text>
@@ -970,7 +971,7 @@ const Users: React.FC = () => {
                       <option key={org.id} value={org.id}>{org.name}</option>
                     ))}
                   </select>
-                </YStack>
+                </Stack>
               </Stack>
               
               <Stack space="$3" flexDirection="row">
@@ -992,7 +993,7 @@ const Users: React.FC = () => {
                   flex={1}
                 />
               </Stack>
-            </YStack>
+            </Stack>
           </Modal.Body>
           
           <Modal.Footer>

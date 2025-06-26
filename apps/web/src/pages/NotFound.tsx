@@ -4,7 +4,8 @@
  */
 
 import React from 'react';
-import { Stack, Text, Button } from '@xalesin/ui';
+import { Stack, Text } from '@xalesin/ui';
+import { Button } from '@xalesin/ui';
 import { Home, ArrowLeft, Search, AlertTriangle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -37,7 +38,7 @@ const NotFound: React.FC = () => {
   };
 
   return (
-    <YStack
+    <Stack
       flex={1}
       alignItems="center"
       justifyContent="center"
@@ -46,8 +47,8 @@ const NotFound: React.FC = () => {
       minHeight="100vh"
     >
       {/* Error Icon */}
-      <YStack alignItems="center" gap="$4">
-        <XStack
+      <Stack alignItems="center" gap="$4">
+        <Stack
           width={120}
           height={120}
           borderRadius="$12"
@@ -58,7 +59,7 @@ const NotFound: React.FC = () => {
           borderColor="$orange7"
         >
           <AlertTriangle size={48} color="var(--orange11)" />
-        </XStack>
+        </Stack>
 
         {/* Error Code */}
         <Text
@@ -69,10 +70,10 @@ const NotFound: React.FC = () => {
         >
           404
         </Text>
-      </YStack>
+      </Stack>
 
       {/* Error Message */}
-      <YStack alignItems="center" gap="$3" maxWidth={500}>
+      <Stack alignItems="center" gap="$3" maxWidth={500}>
         <Text
           fontSize="$8"
           fontWeight="bold"
@@ -91,11 +92,11 @@ const NotFound: React.FC = () => {
           Sorry, we couldn't find the page you're looking for. 
           The page might have been moved, deleted, or you entered the wrong URL.
         </Text>
-      </YStack>
+      </Stack>
 
       {/* Action Buttons */}
-      <YStack gap="$3" alignItems="center" width="100%" maxWidth={400}>
-        <XStack gap="$3" width="100%">
+      <Stack gap="$3" alignItems="center" width="100%" maxWidth={400}>
+        <Stack gap="$3" width="100%">
           <Button
             flex={1}
             variant="outline"
@@ -114,7 +115,7 @@ const NotFound: React.FC = () => {
           >
             Go to Dashboard
           </Button>
-        </XStack>
+        </Stack>
 
         <Button
           variant="ghost"
@@ -124,15 +125,15 @@ const NotFound: React.FC = () => {
         >
           Browse Organizations
         </Button>
-      </YStack>
+      </Stack>
 
       {/* Help Text */}
-      <YStack alignItems="center" gap="$2" marginTop="$4">
+      <Stack alignItems="center" gap="$2" marginTop="$4">
         <Text fontSize="$3" color="$gray10" textAlign="center">
           Need help? Contact our support team
         </Text>
         
-        <XStack gap="$4">
+        <Stack gap="$4">
           <Text
             fontSize="$3"
             color="$blue11"
@@ -152,16 +153,16 @@ const NotFound: React.FC = () => {
           >
             +1 (555) 123-4567
           </Text>
-        </XStack>
-      </YStack>
+        </Stack>
+      </Stack>
 
       {/* Footer */}
-      <YStack alignItems="center" marginTop="$6">
+      <Stack alignItems="center" marginTop="$6">
         <Text fontSize="$2" color="$gray9" textAlign="center">
           © 2024 Xalesin ERP. All rights reserved.
         </Text>
-      </YStack>
-    </YStack>
+      </Stack>
+    </Stack>
   );
 };
 

@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Stack, Text } from '@tamagui/core';
+import { YStack, XStack, Text } from '@tamagui/core';
 import { Button, Input, Card, Modal, Spinner } from '@xalesin/ui';
 import {
   Building2,
@@ -246,15 +246,15 @@ const OrganizationDetail: React.FC = () => {
 
   if (isLoading) {
     return (
-      <Stack flex={1} alignItems="center" justifyContent="center" height="100vh">
+      <YStack flex={1} alignItems="center" justifyContent="center" height="100vh">
         <Spinner size="lg" variant="default" label="Loading organization..." />
-      </Stack>
+      </YStack>
     );
   }
 
   if (!organization) {
     return (
-      <Stack flex={1} alignItems="center" justifyContent="center" height="100vh">
+      <YStack flex={1} alignItems="center" justifyContent="center" height="100vh">
         <Text fontSize="$6" color="$gray11">Organization not found</Text>
         <Button
           variant="outline"
@@ -265,32 +265,32 @@ const OrganizationDetail: React.FC = () => {
         >
           Back to Organizations
         </Button>
-      </Stack>
+      </YStack>
     );
   }
 
   return (
-    <Stack flex={1} padding="$6" gap="$6" backgroundColor="$gray1">
+    <YStack flex={1} padding="$6" gap="$6" backgroundColor="$gray1">
       {/* Header */}
-      <Stack flexDirection="row" alignItems="center" justifyContent="space-between">
-        <Stack flexDirection="row" alignItems="center" gap="$4">
+      <XStack alignItems="center" justifyContent="space-between">
+        <XStack alignItems="center" gap="$4">
           <Button
             variant="ghost"
             size="$3"
             onPress={() => navigate('/organizations')}
             icon={ArrowLeft}
           />
-          <Stack>
+          <YStack>
             <Text fontSize="$8" fontWeight="bold" color="$gray12">
               {organization.name}
             </Text>
             <Text fontSize="$4" color="$gray11">
               Organization Details
             </Text>
-          </Stack>
-        </Stack>
+          </YStack>
+        </XStack>
         
-        <Stack flexDirection="row" gap="$3">
+        <XStack gap="$3">
           <Button
             variant="outline"
             size="$4"
@@ -308,58 +308,58 @@ const OrganizationDetail: React.FC = () => {
           >
             Delete
           </Button>
-        </Stack>
-      </Stack>
+        </XStack>
+      </XStack>
 
       {/* Main Content */}
-      <Stack flexDirection="row" gap="$6" flex={1}>
+      <XStack gap="$6" flex={1}>
         {/* Left Column - Organization Info */}
-        <Stack flex={2} gap="$4">
+        <YStack flex={2} gap="$4">
           {/* Basic Information Card */}
           <Card padding="$6">
-            <Stack gap="$4">
-              <Stack flexDirection="row" alignItems="center" gap="$3">
+            <YStack gap="$4">
+              <XStack alignItems="center" gap="$3">
                 <Building2 size={24} color="var(--gray11)" />
                 <Text fontSize="$6" fontWeight="bold" color="$gray12">
                   Basic Information
                 </Text>
-              </Stack>
+              </XStack>
               
-              <Stack gap="$3">
-                <Stack gap="$2">
+              <YStack gap="$3">
+                <YStack gap="$2">
                   <Text fontSize="$3" fontWeight="600" color="$gray11">
                     Organization Name
                   </Text>
                   <Text fontSize="$5" color="$gray12">
                     {organization.name}
                   </Text>
-                </Stack>
+                </YStack>
                 
-                <Stack gap="$2">
+                <YStack gap="$2">
                   <Text fontSize="$3" fontWeight="600" color="$gray11">
                     Description
                   </Text>
                   <Text fontSize="$4" color="$gray12" lineHeight="$5">
                     {organization.description || 'No description provided'}
                   </Text>
-                </Stack>
+                </YStack>
                 
-                <Stack flexDirection="row" gap="$6">
-                  <Stack gap="$2" flex={1}>
+                <XStack gap="$6">
+                  <YStack gap="$2" flex={1}>
                     <Text fontSize="$3" fontWeight="600" color="$gray11">
                       Industry
                     </Text>
                     <Text fontSize="$4" color="$gray12">
                       {organization.industry}
                     </Text>
-                  </Stack>
+                  </YStack>
                   
-                  <Stack gap="$2" flex={1}>
+                  <YStack gap="$2" flex={1}>
                     <Text fontSize="$3" fontWeight="600" color="$gray11">
                       Status
                     </Text>
-                    <Stack flexDirection="row" alignItems="center" gap="$2">
-                      <Stack
+                    <XStack alignItems="center" gap="$2">
+                      <YStack
                         width="$1"
                         height="$1"
                         borderRadius="$12"
@@ -373,153 +373,153 @@ const OrganizationDetail: React.FC = () => {
                       >
                         {organization.status}
                       </Text>
-                    </Stack>
-                  </Stack>
-                </Stack>
-              </Stack>
-            </Stack>
+                    </XStack>
+                  </YStack>
+                </XStack>
+              </YStack>
+            </YStack>
           </Card>
 
           {/* Contact Information Card */}
           <Card padding="$6">
-            <Stack gap="$4">
-              <Stack flexDirection="row" alignItems="center" gap="$3">
+            <YStack gap="$4">
+              <XStack alignItems="center" gap="$3">
                 <Phone size={24} color="var(--gray11)" />
                 <Text fontSize="$6" fontWeight="bold" color="$gray12">
                   Contact Information
                 </Text>
-              </Stack>
+              </XStack>
               
-              <Stack gap="$3">
-                <Stack flexDirection="row" alignItems="center" gap="$3">
+              <YStack gap="$3">
+                <XStack alignItems="center" gap="$3">
                   <MapPin size={20} color="var(--gray11)" />
-                  <Stack gap="$1">
+                  <YStack gap="$1">
                     <Text fontSize="$3" fontWeight="600" color="$gray11">
                       Location
                     </Text>
                     <Text fontSize="$4" color="$gray12">
                       {organization.location}
                     </Text>
-                  </Stack>
-                </Stack>
+                  </YStack>
+                </XStack>
                 
                 {organization.email && (
-                  <Stack flexDirection="row" alignItems="center" gap="$3">
+                  <XStack alignItems="center" gap="$3">
                     <Mail size={20} color="var(--gray11)" />
-                    <Stack gap="$1">
+                    <YStack gap="$1">
                       <Text fontSize="$3" fontWeight="600" color="$gray11">
                         Email
                       </Text>
                       <Text fontSize="$4" color="$blue11">
                         {organization.email}
                       </Text>
-                    </Stack>
-                  </Stack>
+                    </YStack>
+                  </XStack>
                 )}
                 
                 {organization.phone && (
-                  <Stack flexDirection="row" alignItems="center" gap="$3">
+                  <XStack alignItems="center" gap="$3">
                     <Phone size={20} color="var(--gray11)" />
-                    <Stack gap="$1">
+                    <YStack gap="$1">
                       <Text fontSize="$3" fontWeight="600" color="$gray11">
                         Phone
                       </Text>
                       <Text fontSize="$4" color="$gray12">
                         {organization.phone}
                       </Text>
-                    </Stack>
-                  </Stack>
+                    </YStack>
+                  </XStack>
                 )}
                 
                 {organization.website && (
-                  <Stack flexDirection="row" alignItems="center" gap="$3">
+                  <XStack alignItems="center" gap="$3">
                     <Globe size={20} color="var(--gray11)" />
-                    <Stack gap="$1">
+                    <YStack gap="$1">
                       <Text fontSize="$3" fontWeight="600" color="$gray11">
                         Website
                       </Text>
                       <Text fontSize="$4" color="$blue11">
                         {organization.website}
                       </Text>
-                    </Stack>
-                  </Stack>
+                    </YStack>
+                  </XStack>
                 )}
-              </Stack>
-            </Stack>
+              </YStack>
+            </YStack>
           </Card>
-        </Stack>
+        </YStack>
 
         {/* Right Column - Statistics & Actions */}
-        <Stack flex={1} gap="$4">
+        <YStack flex={1} gap="$4">
           {/* Statistics Card */}
           <Card padding="$6">
-            <Stack gap="$4">
-              <Stack flexDirection="row" alignItems="center" gap="$3">
+            <YStack gap="$4">
+              <XStack alignItems="center" gap="$3">
                 <Activity size={24} color="var(--gray11)" />
                 <Text fontSize="$6" fontWeight="bold" color="$gray12">
                   Statistics
                 </Text>
-              </Stack>
+              </XStack>
               
-              <Stack gap="$4">
-                <Stack flexDirection="row" alignItems="center" justifyContent="space-between">
-                  <Stack flexDirection="row" alignItems="center" gap="$3">
+              <YStack gap="$4">
+                <XStack alignItems="center" justifyContent="space-between">
+                  <XStack alignItems="center" gap="$3">
                     <Users size={20} color="var(--blue11)" />
                     <Text fontSize="$4" color="$gray11">
                       Employees
                     </Text>
-                  </Stack>
+                  </XStack>
                   <Text fontSize="$6" fontWeight="bold" color="$blue11">
                     {organization.employeeCount.toLocaleString()}
                   </Text>
-                </Stack>
-              </Stack>
-            </Stack>
+                </XStack>
+              </YStack>
+            </YStack>
           </Card>
 
           {/* Timeline Card */}
           <Card padding="$6">
-            <Stack gap="$4">
-              <Stack flexDirection="row" alignItems="center" gap="$3">
+            <YStack gap="$4">
+              <XStack alignItems="center" gap="$3">
                 <Calendar size={24} color="var(--gray11)" />
                 <Text fontSize="$6" fontWeight="bold" color="$gray12">
                   Timeline
                 </Text>
-              </Stack>
+              </XStack>
               
-              <Stack gap="$3">
-                <Stack gap="$2">
+              <YStack gap="$3">
+                <YStack gap="$2">
                   <Text fontSize="$3" fontWeight="600" color="$gray11">
                     Created
                   </Text>
                   <Text fontSize="$4" color="$gray12">
                     {formatDate(organization.createdAt)}
                   </Text>
-                </Stack>
+                </YStack>
                 
-                <Stack gap="$2">
+                <YStack gap="$2">
                   <Text fontSize="$3" fontWeight="600" color="$gray11">
                     Last Updated
                   </Text>
                   <Text fontSize="$4" color="$gray12">
                     {formatDate(organization.updatedAt)}
                   </Text>
-                </Stack>
-              </Stack>
-            </Stack>
+                </YStack>
+              </YStack>
+            </YStack>
           </Card>
 
           {/* Quick Actions Card */}
           <Card padding="$6">
-            <Stack gap="$4">
-              <Stack flexDirection="row" alignItems="center" gap="$3">
+            <YStack gap="$4">
+              <XStack alignItems="center" gap="$3">
                 <Settings size={24} color="var(--gray11)" />
                 <Text fontSize="$6" fontWeight="bold" color="$gray12">
                   Quick Actions
                 </Text>
-              </Stack>
+              </XStack>
               
-              <Stack gap="$3">
+              <YStack gap="$3">
                 <Button
                   variant="outline"
                   size="$4"
@@ -547,11 +547,11 @@ const OrganizationDetail: React.FC = () => {
                 >
                   Delete Organization
                 </Button>
-              </Stack>
-            </Stack>
+              </YStack>
+            </YStack>
           </Card>
-        </Stack>
-      </Stack>
+        </YStack>
+      </XStack>
 
       {/* Edit Modal */}
       <Modal
@@ -560,8 +560,8 @@ const OrganizationDetail: React.FC = () => {
         title="Edit Organization"
         size="lg"
       >
-        <Stack gap="$4" padding="$4">
-          <Stack gap="$2">
+        <YStack gap="$4" padding="$4">
+          <YStack gap="$2">
             <Text fontSize="$4" fontWeight="600" color="$gray12">
               Organization Name *
             </Text>
@@ -570,9 +570,9 @@ const OrganizationDetail: React.FC = () => {
               onChangeText={(value) => handleInputChange('name', value)}
               placeholder="Enter organization name"
             />
-          </Stack>
+          </YStack>
           
-          <Stack gap="$2">
+          <YStack gap="$2">
             <Text fontSize="$4" fontWeight="600" color="$gray12">
               Description
             </Text>
@@ -583,10 +583,10 @@ const OrganizationDetail: React.FC = () => {
               multiline
               numberOfLines={3}
             />
-          </Stack>
+          </YStack>
           
-          <Stack flexDirection="row" gap="$4">
-            <Stack gap="$2" flex={1}>
+          <XStack gap="$4">
+            <YStack gap="$2" flex={1}>
               <Text fontSize="$4" fontWeight="600" color="$gray12">
                 Industry *
               </Text>
@@ -595,9 +595,9 @@ const OrganizationDetail: React.FC = () => {
                 onChangeText={(value) => handleInputChange('industry', value)}
                 placeholder="Enter industry"
               />
-            </Stack>
+            </YStack>
             
-            <Stack gap="$2" flex={1}>
+            <YStack gap="$2" flex={1}>
               <Text fontSize="$4" fontWeight="600" color="$gray12">
                 Employee Count
               </Text>
@@ -607,10 +607,10 @@ const OrganizationDetail: React.FC = () => {
                 placeholder="Enter employee count"
                 keyboardType="numeric"
               />
-            </Stack>
-          </Stack>
+            </YStack>
+          </XStack>
           
-          <Stack gap="$2">
+          <YStack gap="$2">
             <Text fontSize="$4" fontWeight="600" color="$gray12">
               Location *
             </Text>
@@ -619,10 +619,10 @@ const OrganizationDetail: React.FC = () => {
               onChangeText={(value) => handleInputChange('location', value)}
               placeholder="Enter location"
             />
-          </Stack>
+          </YStack>
           
-          <Stack flexDirection="row" gap="$4">
-            <Stack gap="$2" flex={1}>
+          <XStack gap="$4">
+            <YStack gap="$2" flex={1}>
               <Text fontSize="$4" fontWeight="600" color="$gray12">
                 Website
               </Text>
@@ -631,9 +631,9 @@ const OrganizationDetail: React.FC = () => {
                 onChangeText={(value) => handleInputChange('website', value)}
                 placeholder="Enter website URL"
               />
-            </Stack>
+            </YStack>
             
-            <Stack gap="$2" flex={1}>
+            <YStack gap="$2" flex={1}>
               <Text fontSize="$4" fontWeight="600" color="$gray12">
                 Email
               </Text>
@@ -643,10 +643,10 @@ const OrganizationDetail: React.FC = () => {
                 placeholder="Enter email"
                 keyboardType="email-address"
               />
-            </Stack>
-          </Stack>
+            </YStack>
+          </XStack>
           
-          <Stack gap="$2">
+          <YStack gap="$2">
             <Text fontSize="$4" fontWeight="600" color="$gray12">
               Phone
             </Text>
@@ -656,9 +656,9 @@ const OrganizationDetail: React.FC = () => {
               placeholder="Enter phone number"
               keyboardType="phone-pad"
             />
-          </Stack>
+          </YStack>
           
-          <Stack flexDirection="row" gap="$3" justifyContent="flex-end" marginTop="$4">
+          <XStack gap="$3" justifyContent="flex-end" marginTop="$4">
             <Button
               variant="outline"
               size="$4"
@@ -673,8 +673,8 @@ const OrganizationDetail: React.FC = () => {
             >
               Update Organization
             </Button>
-          </Stack>
-        </Stack>
+          </XStack>
+        </YStack>
       </Modal>
 
       {/* Delete Confirmation Modal */}
@@ -684,13 +684,13 @@ const OrganizationDetail: React.FC = () => {
         title="Delete Organization"
         size="md"
       >
-        <Stack gap="$4" padding="$4">
+        <YStack gap="$4" padding="$4">
           <Text fontSize="$4" color="$gray11" lineHeight="$5">
             Are you sure you want to delete <Text fontWeight="bold">{organization.name}</Text>? 
             This action cannot be undone and will permanently remove all associated data.
           </Text>
           
-          <Stack flexDirection="row" gap="$3" justifyContent="flex-end" marginTop="$4">
+          <XStack gap="$3" justifyContent="flex-end" marginTop="$4">
             <Button
               variant="outline"
               size="$4"
@@ -705,10 +705,10 @@ const OrganizationDetail: React.FC = () => {
             >
               Delete Organization
             </Button>
-          </Stack>
-        </Stack>
+          </XStack>
+        </YStack>
       </Modal>
-    </Stack>
+    </YStack>
   );
 };
 
